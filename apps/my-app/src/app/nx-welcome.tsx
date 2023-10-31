@@ -5,9 +5,12 @@
  Delete this file and get started with your project!
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
+import { Common } from '@nx-exp/common';
+
 export function NxWelcome({ title }: { title: string }) {
   return (
     <>
+      <Common />
       <style
         dangerouslySetInnerHTML={{
           __html: `
