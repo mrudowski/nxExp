@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+
+.connectedThings {
+  margin-top: $sw-margin * 2;
+  border-left: 2px solid $sw-color-yellow;
+  padding: 0 $sw-margin 0 ($sw-margin + $sw-margin-sm);
+
+  h3 {
+    margin: 0 0 $sw-margin-sm (-$sw-margin-sm);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+}

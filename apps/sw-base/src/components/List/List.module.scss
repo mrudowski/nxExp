@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+
+$gap: $sw-margin;
+
+.list {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.listItem {
+  padding: $sw-margin;
+  border: 1px solid rgba($sw-color-yellow, 0.75);
+  display: flex;
+  gap: $sw-margin;
+
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    border: 1px solid $sw-color-yellow
+  }
+}

@@ -1,0 +1,17 @@
+@import "reset";
+@import "variables";
+
+body {
+  background-color: $sw-color-blue3;
+  color: $sw-color-blue1;
+  font-family: 'Lato', sans-serif;
+}
+
+a {
+  color: $sw-color-orange;
+  text-decoration: none;
+
+  &:hover {
+    border-bottom: 1px solid $sw-color-orange;
+  }
+}

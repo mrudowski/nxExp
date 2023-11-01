@@ -1,0 +1,21 @@
+{
+  "domain": {
+    "characters": "Characters",
+    "planets": "Planets",
+    "pilots": "Pilots",
+    "population": "Population",
+    "residents": "Residents",
+    "species": "Species",
+    "vehicleType": "Type",
+    "vehicles": "Vehicles"
+  },
+  "errorPage": {
+    "404": "404",
+    "pageNotFound": "Page not found",
+    "somethingGoesWrong": "Something goes wrong",
+    "sorry": "Sorry"
+  },
+  "utils": {
+    "loading": "Loading…"
+  }
+}
