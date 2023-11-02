@@ -5,8 +5,8 @@
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "noImplicitAny": false, // for now only
     "types": ["vite/client", "vitest"],
+    // "noImplicitAny": false, // not needed anymore
     // my for absolute imports
     // "baseUrl": ".", // already defined in root
     "paths": {

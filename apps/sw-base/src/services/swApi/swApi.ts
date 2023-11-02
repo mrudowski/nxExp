@@ -1,7 +1,7 @@
 import swApi from '../ky.ts';
 import {SWAbstractThing} from './types.ts';
 
-export const fetchThing = async <T extends SWAbstractThing>(url): Promise<T> => {
+export const fetchThing = async <T extends SWAbstractThing>(url: string): Promise<T> => {
   return await swApi.get(url).json();
 };
 

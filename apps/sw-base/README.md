@@ -13,9 +13,9 @@
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context
 - custom errors status
 - find lint to force sort properties alphabetically in i18n resources
-- packing related utils methods in object before exporting
+- packing related utils methods in object before exporting (hmm, it's hard to check it's usage then)
 - test swBase in ✅ react (by nx/vite/swc) vs nextjs / remix / astro / gatsby solution
-- turn off noImplicitAny
+- ✅ turn off noImplicitAny
 - make eslint dev checker works as typescript - in all app dependencies
 
 # Environment requirements
