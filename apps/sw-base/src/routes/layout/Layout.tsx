@@ -2,10 +2,9 @@ import classNames from 'classnames';
 import {useTranslation} from 'react-i18next';
 import {NavLink, Outlet, useNavigation} from 'react-router-dom';
 
-import {ROUTES} from '../../router/ROUTES';
-import {RouteId} from '../../router/types';
-// import {ROUTES} from '@/router/ROUTES.ts';
-// import {RouteId} from '@/router/types.ts';
+import {ROUTES} from '@/router/ROUTES.ts';
+import {RouteId} from '@/router/types.ts';
+
 import styles from './Layout.module.scss';
 
 type NavItemProps = {

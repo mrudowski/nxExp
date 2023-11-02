@@ -1,6 +1,7 @@
 import {QueryClient} from '@tanstack/react-query';
 
-import {DetailPageParams} from '../../../router/types.ts';
+import {DetailPageParams} from '@/router/types.ts';
+
 import {swApiListQuery, swApiThingQuery} from '../queries/queries.ts';
 import {getThingQueryUrl} from '../utils.ts';
 

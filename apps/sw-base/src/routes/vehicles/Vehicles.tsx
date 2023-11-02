@@ -1,9 +1,9 @@
 import {useTranslation} from 'react-i18next';
 
-import List from '../../components/List/List.tsx';
-import PageLoading from '../../components/PageLoading/PageLoading.tsx';
-import {SW_API_URLS} from '../../services/swApi/constants.ts';
-import {useListQuery} from '../../services/swApi/hooks/useListQuery.ts';
+import List from '@/components/List/List.tsx';
+import PageLoading from '@/components/PageLoading/PageLoading.tsx';
+import {SW_API_URLS} from '@/services/swApi/constants.ts';
+import {useListQuery} from '@/services/swApi/hooks/useListQuery.ts';
 
 const Vehicles = () => {
   const {t} = useTranslation();

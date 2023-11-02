@@ -1,6 +1,6 @@
 import {useTranslation} from 'react-i18next';
 
-import useThingsQueries from '../../services/swApi/hooks/useThingsQueries.ts';
+import useThingsQueries from '@/services/swApi/hooks/useThingsQueries.ts';
 
 type CharacterSpeciesProps = {
   urls: string[];

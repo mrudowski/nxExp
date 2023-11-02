@@ -3,6 +3,7 @@
 import {checker} from '@hyoban/vite-plugin-checker';
 import {nxViteTsPaths} from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react-swc';
+import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 
 // add eslint when dev!
@@ -61,6 +62,12 @@ export default defineConfig(({mode}) => {
       },
       environment: 'jsdom',
       include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    },
+
+    // my for absolute imports
+    // https://stackoverflow.com/questions/68241263/absolute-path-not-working-in-vite-project-react-ts
+    resolve: {
+      alias: [{find: '@', replacement: path.resolve(__dirname, 'src')}],
     },
   };
 });

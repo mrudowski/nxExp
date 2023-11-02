@@ -1,7 +1,8 @@
 import {Link} from 'react-router-dom';
 
-import {getCharacterRoute, getIdFromUrl} from '../../router/utils.ts';
-import {SWAbstractThing} from '../../services/swApi/types.ts';
+import {getCharacterRoute, getIdFromUrl} from '@/router/utils.ts';
+import {SWAbstractThing} from '@/services/swApi/types.ts';
+
 import Avatar from '../Avatar/Avatar.tsx';
 import styles from './List.module.scss';
 

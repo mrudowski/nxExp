@@ -1,10 +1,11 @@
 import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 
-import {RouteId} from '../../router/types.ts';
-import {getIdFromUrl, getThingRoute} from '../../router/utils.ts';
-import useThingsQueries from '../../services/swApi/hooks/useThingsQueries.ts';
-import {SWAbstractThing} from '../../services/swApi/types.ts';
+import {RouteId} from '@/router/types.ts';
+import {getIdFromUrl, getThingRoute} from '@/router/utils.ts';
+import useThingsQueries from '@/services/swApi/hooks/useThingsQueries.ts';
+import {SWAbstractThing} from '@/services/swApi/types.ts';
+
 import styles from './ConnectedThings.module.scss';
 
 type ContentProps = {
