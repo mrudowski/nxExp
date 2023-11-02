@@ -50,6 +50,8 @@ module.exports = [
         'react-refresh/only-export-components': ['warn', {allowConstantExport: true}],
         'simple-import-sort/imports': 'warn',
         'simple-import-sort/exports': 'warn',
+        // turn on but so good/new that it's nice to know about it:
+        // 'react/jsx-no-useless-fragment': 'warn',
       },
     })),
   ...compat

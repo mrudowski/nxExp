@@ -16,7 +16,12 @@
     "baseUrl": ".",
     "paths": {
       "@nx-exp/common": ["libs/common/src/index.ts"]
-    }
+    },
+    // my part
+    "allowImportingTsExtensions": true, // from vite - but we don't need it
+    "strict": true, // let's make it global
+    // "noImplicitAny": true, // explicit because strict is not enough in nx?
+    "resolveJsonModule": true,
   },
   "exclude": ["node_modules", "tmp"]
 }

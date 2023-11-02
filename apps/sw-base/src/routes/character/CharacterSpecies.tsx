@@ -10,7 +10,7 @@ const CharacterSpecies = ({urls}: CharacterSpeciesProps) => {
   const {data: species, pending} = useThingsQueries(urls);
   const {t} = useTranslation();
 
-  return <>{pending ? t('utils.loading') : species.map(oneSpecies => oneSpecies.name).join(',') || '–'}</>;
+  return pending ? t('utils.loading') : species.map(oneSpecies => oneSpecies.name).join(',') || '–';
 };
 
 export default CharacterSpecies;
