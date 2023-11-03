@@ -43,7 +43,7 @@ export default defineConfig(({mode}) => {
             // https://github.com/fi3ework/vite-plugin-checker/pull/282
             eslint: {
               useFlatConfig: true,
-              lintCommand: 'eslint "./src/**/*.{ts,tsx}"', // only here
+              lintCommand: `eslint "${process.cwd()}/{apps,libs}/**/*.{ts,tsx}"`, // only here
             },
           })
         : undefined,
