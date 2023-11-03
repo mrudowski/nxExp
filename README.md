@@ -7,7 +7,7 @@
 To start the development server run 
 
 ```
-nx serve my-app
+nx serve sw-base
 ```
 
 Open your browser and navigate to http://localhost:4200/

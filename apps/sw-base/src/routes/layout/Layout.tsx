@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import {useTranslation} from 'react-i18next';
 import {NavLink, Outlet, useNavigation} from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const NavItem = ({route}: NavItemProps) => {
         to={route}
         end={true}
         className={({isActive, isPending}) =>
-          classNames(styles.navLink, isActive ? styles.active : isPending ? styles.pending : '')
+          clsx(styles.navLink, isActive ? styles.active : isPending ? styles.pending : '')
         }
       >
         {t(`domain.${route}`)}
@@ -32,7 +32,7 @@ const Layout = () => {
 
   return (
     <div className={styles.appLayout}>
-      <header className={classNames(styles.appHeader, navigation.state === 'loading' && styles.appLoading)}>
+      <header className={clsx(styles.appHeader, navigation.state === 'loading' && styles.appLoading)}>
         <h1>SW BaseExp</h1>
         <nav>
           <ul>

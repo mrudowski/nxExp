@@ -41,6 +41,9 @@ module.exports = [
         'plugin:import/recommended',
         'plugin:react/recommended',
         'plugin:react/jsx-runtime',
+        'plugin:testing-library/react',
+        // 'plugin:testing-library/recommended', // not working
+        'plugin:jest-dom/recommended',
       ],
     })
     .map(config => ({

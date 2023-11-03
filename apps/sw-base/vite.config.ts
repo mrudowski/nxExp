@@ -60,6 +60,8 @@ export default defineConfig(({mode}) => {
       cache: {
         dir: '../../node_modules/.vitest',
       },
+      // css: true, // for vitest-preview
+      setupFiles: `../../setupTests.ts`,
       environment: 'jsdom',
       include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     },

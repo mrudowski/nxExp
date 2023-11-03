@@ -3,9 +3,12 @@
 `swBase` is learning project. It uses fine https://swapi.info/ (in the place of a little slow https://swapi.dev/)
 
 # TODO in the my spare time:
-- add vitest and tests
+- ✅ add vitest and tests
+- add more test
+- make vitest-preview works
 - ✅ ~~absolute imports~~
-- try clsx
+- ✅ try clsx
+- make plugin:testing-library/recommended works
 - useSuspenseQuery
 - useSuspenseQueries
 - add cancellation https://github.com/sindresorhus/ky#cancellation
