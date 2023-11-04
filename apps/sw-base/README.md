@@ -3,11 +3,11 @@
 `swBase` is learning project. It uses fine https://swapi.info/ (in the place of a little slow https://swapi.dev/)
 
 # TODO in the my spare time:
-- ✅ add vitest and tests
+- ✅ ~~add vitest and tests~~
 - add more test
 - make vitest-preview works
 - ✅ ~~absolute imports~~
-- ✅ try clsx
+- ✅ ~~try clsx~~
 - make plugin:testing-library/recommended works
 - useSuspenseQuery
 - useSuspenseQueries
@@ -16,9 +16,8 @@
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context
 - custom errors status
 - find lint to force sort properties alphabetically in i18n resources
-- packing related utils methods in object before exporting (hmm, it's hard to check it's usage then)
 - test swBase in ✅ react (by nx/vite/swc) vs nextjs / remix / astro / gatsby solution
-- ✅ turn off noImplicitAny
+- ✅ ~~turn off noImplicitAny~~
 - make eslint dev checker works as typescript - in all app dependencies
 
 # Environment requirements
