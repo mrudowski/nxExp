@@ -8,6 +8,7 @@
 - make vitest-preview works
 - ✅ ~~absolute imports~~
 - ✅ ~~try clsx~~
+- add light/dark mode
 - make plugin:testing-library/recommended works
 - useSuspenseQuery
 - useSuspenseQueries
