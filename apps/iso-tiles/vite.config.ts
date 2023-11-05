@@ -1,8 +1,8 @@
 /// <reference types='vitest' />
+import path from 'path';
 import {defineConfig} from 'vite';
 
 import {defineConfigMethod} from '../../vite.config.base.ts';
-import path from 'path';
 
-const appSrc = path.resolve(__dirname, 'src');
+const appSrc = path.resolve(__dirname);
 export default defineConfig(defineConfigMethod(appSrc));

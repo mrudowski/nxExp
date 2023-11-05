@@ -4,5 +4,6 @@ import {defineConfig} from 'vite';
 
 import {defineConfigMethod} from '../../vite.config.base.ts';
 
+// const appSrc = path.resolve(__dirname, 'src');
 const appPath = path.resolve(__dirname);
 export default defineConfig(defineConfigMethod(appPath));
