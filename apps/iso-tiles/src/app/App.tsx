@@ -17,6 +17,8 @@ export function App() {
     spriteSheet.parse().then(setTextures);
   }, []);
 
+  const [over, setOver] = useState('');
+
   const grid = useMemo(() => generateGrid(16, 16, (x, y) => ({x, y})), []);
 
   // if (!textures) {
@@ -34,17 +36,25 @@ export function App() {
         antialias: false,
       }}
     >
+      <Container x={20} y={-20}>
+        <Text text="Loading" anchor={{x: 0.5, y: 0.5}} />
+      </Container>
       {textures ? (
         grid.map(({x, y}) => {
           // convert the screen coordinate to isometric coordinate
           const [isometric_x, isometric_y] = screen_to_isometric(x, y);
           return (
             <Sprite
+              key={x + '-' + y}
+              interactive={true}
               texture={textures['pale_green_grass']}
               x={isometric_x + window.innerWidth / 2} // center horizontally
-              y={isometric_y + window.innerHeight / 12} // align the y axis to one fourth of the screen
+              y={isometric_y + window.innerHeight / 12 - (over === `${x}-${y}` ? -4 : 0)} // align the y axis to one fourth of the screen
               scale={4} // scale into 4x
               anchor={{x: 0, y: 0}} // the anchor point would be center of the sprite
+              pointerover={() => {
+                setOver(x + '-' + y);
+              }}
             />
           );
         })
