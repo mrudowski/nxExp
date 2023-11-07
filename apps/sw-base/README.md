@@ -34,13 +34,6 @@
   ```
   npm install --global yarn
   ```
-  
-# Install deps and run 
-
-```
-yarn
-yarn start
-```
 
 # Checks for known security issues with the installed packages
 
