@@ -1,4 +1,5 @@
 @import "@/styles/variables";
+@import "@/styles/mixins";
 
 $gap: $sw-margin;
 
@@ -10,9 +11,19 @@ $gap: $sw-margin;
 
 .listItem {
   padding: $sw-margin;
-  border: 1px solid rgba($sw-color-yellow, 0.75);
+  border: 1px solid $sw-color-yellow;
   display: flex;
   gap: $sw-margin;
+
+  // work
+  //:global(:root[data-theme="dark"]) & {
+  //  border-color:  rgba($sw-color-yellow, 0.75);
+  //}
+
+  // the same as mixin
+  @include darkMode {
+    border-color:  rgba($sw-color-yellow, 0.75);
+  };
 
   span {
     overflow: hidden;

@@ -15,6 +15,6 @@
 ## And one more I like it from dev.to:
 - ✅ Switching the theme whenever the system-level setting changes BUT only when user doesn't set it by hand
 - ✅ A simple way (using CSS variables) to swap colours throughout the site
-- A SCSS mixin to support more complex theming
+- ✅ A SCSS mixin to support more complex theming
 - ✅ A React Theme Provider for components that needs it
 - ⏳ Support No JavaScript
