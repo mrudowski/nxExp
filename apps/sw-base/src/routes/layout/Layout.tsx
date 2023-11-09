@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import {useTranslation} from 'react-i18next';
 import {NavLink, Outlet, useNavigation} from 'react-router-dom';
 
+import DarkModeSwitch from '@/components/DarkModeSwitch/DarkModeSwitch.tsx';
 import {ROUTES} from '@/router/ROUTES.ts';
 import {RouteId} from '@/router/types.ts';
 
@@ -40,6 +41,7 @@ const Layout = () => {
             <NavItem route={ROUTES.planets} />
             <NavItem route={ROUTES.vehicles} />
           </ul>
+          <DarkModeSwitch />
         </nav>
       </header>
       <main className={styles.appMain}>

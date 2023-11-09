@@ -8,7 +8,8 @@
 - make vitest-preview works
 - ✅ ~~absolute imports~~
 - ✅ ~~try clsx~~
-- add light/dark mode
+- ✅ ~~add light/dark mode without flickering~~
+- (?) fix common vite.config for SCSS absolute import
 - make plugin:testing-library/recommended works
 - useSuspenseQuery
 - useSuspenseQueries

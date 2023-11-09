@@ -1,9 +1,22 @@
 @import "reset";
 @import "variables";
 
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color: #{$sw-color-blue3};
+  --background: #{$sw-color-white};
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color: #{$sw-color-blue1};
+  --background: #{$sw-color-blue3};
+}
+
+// --------------------------------------
+
 body {
-  background-color: $sw-color-blue3;
-  color: $sw-color-blue1;
+  color: var(--color);
+  background-color: var(--background);
   font-family: 'Lato', sans-serif;
 }
 

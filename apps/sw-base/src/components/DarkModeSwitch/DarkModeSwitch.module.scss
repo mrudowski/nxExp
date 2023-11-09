@@ -1,0 +1,26 @@
+@import "@/styles/variables";
+
+.darkModeSwitch {
+  //margin-top: $sw-margin * 2;
+  display: flex;
+  flex: 0 0 auto;
+  gap: $sw-margin;
+  color: rgba($sw-color-blue1, .5);
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  cursor: pointer;
+  flex: 0 0 auto;
+
+  &.active {
+    color: $sw-color-yellow;
+  }
+}
+
+.sun {
+}
+
+.moon {
+}
