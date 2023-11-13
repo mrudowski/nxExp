@@ -16,6 +16,29 @@
   top: 0;
   font-size: 14px;
 
+  // https://ryanmulligan.dev/blog/sticky-header-scroll-shadow/
+  // --shadow: 0 0.5rem 0.5rem 0 #{rgba($sw-color-blue2, 0.25)};
+  $shadow: 0 0.5rem 0.5rem 0 rgba($sw-color-blue2, 0.25);
+  // Fall back to persistent shadow
+  // box-shadow: var(--shadow);
+  box-shadow: $shadow;
+
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-shadow linear both;
+    animation-timeline: scroll();
+    animation-range: 0ex 5ex;
+
+    @keyframes scroll-shadow {
+      from {
+        box-shadow: none;
+      }
+      to {
+        // box-shadow: var(--shadow);
+        box-shadow: $shadow;
+      }
+    }
+  }
+
   @media (min-width: $sw-media-default-min-width) {
     padding: $sw-margin-sm $sw-margin;
     font-size: 1rem;

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "types": ["vite/client", "vitest"],
+    // "noImplicitAny": false, // not needed anymore
+    // my for absolute imports
+    // "baseUrl": ".", // already defined in root
+    "paths": {
+      "@/*": ["apps/sw-base/src/*"],
+      // "@/*": ["./src/*"], // won't work in nx monorepo
+    }
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../tsconfig.base.json"
+}
