@@ -2,7 +2,7 @@
 
 `swBase` is learning project. It uses fine https://swapi.info/ (in the place of a little slow https://swapi.dev/)
 
-# TODO in the my spare time:
+# TODO in my spare time:
 - ✅ ~~add vitest and tests~~
 - add more test
 - make vitest-preview works
@@ -11,8 +11,8 @@
 - ✅ ~~add light/dark mode without flickering~~
 - (?) fix common vite.config for SCSS absolute import
 - make plugin:testing-library/recommended works
-- useSuspenseQuery
-- useSuspenseQueries
+- ✅ ~~useSuspenseQuery~~
+- use QueryErrorResetBoundary
 - add cancellation https://github.com/sindresorhus/ky#cancellation
 - try zod https://tkdodo.eu/blog/type-safe-react-query#zod
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context

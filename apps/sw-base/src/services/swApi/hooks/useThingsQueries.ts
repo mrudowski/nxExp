@@ -1,6 +1,7 @@
 import {useQueries} from '@tanstack/react-query';
 
-import {fetchThing} from '../swApi.ts';
+import {fetchThing} from '@/services/swApi/swApi.ts';
+
 import {SWAbstractThing} from '../types.ts';
 
 const isThing = (thing: SWAbstractThing | undefined): thing is SWAbstractThing => {
@@ -9,6 +10,7 @@ const isThing = (thing: SWAbstractThing | undefined): thing is SWAbstractThing =
 
 const useThingsQueries = (urlOrUrls: string | string[]) => {
   const urls = Array.isArray(urlOrUrls) ? urlOrUrls : [urlOrUrls];
+  // return useSuspenseQueries({
   return useQueries({
     queries: urls.map(url => {
       return {
