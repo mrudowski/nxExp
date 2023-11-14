@@ -2,16 +2,20 @@
 @import "variables";
 
 body {
-  background-color: #333;
-  //color: $sw-color-blue1;
-  //font-family: 'Lato', sans-serif;
+  background-color: #222;
+  color: #eee;
+  font-family: 'Lato', sans-serif;
 }
 
 a {
-  //color: $sw-color-orange;
-  //text-decoration: none;
-  //
-  //&:hover {
-  //  border-bottom: 1px solid $sw-color-orange;
-  //}
+  color: $sw-color-yellow;
+  text-decoration: none;
+
+  &:hover {
+    border-bottom: 1px solid $sw-color-yellow;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 1rem;
 }

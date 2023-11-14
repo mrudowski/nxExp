@@ -7,14 +7,7 @@ export function App() {
   return (
     <div>
       <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Page1</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
+        <Link to="/">Page1</Link> | <Link to="/page-2">Page 2</Link>
       </div>
       <Routes>
         <Route path="/" element={<Breakouts />} />
