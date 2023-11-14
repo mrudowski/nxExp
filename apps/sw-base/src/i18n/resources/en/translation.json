@@ -12,6 +12,7 @@
   "errorPage": {
     "404": "404",
     "pageNotFound": "Page not found",
+    "problemWhileFetching": "Problem while fetching",
     "somethingGoesWrong": "Something goes wrong",
     "sorry": "Sorry"
   },

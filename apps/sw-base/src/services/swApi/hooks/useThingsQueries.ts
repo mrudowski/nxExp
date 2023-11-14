@@ -17,12 +17,14 @@ const useThingsQueries = (urlOrUrls: string | string[]) => {
         queryKey: [url],
         queryFn: async () => fetchThing(url),
         enabled: !!urls,
+        // throwOnError: true, // if we want throw error to router
       };
     }),
     combine: results => {
       return {
         data: results.map(result => result.data).filter(isThing),
         pending: results.some(result => result.isPending),
+        isError: results.some(result => result.isError),
         isSuccess: results.every(result => result.isSuccess),
       };
     },

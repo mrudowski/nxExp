@@ -12,12 +12,16 @@ type ContentProps = {
   route: RouteId;
   things: SWAbstractThing[];
   pending: boolean;
+  isError: boolean;
   isSuccess: boolean;
 };
-const Content = ({route, things, pending, isSuccess}: ContentProps) => {
+const Content = ({route, things, pending, isError, isSuccess}: ContentProps) => {
   const {t} = useTranslation();
   if (pending) {
     return <>{t('utils.loading')}</>;
+  }
+  if (isError) {
+    return <em>{t('errorPage.problemWhileFetching')}</em>;
   }
   if (isSuccess && things.length === 0) {
     return <em>–</em>;
@@ -36,6 +40,7 @@ const Content = ({route, things, pending, isSuccess}: ContentProps) => {
       </ul>
     );
   }
+  return null;
 };
 
 type ConnectedThingsProps = {
@@ -45,12 +50,12 @@ type ConnectedThingsProps = {
 };
 
 const ConnectedThings = ({title, route, urlOrUrls}: ConnectedThingsProps) => {
-  const {data: things, pending, isSuccess} = useThingsQueries(urlOrUrls);
+  const {data: things, pending, isSuccess, isError} = useThingsQueries(urlOrUrls);
 
   return (
     <section className={styles.connectedThings}>
       <h3>{title}</h3>
-      <Content route={route} things={things} pending={pending} isSuccess={isSuccess} />
+      <Content route={route} things={things} pending={pending} isSuccess={isSuccess} isError={isError} />
     </section>
   );
 };
