@@ -12,7 +12,7 @@
 - (?) fix common vite.config for SCSS absolute import
 - make plugin:testing-library/recommended works
 - ✅ ~~useSuspenseQuery~~
-- use QueryErrorResetBoundary
+- ✅ ~~use QueryErrorResetBoundary~~
 - add cancellation https://github.com/sindresorhus/ky#cancellation
 - try zod https://tkdodo.eu/blog/type-safe-react-query#zod
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context

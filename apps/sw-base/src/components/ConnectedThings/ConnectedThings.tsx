@@ -21,7 +21,7 @@ const Content = ({route, things, pending, isError, isSuccess}: ContentProps) => 
     return <>{t('utils.loading')}</>;
   }
   if (isError) {
-    return <em>{t('errorPage.problemWhileFetching')}</em>;
+    return <em>{t('errors.problemWhileFetching')}</em>;
   }
   if (isSuccess && things.length === 0) {
     return <em>–</em>;

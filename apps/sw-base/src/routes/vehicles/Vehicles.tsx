@@ -1,8 +1,7 @@
-import {Suspense} from 'react';
 import {useTranslation} from 'react-i18next';
 
 import List from '@/components/List/List.tsx';
-import PageLoading from '@/components/PageLoading/PageLoading.tsx';
+import QuerySuspenseWithError from '@/components/QuerySuspenseWithError/QuerySuspenseWithError.tsx';
 import {getVehicleRoute} from '@/router/utils.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useSuspenseListQuery} from '@/services/swApi/hooks/useSuspenseListQuery.ts';
@@ -16,9 +15,9 @@ const VehiclesList = () => {
 
 const Vehicles = () => {
   return (
-    <Suspense fallback={<PageLoading />}>
+    <QuerySuspenseWithError>
       <VehiclesList />
-    </Suspense>
+    </QuerySuspenseWithError>
   );
 };
 

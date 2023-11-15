@@ -11,7 +11,7 @@ const CharacterSpecies = ({urls}: CharacterSpeciesProps) => {
   const {t} = useTranslation();
 
   if (isError) {
-    return <em>{t('errorPage.problemWhileFetching')}</em>;
+    return <em>{t('errors.problemWhileFetching')}</em>;
   }
 
   return pending ? t('utils.loading') : species.map(oneSpecies => oneSpecies.name).join(',') || '–';
