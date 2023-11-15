@@ -10,14 +10,12 @@ const isThing = (thing: SWAbstractThing | undefined): thing is SWAbstractThing =
 
 const useThingsQueries = (urlOrUrls: string | string[]) => {
   const urls = Array.isArray(urlOrUrls) ? urlOrUrls : [urlOrUrls];
-  // return useSuspenseQueries({
   return useQueries({
     queries: urls.map(url => {
       return {
         queryKey: [url],
         queryFn: async () => fetchThing(url),
-        enabled: !!urls,
-        // throwOnError: true, // if we want throw error to router
+        // enabled: !!urls,
       };
     }),
     combine: results => {

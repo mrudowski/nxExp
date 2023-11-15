@@ -7,22 +7,18 @@ import {getCharacterRoute} from '@/router/utils.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useSuspenseListQuery} from '@/services/swApi/hooks/useSuspenseListQuery.ts';
 
-const Characters = () => {
+const CharactersList = () => {
   const {t} = useTranslation();
-
-  // when useSuspenseQuery data is always defined, but we can use enable
+  // when useSuspenseQuery data is always defined - because while pending we display Suspense
   const {data: characters} = useSuspenseListQuery(SW_API_URLS.characters);
 
-  // thanks to react router loader it won't happen
-  // if (!characters) {
-  //   return <PageLoading />;
-  // }
-  //
-  // return <List title={t('domain.characters')} things={characters} />;
+  return <List title={t('domain.characters')} things={characters} getRoute={getCharacterRoute} />;
+};
 
+const Characters = () => {
   return (
     <Suspense fallback={<PageLoading />}>
-      <List title={t('domain.characters')} things={characters} getRoute={getCharacterRoute} />
+      <CharactersList />
     </Suspense>
   );
 };

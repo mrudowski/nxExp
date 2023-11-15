@@ -7,8 +7,12 @@ type CharacterSpeciesProps = {
 };
 
 const CharacterSpecies = ({urls}: CharacterSpeciesProps) => {
-  const {data: species, pending} = useThingsQueries(urls);
+  const {data: species, pending, isError} = useThingsQueries(urls);
   const {t} = useTranslation();
+
+  if (isError) {
+    return <em>{t('errorPage.problemWhileFetching')}</em>;
+  }
 
   return pending ? t('utils.loading') : species.map(oneSpecies => oneSpecies.name).join(',') || '–';
 };

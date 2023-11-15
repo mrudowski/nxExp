@@ -7,7 +7,7 @@ import {getVehicleRoute} from '@/router/utils.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useSuspenseListQuery} from '@/services/swApi/hooks/useSuspenseListQuery.ts';
 
-const VehiclesInner = () => {
+const VehiclesList = () => {
   const {t} = useTranslation();
   const {data: vehicles} = useSuspenseListQuery(SW_API_URLS.vehicles);
 
@@ -17,7 +17,7 @@ const VehiclesInner = () => {
 const Vehicles = () => {
   return (
     <Suspense fallback={<PageLoading />}>
-      <VehiclesInner />
+      <VehiclesList />
     </Suspense>
   );
 };
