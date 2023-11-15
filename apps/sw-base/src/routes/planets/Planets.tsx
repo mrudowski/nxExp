@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 
 import List from '@/components/List/List.tsx';
 import PageLoading from '@/components/PageLoading/PageLoading.tsx';
+import {getPlanetRoute} from '@/router/utils.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useSuspenseListQuery} from '@/services/swApi/hooks/useSuspenseListQuery.ts';
 
@@ -18,7 +19,7 @@ const Planets = () => {
 
   return (
     <Suspense fallback={<PageLoading />}>
-      <List title={t('domain.planets')} things={planets} />
+      <List title={t('domain.planets')} things={planets} getRoute={getPlanetRoute} />
     </Suspense>
   );
 };

@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-import {getCharacterRoute, getIdFromUrl} from '@/router/utils.ts';
+import {getIdFromUrl} from '@/router/utils.ts';
 import {SWAbstractThing} from '@/services/swApi/types.ts';
 
 import Avatar from '../Avatar/Avatar.tsx';
@@ -9,8 +9,9 @@ import styles from './List.module.scss';
 type ListProps = {
   title: string;
   things: SWAbstractThing[];
+  getRoute: (id: string) => string;
 };
-const List = ({title, things}: ListProps) => {
+const List = ({title, things, getRoute}: ListProps) => {
   return (
     <article>
       <h2>
@@ -20,7 +21,7 @@ const List = ({title, things}: ListProps) => {
         {things.map(thing => {
           const id = getIdFromUrl(thing.url);
           return (
-            <Link key={id} to={getCharacterRoute(id)} className={styles.listItem}>
+            <Link key={id} to={getRoute(id)} className={styles.listItem}>
               <Avatar name={thing.name} size="sm" />
               <span>{thing.name}</span>
             </Link>

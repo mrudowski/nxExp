@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 
 import List from '@/components/List/List.tsx';
 import PageLoading from '@/components/PageLoading/PageLoading.tsx';
+import {getCharacterRoute} from '@/router/utils.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useSuspenseListQuery} from '@/services/swApi/hooks/useSuspenseListQuery.ts';
 
@@ -21,7 +22,7 @@ const Characters = () => {
 
   return (
     <Suspense fallback={<PageLoading />}>
-      <List title={t('domain.characters')} things={characters} />
+      <List title={t('domain.characters')} things={characters} getRoute={getCharacterRoute} />
     </Suspense>
   );
 };
