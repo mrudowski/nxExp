@@ -1,17 +1,15 @@
 import {IconMoonFilled, IconSunFilled} from '@tabler/icons-react';
 import clsx from 'clsx';
+import {useAtomValue} from 'jotai';
 
+import {derivedCounterAtom} from '@/state/jotaiAtoms.ts';
 import {useThemeContext} from '@/theme';
 
 import styles from './DarkModeSwitch.module.scss';
 
 const DarkModeSwitch = () => {
-  // const {isDarkMode, toggle} = useDarkMode();
   const {theme, setTheme} = useThemeContext();
-
-  // useEffect(() => {
-  //   document.body.classList.toggle('dark-mode', isDarkMode);
-  // }, [isDarkMode]);
+  const counter = useAtomValue(derivedCounterAtom);
 
   return (
     <div className={styles.darkModeSwitch}>
@@ -29,6 +27,7 @@ const DarkModeSwitch = () => {
         size={16}
         className={clsx(styles.icon, styles.moon, theme === 'dark' && styles.active)}
       />
+      {counter}
     </div>
   );
 };

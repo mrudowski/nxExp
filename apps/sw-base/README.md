@@ -13,6 +13,7 @@
 - make plugin:testing-library/recommended works
 - ✅ ~~useSuspenseQuery~~
 - ✅ ~~use QueryErrorResetBoundary~~
+- ✅ ~~try Jotai - Primitive and flexible state management for React~~
 - add cancellation https://github.com/sindresorhus/ky#cancellation
 - try zod https://tkdodo.eu/blog/type-safe-react-query#zod
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context
