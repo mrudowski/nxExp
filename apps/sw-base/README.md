@@ -27,6 +27,8 @@ A place where I'm experimenting with all new and old things in new way
 - ✅ turn off noImplicitAny
 - ✅ new flat eslint config in ESLint v9.0.0 (Done, but it was too early for that)
 - find lint to force sort properties alphabetically in i18n resources
+  - https://github.com/godaddy/eslint-plugin-i18n-json
+  - https://github.com/ota-meshi/eslint-plugin-jsonc
 - make eslint dev checker works as typescript - in all app dependencies
 
 # Environment requirements

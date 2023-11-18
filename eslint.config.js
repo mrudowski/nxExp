@@ -7,7 +7,7 @@ const jsoncParser = require('jsonc-eslint-parser');
 // const reactRecommended = require('eslint-plugin-react/configs/recommended');
 // const reactJsxRuntimeRecommended = require('eslint-plugin-react/configs/jsx-runtime');
 // const reactHooksPlugin = require('eslint-plugin-react-hooks');
-const testingLibraryPlugin = require('eslint-plugin-testing-library');
+// const testingLibraryPlugin = require('eslint-plugin-testing-library');
 //const i18nJsonPlugin = require('eslint-plugin-i18n-json');
 const jsoncPlugin = require('eslint-plugin-jsonc');
 //const json = require('eslint-plugin-json');
@@ -59,6 +59,8 @@ module.exports = [
     },
   },
 
+  // -------------- start of i18n json exp
+
   // json from nx docs
   {
     files: ['*.json'],
@@ -74,6 +76,67 @@ module.exports = [
       ...jsoncPlugin.configs['recommended-with-json'].rules,
     },
   },
+
+  // TODO
+  // ...compat.extends('plugin:i18n-json/recommended'),
+
+  // not working
+  ...compat.plugins('eslint-plugin-jsonc'),
+  ...compat.plugins('eslint-plugin-i18n-json'),
+
+  ...compat.extends('plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'),
+
+  // ...compat.extends('plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'),
+  ...compat
+    .config({
+      plugins: ['eslint-plugin-jsonc'],
+      extends: ['plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'],
+      // rules: {
+      //   'json/*': ['error', {allowComments: true}],
+      // },
+    })
+    .map(config => ({
+      ...config,
+      // parser: 'jsonc-eslint-parser',
+      files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
+      // rules: {
+      //   // 'json/*': ['error', {allowComments: true}],
+      // },
+    })),
+
+  // TODO
+  ...compat
+    .config({
+      extends: [
+        // 'plugin:json/recommended',
+        //'i18n-json/sorted-keys',
+        //'i18n-json/recommended',
+        // 'plugin:jsonc/base',
+        // 'plugin:jsonc/recommended-with-json',
+        // 'plugin:jsonc/all',
+      ],
+    })
+    .map(config => ({
+      ...config,
+      files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
+      // rules: {
+      //   // 'json/*': ['error', {allowComments: true}],
+      // },
+    })),
+
+  // TODO
+  // https://github.com/azeemba/eslint-plugin-json/issues/80
+  // {
+  //   files: ['**/*.json'],
+  //   // ...i18nJsonPlugin.configs.recommended,
+  //   plugins: {
+  //     'i18n-json': i18nJsonPlugin,
+  //   },
+  //   processor: i18nJsonPlugin.processors['.json'],
+  //   rules: i18nJsonPlugin.configs.recommended.rules,
+  // },
+
+  // -------------- end of i18n json exp
 
   // nx docs
   {
@@ -117,25 +180,6 @@ module.exports = [
   //   },
   // },
 
-  // TODO not working
-  {
-    files: ['**/*.(spec|test).(ts|tsx|js|jsx)'],
-    plugins: {
-      'testing-library': testingLibraryPlugin,
-      // TODO
-      //'plugin:testing-library/react',
-      // 'plugin:testing-library/recommended', // not working
-      // 'plugin:jest-dom/recommended',
-    },
-    // rules: {
-    //   //...testingLibraryPlugin.configs.recommended.rules,
-    //   'testing-library/await-async-queries': 'error',
-    //   'testing-library/no-await-sync-queries': 'error',
-    //   'testing-library/no-debugging-utils': 'warn',
-    //   'testing-library/no-dom-import': 'off',
-    // },
-  },
-
   /**
    * ✅ works great
    */
@@ -151,18 +195,6 @@ module.exports = [
       'simple-import-sort/exports': 'warn',
     },
   },
-
-  // TODO
-  // https://github.com/azeemba/eslint-plugin-json/issues/80
-  // {
-  //   files: ['**/*.json'],
-  //   // ...i18nJsonPlugin.configs.recommended,
-  //   plugins: {
-  //     'i18n-json': i18nJsonPlugin,
-  //   },
-  //   processor: i18nJsonPlugin.processors['.json'],
-  //   rules: i18nJsonPlugin.configs.recommended.rules,
-  // },
 
   /**
    * ✅ working
@@ -184,9 +216,21 @@ module.exports = [
       },
     })),
 
+  /**
+   * ✅ works great
+   */
+  ...compat
+    .config({
+      extends: ['plugin:testing-library/react', 'plugin:jest-dom/recommended'],
+    })
+    .map(config => ({
+      ...config,
+      // files: ['**/*.(spec|test).(ts|tsx|js|jsx)'],
+    })),
+
   //
   /**
-   * ✅ working...?
+   * ✅❓working...
    * - needed for rules inside plugin:@nx/react
    * ❓plugin:import/typescript works?
    */
@@ -219,48 +263,6 @@ module.exports = [
     .map(config => ({
       ...config,
       files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-      // TODO WE will replace rules!!!!
-      // rules: {
-      //   // TODO ? turn on but so good/new that it's nice to know about it:
-      //   'react/jsx-no-useless-fragment': 'warn',
-      // },
-    })),
-
-  // TODO
-  ...compat.extends('plugin:i18n-json/recommended'),
-
-  ...compat.extends('plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'),
-  ...compat
-    .config({
-      extends: ['plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'],
-    })
-    .map(config => ({
-      ...config,
-      // parser: 'jsonc-eslint-parser',
-      files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
-      // rules: {
-      //   // 'json/*': ['error', {allowComments: true}],
-      // },
-    })),
-
-  // TODO
-  ...compat
-    .config({
-      extends: [
-        // 'plugin:json/recommended',
-        //'i18n-json/sorted-keys',
-        //'i18n-json/recommended',
-        // 'plugin:jsonc/base',
-        // 'plugin:jsonc/recommended-with-json',
-        // 'plugin:jsonc/all',
-      ],
-    })
-    .map(config => ({
-      ...config,
-      files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
-      // rules: {
-      //   // 'json/*': ['error', {allowComments: true}],
-      // },
     })),
 
   /**
@@ -276,6 +278,7 @@ module.exports = [
       'prefer-const': 'warn',
       'no-param-reassign': 'warn',
       'prefer-arrow-callback': ['warn', {allowNamedFunctions: true}],
+      'react/jsx-no-useless-fragment': 'warn',
     },
   },
   {
