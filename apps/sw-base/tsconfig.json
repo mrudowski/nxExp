@@ -10,7 +10,7 @@
     // my for absolute imports
     // "baseUrl": ".", // already defined in root
     "paths": {
-      "@/*": ["apps/sw-base/src/*"],
+      "@/*": ["apps/sw-base/src/*"]
       // "@/*": ["./src/*"], // won't work in nx monorepo
     }
   },

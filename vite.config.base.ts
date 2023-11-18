@@ -49,7 +49,7 @@ export const defineConfigMethod =
               eslint: {
                 useFlatConfig: true,
                 // lintCommand: `eslint "${process.cwd()}/{apps,libs}/**/*.{ts,tsx}"`, // only here
-                lintCommand: `eslint "${appPath}/../../apps/**/*.{ts,tsx}"`, // only here
+                lintCommand: `eslint "${appPath}/../../apps/**/*.{ts,tsx,json}"`, // only here
                 // lintCommand: `eslint "${appPath}/../../{apps,libs}/src/**/*.{ts,tsx}"`, // only here
                 // lintCommand: `eslint "${appPath}/src/**/*.{ts,tsx}"`, // only here
               },

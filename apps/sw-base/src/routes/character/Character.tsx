@@ -8,7 +8,7 @@ import {ROUTES} from '@/router/ROUTES.ts';
 import {DetailPageParams} from '@/router/types.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useThingQuery} from '@/services/swApi/hooks/useThingQuery.ts';
-import {Character} from '@/services/swApi/types.ts';
+import {CharacterType} from '@/services/swApi/types.ts';
 import {getThingQueryUrl} from '@/services/swApi/utils.ts';
 
 import CharacterSpecies from './CharacterSpecies.tsx';
@@ -18,7 +18,7 @@ const Character = () => {
   const params = useParams() as DetailPageParams;
   const {t} = useTranslation();
 
-  const {data: character} = useThingQuery<Character>(getThingQueryUrl(SW_API_URLS.characters, params.id));
+  const {data: character} = useThingQuery<CharacterType>(getThingQueryUrl(SW_API_URLS.characters, params.id));
 
   // thanks to react router loader it won't happen
   if (!character) {
@@ -26,7 +26,7 @@ const Character = () => {
   }
 
   return (
-    <Details name={character.name}>
+    <Details name={Character.name}>
       <p>
         {t('domain.species')}: {character.species.length === 0 ? '–' : <CharacterSpecies urls={character.species} />}
       </p>

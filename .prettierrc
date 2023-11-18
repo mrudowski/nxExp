@@ -3,5 +3,13 @@
   "arrowParens": "avoid",
   "semi": true,
   "singleQuote": true,
-  "bracketSpacing": false
+  "bracketSpacing": false,
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }

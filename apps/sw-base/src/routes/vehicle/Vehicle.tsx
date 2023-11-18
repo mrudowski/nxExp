@@ -8,7 +8,7 @@ import {ROUTES} from '@/router/ROUTES.ts';
 import {DetailPageParams} from '@/router/types.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useThingQuery} from '@/services/swApi/hooks/useThingQuery.ts';
-import {Vehicle} from '@/services/swApi/types.ts';
+import {VehicleType} from '@/services/swApi/types.ts';
 import {getThingQueryUrl} from '@/services/swApi/utils.ts';
 
 const Vehicle = () => {
@@ -16,7 +16,7 @@ const Vehicle = () => {
   const params = useParams() as DetailPageParams;
   const {t} = useTranslation();
 
-  const {data: vehicle} = useThingQuery<Vehicle>(getThingQueryUrl(SW_API_URLS.vehicles, params.id));
+  const {data: vehicle} = useThingQuery<VehicleType>(getThingQueryUrl(SW_API_URLS.vehicles, params.id));
 
   // thanks to react router loader it won't happen
   if (!vehicle) {

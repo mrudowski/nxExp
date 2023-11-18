@@ -8,7 +8,7 @@ import {ROUTES} from '@/router/ROUTES.ts';
 import {DetailPageParams} from '@/router/types.ts';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {useThingQuery} from '@/services/swApi/hooks/useThingQuery.ts';
-import {Planet} from '@/services/swApi/types.ts';
+import {PlanetType} from '@/services/swApi/types.ts';
 import {getThingQueryUrl} from '@/services/swApi/utils.ts';
 
 const Planet = () => {
@@ -16,7 +16,7 @@ const Planet = () => {
   const params = useParams() as DetailPageParams;
   const {t} = useTranslation();
 
-  const {data: planet} = useThingQuery<Planet>(getThingQueryUrl(SW_API_URLS.planets, params.id));
+  const {data: planet} = useThingQuery<PlanetType>(getThingQueryUrl(SW_API_URLS.planets, params.id));
 
   // thanks to react router loader it won't happen
   if (!planet) {
