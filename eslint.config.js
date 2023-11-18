@@ -219,18 +219,33 @@ module.exports = [
   // -------------- start of i18n json exp
 
   // json from nx docs
+  // 🚫 not working when nx lint sw-base
   {
-    files: ['*.json'],
+    files: ['**/*.json'],
     plugins: {
-      // 🚫not working
-      'plugin:jsonc': jsoncPlugin,
+      jsonc: jsoncPlugin,
     },
-    languageOptions: {
-      parser: jsoncParser,
-    },
+    // 🚫 stop working when active
+    // languageOptions: {
+    //   parser: jsoncParser,
+    // },
     rules: {
-      // 🚫not working
       ...jsoncPlugin.configs['recommended-with-json'].rules,
+      // ...jsoncPlugin.configs['recommended-with-jsonc'].rules,
+      ...jsoncPlugin.configs.all.rules,
+      'jsonc/auto': 'warn',
+      //'jsonc/sort-array-values': 'warn',
+      // 🚫 not working
+      'jsonc/sort-keys': [
+        'error',
+        'asc',
+        {
+          caseSensitive: true,
+          natural: false,
+          minKeys: 2,
+          allowLineSeparatedGroups: false,
+        },
+      ],
     },
   },
 
@@ -238,48 +253,49 @@ module.exports = [
   // ...compat.extends('plugin:i18n-json/recommended'),
 
   // not working
-  ...compat.plugins('eslint-plugin-jsonc'),
-  ...compat.plugins('eslint-plugin-i18n-json'),
-
-  ...compat.extends('plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'),
+  // ...compat.plugins('eslint-plugin-jsonc'),
+  // ...compat.plugins('eslint-plugin-i18n-json'),
+  //
+  // ...compat.extends('plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'),
 
   // ...compat.extends('plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'),
-  ...compat
-    .config({
-      plugins: ['eslint-plugin-jsonc'],
-      extends: ['plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'],
-      // rules: {
-      //   'json/*': ['error', {allowComments: true}],
-      // },
-    })
-    .map(config => ({
-      ...config,
-      // parser: 'jsonc-eslint-parser',
-      files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
-      // rules: {
-      //   // 'json/*': ['error', {allowComments: true}],
-      // },
-    })),
+  // ...compat
+  //   .config({
+  //     plugins: ['eslint-plugin-jsonc'],
+  //     extends: ['plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/all'],
+  //     // rules: {
+  //     //   'json/*': ['error', {allowComments: true}],
+  //     // },
+  //   })
+  //   .map(config => ({
+  //     ...config,
+  //     // parser: 'jsonc-eslint-parser',
+  //     files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
+  //     // rules: {
+  //     //   // 'json/*': ['error', {allowComments: true}],
+  //     // },
+  //   })),
 
-  // TODO
-  ...compat
-    .config({
-      extends: [
-        // 'plugin:json/recommended',
-        //'i18n-json/sorted-keys',
-        //'i18n-json/recommended',
-        // 'plugin:jsonc/base',
-        // 'plugin:jsonc/recommended-with-json',
-        // 'plugin:jsonc/all',
-      ],
-    })
-    .map(config => ({
-      ...config,
-      files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
-      // rules: {
-      //   // 'json/*': ['error', {allowComments: true}],
-      // },
-    })),
+  // // TODO
+  // ...compat
+  //   .config({
+  //     extends: [
+  //       // 'plugin:json/recommended',
+  //       //'i18n-json/sorted-keys',
+  //       //'i18n-json/recommended',
+  //       'plugin:jsonc/base',
+  //       'plugin:jsonc/recommended-with-json',
+  //       'plugin:jsonc/recommended-with-jsonc',
+  //       'plugin:jsonc/all',
+  //     ],
+  //   })
+  //   .map(config => ({
+  //     ...config,
+  //     files: ['*/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
+  //     // rules: {
+  //     //   // 'json/*': ['error', {allowComments: true}],
+  //     // },
+  //   })),
 
   // TODO
   // https://github.com/azeemba/eslint-plugin-json/issues/80
