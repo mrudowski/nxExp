@@ -1,27 +1,31 @@
-# About
+# About swBase
 
-`swBase` is learning project. It uses fine https://swapi.info/ (in the place of a little slow https://swapi.dev/)
+This is my learning project.
+A place where I'm experimenting with all new and old things in new way
 
-# TODO in my spare time:
-- ✅ ~~add vitest and tests~~
+# On my list
+- ✅ use fine https://swapi.info/ (in the place of a little slow https://swapi.dev/)
+- ✅ add vitest and tests
 - add more test
 - make vitest-preview works
-- ✅ ~~absolute imports~~
-- ✅ ~~try clsx~~
-- ✅ ~~add light/dark mode without flickering~~
+- ✅ absolute imports
+- ✅ try clsx
+- ✅ add light/dark mode without flickering
 - (?) fix common vite.config for SCSS absolute import
 - make plugin:testing-library/recommended works
-- ✅ ~~useSuspenseQuery~~
-- ✅ ~~use QueryErrorResetBoundary~~
-- ✅ ~~try Jotai - Primitive and flexible state management for React~~
-- ✅ try Zustang - Bear necessities for state management in React
+- ✅ useSuspenseQuery
+- ✅ use QueryErrorResetBoundary
+- ✅ try Jotai - Primitive and flexible state management for React
+- try Zustang - Bear necessities for state management in React
 - add cancellation https://github.com/sindresorhus/ky#cancellation
-- try zod https://tkdodo.eu/blog/type-safe-react-query#zod
+- try zod with react query https://tkdodo.eu/blog/type-safe-react-query#zod
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context
 - custom errors status
-- test swBase in ✅ react (by nx/vite/swc) vs nextjs / remix / astro / gatsby solution
-- ✅ ~~turn off noImplicitAny~~
-- ✅ ~~new flat eslint config in ESLint v9.0.0~~ (done, but it was too early for that)
+- test swBase in 
+  - ✅ react (by nx/vite/swc)
+  - nextjs / remix / astro / gatsby solution
+- ✅ turn off noImplicitAny
+- ✅ new flat eslint config in ESLint v9.0.0 (Done, but it was too early for that)
 - find lint to force sort properties alphabetically in i18n resources
 - make eslint dev checker works as typescript - in all app dependencies
 
