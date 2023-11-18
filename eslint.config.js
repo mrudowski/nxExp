@@ -59,6 +59,163 @@ module.exports = [
     },
   },
 
+  // nx docs
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    rules: {
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          enforceBuildableLibDependency: true,
+          allow: [],
+          depConstraints: [
+            {
+              sourceTag: '*',
+              onlyDependOnLibsWithTags: ['*'],
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  /**
+   *❓responsible for?
+   */
+  ...compat.config({extends: ['plugin:@nx/javascript']}).map(config => ({
+    ...config,
+    files: ['**/*.js', '**/*.jsx'],
+  })),
+
+  /**
+   * ✅❓working...
+   * - needed for rules inside plugin:@nx/react
+   * ❓plugin:import/typescript works?
+   */
+  ...compat
+    .config({extends: ['plugin:@typescript-eslint/recommended', 'plugin:import/typescript', 'plugin:@nx/typescript']})
+    .map(config => ({
+      ...config,
+      files: ['**/*.ts', '**/*.tsx'],
+    })),
+
+  /**
+   * ✅ works great and replace reactRecommended, reactJsxRuntimeRecommended, reactHooksPlugin
+   * it includes
+   * - @nx/react-base
+   * - @nx/react-jsx
+   * - @nx/react-typescript
+   */
+  ...compat
+    .config({
+      extends: ['plugin:@nx/react'],
+    })
+    .map(config => ({
+      ...config,
+      files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    })),
+
+  // not needed: @nx/react defined it and throw error when detected double
+  // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
+  // {
+  //   files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+  //   ...reactRecommended,
+  // },
+  // @nx/react defined it
+  // {
+  //   files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+  //   ...reactJsxRuntimeRecommended,
+  // },
+  // @nx/react defined it
+  // {
+  //   files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+  //   plugins: {
+  //     'react-hooks': reactHooksPlugin,
+  //   },
+  //   rules: {
+  //     ...reactHooksPlugin.configs.recommended.rules,
+  //   },
+  // },
+
+  /**
+   * ✅ works great
+   */
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    plugins: {
+      'react-refresh': reactRefreshPlugin,
+      'simple-import-sort': simpleImportSortPlugin,
+    },
+    rules: {
+      'react-refresh/only-export-components': ['warn', {allowConstantExport: true}],
+      'simple-import-sort/imports': 'warn',
+      'simple-import-sort/exports': 'warn',
+    },
+  },
+
+  /**
+   * ✅ working
+   */
+  ...compat
+    .config({
+      extends: ['plugin:import/recommended'],
+    })
+    .map(config => ({
+      ...config,
+      files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+      rules: {
+        // ...config.rules,
+        // we remove all recommended and write new ones:
+        'import/no-useless-path-segments': 'warn',
+        'import/no-cycle': 'warn',
+        // removed because it doesn't allow to `import ky from 'ky';` or `import i18n from 'i18next';`
+        // 'import/no-named-as-default-member': 'warn',
+      },
+    })),
+
+  /**
+   * ✅ works great
+   */
+  ...compat
+    .config({
+      extends: ['plugin:testing-library/react', 'plugin:jest-dom/recommended'],
+    })
+    .map(config => ({
+      ...config,
+      // files: ['**/*.(spec|test).(ts|tsx|js|jsx)'],
+    })),
+
+  /**
+   * ♥️my favorites
+   * outside recommended set https://eslint.org/docs/latest/rules/
+   */
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    rules: {
+      'consistent-return': 'warn',
+      'func-names': 'warn',
+      'object-shorthand': 'warn',
+      'prefer-const': 'warn',
+      'no-param-reassign': 'warn',
+      'prefer-arrow-callback': ['warn', {allowNamedFunctions: true}],
+      'react/jsx-no-useless-fragment': 'warn',
+    },
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
+      '@typescript-eslint/no-shadow': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          ignoreRestSiblings: true,
+        },
+      ],
+      // not needed for now: check if missing return type on function
+      // '@typescript-eslint/explicit-module-boundary-types': ['error'],
+    },
+  },
+
   // -------------- start of i18n json exp
 
   // json from nx docs
@@ -137,160 +294,4 @@ module.exports = [
   // },
 
   // -------------- end of i18n json exp
-
-  // nx docs
-  {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          enforceBuildableLibDependency: true,
-          allow: [],
-          depConstraints: [
-            {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-          ],
-        },
-      ],
-    },
-  },
-
-  // not needed: @nx/react defined it and throw error when detected double
-  // https://github.com/jsx-eslint/eslint-plugin-react#configuration-new-eslintconfigjs
-  // {
-  //   files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-  //   ...reactRecommended,
-  // },
-  // @nx/react defined it
-  // {
-  //   files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-  //   ...reactJsxRuntimeRecommended,
-  // },
-  // @nx/react defined it
-  // {
-  //   files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-  //   plugins: {
-  //     'react-hooks': reactHooksPlugin,
-  //   },
-  //   rules: {
-  //     ...reactHooksPlugin.configs.recommended.rules,
-  //   },
-  // },
-
-  /**
-   * ✅ works great
-   */
-  {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    plugins: {
-      'react-refresh': reactRefreshPlugin,
-      'simple-import-sort': simpleImportSortPlugin,
-    },
-    rules: {
-      'react-refresh/only-export-components': ['warn', {allowConstantExport: true}],
-      'simple-import-sort/imports': 'warn',
-      'simple-import-sort/exports': 'warn',
-    },
-  },
-
-  /**
-   * ✅ working
-   */
-  ...compat
-    .config({
-      extends: ['plugin:import/recommended'],
-    })
-    .map(config => ({
-      ...config,
-      files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-      rules: {
-        // ...config.rules,
-        // we remove all recommended and write new ones:
-        'import/no-useless-path-segments': 'warn',
-        'import/no-cycle': 'warn',
-        // removed because it doesn't allow to `import ky from 'ky';` or `import i18n from 'i18next';`
-        // 'import/no-named-as-default-member': 'warn',
-      },
-    })),
-
-  /**
-   * ✅ works great
-   */
-  ...compat
-    .config({
-      extends: ['plugin:testing-library/react', 'plugin:jest-dom/recommended'],
-    })
-    .map(config => ({
-      ...config,
-      // files: ['**/*.(spec|test).(ts|tsx|js|jsx)'],
-    })),
-
-  //
-  /**
-   * ✅❓working...
-   * - needed for rules inside plugin:@nx/react
-   * ❓plugin:import/typescript works?
-   */
-  ...compat
-    .config({extends: ['plugin:@typescript-eslint/recommended', 'plugin:import/typescript', 'plugin:@nx/typescript']})
-    .map(config => ({
-      ...config,
-      files: ['**/*.ts', '**/*.tsx'],
-    })),
-
-  /**
-   *❓responsible for?
-   */
-  ...compat.config({extends: ['plugin:@nx/javascript']}).map(config => ({
-    ...config,
-    files: ['**/*.js', '**/*.jsx'],
-  })),
-
-  /**
-   * ✅ works great and replace reactRecommended, reactJsxRuntimeRecommended, reactHooksPlugin
-   * it includes
-   * - @nx/react-base
-   * - @nx/react-jsx
-   * - @nx/react-typescript
-   */
-  ...compat
-    .config({
-      extends: ['plugin:@nx/react'],
-    })
-    .map(config => ({
-      ...config,
-      files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    })),
-
-  /**
-   * ♥️my favorites
-   * outside recommended set https://eslint.org/docs/latest/rules/
-   */
-  {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    rules: {
-      'consistent-return': 'warn',
-      'func-names': 'warn',
-      'object-shorthand': 'warn',
-      'prefer-const': 'warn',
-      'no-param-reassign': 'warn',
-      'prefer-arrow-callback': ['warn', {allowNamedFunctions: true}],
-      'react/jsx-no-useless-fragment': 'warn',
-    },
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    rules: {
-      '@typescript-eslint/no-shadow': 'warn',
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          ignoreRestSiblings: true,
-        },
-      ],
-    },
-  },
 ];
