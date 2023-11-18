@@ -7,5 +7,7 @@ export const ThemeContext = createContext<{
   setTheme: (theme: Theme) => void;
 }>({
   theme: 'light',
-  setTheme: () => {},
+  setTheme: () => {
+    // by purpose
+  },
 });

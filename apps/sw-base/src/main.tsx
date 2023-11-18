@@ -12,7 +12,7 @@ import {ThemeProvider} from '@/theme';
 
 const router = getRouter(queryClient);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>

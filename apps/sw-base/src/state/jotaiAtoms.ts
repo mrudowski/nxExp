@@ -25,7 +25,7 @@ export const reverseCounterAtom = atom(
 );
 
 // need <Suspense />
-const asyncAtom = atom<Promise<string>>(async get => {
+const asyncAtom = atom<Promise<string>>(async () => {
   return new Promise(resolve =>
     setTimeout(() => {
       resolve('resolved after 3 seconds');

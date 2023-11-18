@@ -12,7 +12,7 @@ const JotaiPlayground = () => {
     <div className="playground">
       <button
         onClick={() => {
-          setCounter(counter => counter + 1);
+          setCounter(prevCounter => prevCounter + 1);
         }}
       >
         {counter} +

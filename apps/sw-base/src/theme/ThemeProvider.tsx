@@ -24,9 +24,9 @@ export const ThemeProvider = ({children}: ThemeProviderProps) => {
   const [theme, _setTheme] = useState<Theme>(getInitialTheme(darkOS));
 
   // we only save to local storage when user explicit set it
-  const setTheme = useCallback((theme: Theme) => {
-    _setTheme(theme);
-    localStorage.setItem(SW_THEME_LS_KEY, theme);
+  const setTheme = useCallback((newTheme: Theme) => {
+    _setTheme(newTheme);
+    localStorage.setItem(SW_THEME_LS_KEY, newTheme);
   }, []);
 
   useEffect(() => {

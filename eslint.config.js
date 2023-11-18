@@ -28,12 +28,11 @@ const compat = new FlatCompat({
 });
 
 module.exports = [
-  // TODO?
+  // https://eslint.org/docs/latest/use/configure/configuration-files-new#using-predefined-configurations
   js.configs.recommended,
-  // TODO
-  //...compat.plugins('eslint:recommended'),
-  //...compat.plugins('eslint:recommended'),
-  'eslint:recommended', // working or the same as js.configs.recommended?
+  //  Warning: The 'eslint:recommended' string configuration is deprecated and will be replaced
+  //  by the @eslint/js package's 'recommended' config.
+  // 'eslint:recommended',
 
   {
     plugins: {
@@ -128,13 +127,13 @@ module.exports = [
       // 'plugin:testing-library/recommended', // not working
       // 'plugin:jest-dom/recommended',
     },
-    rules: {
-      //...testingLibraryPlugin.configs.recommended.rules,
-      'testing-library/await-async-queries': 'error',
-      'testing-library/no-await-sync-queries': 'error',
-      'testing-library/no-debugging-utils': 'warn',
-      'testing-library/no-dom-import': 'off',
-    },
+    // rules: {
+    //   //...testingLibraryPlugin.configs.recommended.rules,
+    //   'testing-library/await-async-queries': 'error',
+    //   'testing-library/no-await-sync-queries': 'error',
+    //   'testing-library/no-debugging-utils': 'warn',
+    //   'testing-library/no-dom-import': 'off',
+    // },
   },
 
   /**
@@ -165,7 +164,9 @@ module.exports = [
   //   rules: i18nJsonPlugin.configs.recommended.rules,
   // },
 
-  // TODO working???
+  /**
+   * ✅ working
+   */
   ...compat
     .config({
       extends: ['plugin:import/recommended'],
@@ -174,22 +175,26 @@ module.exports = [
       ...config,
       files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
       rules: {
-        // turn on but so good/new that it's nice to know about it:
-        // 'react/jsx-no-useless-fragment': 'warn',
+        // ...config.rules,
+        // we remove all recommended and write new ones:
+        'import/no-useless-path-segments': 'warn',
+        'import/no-cycle': 'warn',
+        // removed because it doesn't allow to `import ky from 'ky';` or `import i18n from 'i18next';`
+        // 'import/no-named-as-default-member': 'warn',
       },
     })),
 
-  // ✅ working TODO but without import... and double itselfs?
+  //
   /**
-   * ❓needed for rules inside plugin:@nx/react
+   * ✅ working...?
+   * - needed for rules inside plugin:@nx/react
+   * ❓plugin:import/typescript works?
    */
-
   ...compat
     .config({extends: ['plugin:@typescript-eslint/recommended', 'plugin:import/typescript', 'plugin:@nx/typescript']})
     .map(config => ({
       ...config,
       files: ['**/*.ts', '**/*.tsx'],
-      rules: {},
     })),
 
   /**
@@ -198,7 +203,6 @@ module.exports = [
   ...compat.config({extends: ['plugin:@nx/javascript']}).map(config => ({
     ...config,
     files: ['**/*.js', '**/*.jsx'],
-    rules: {},
   })),
 
   /**
@@ -215,6 +219,11 @@ module.exports = [
     .map(config => ({
       ...config,
       files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+      // TODO WE will replace rules!!!!
+      // rules: {
+      //   // TODO ? turn on but so good/new that it's nice to know about it:
+      //   'react/jsx-no-useless-fragment': 'warn',
+      // },
     })),
 
   // TODO
@@ -229,9 +238,9 @@ module.exports = [
       ...config,
       // parser: 'jsonc-eslint-parser',
       files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
-      rules: {
-        // 'json/*': ['error', {allowComments: true}],
-      },
+      // rules: {
+      //   // 'json/*': ['error', {allowComments: true}],
+      // },
     })),
 
   // TODO
@@ -249,24 +258,36 @@ module.exports = [
     .map(config => ({
       ...config,
       files: ['**/*.json'], // This plugin will parse .json, .jsonc and .json5 using the configuration provided by the plugin.
-      rules: {
-        // 'json/*': ['error', {allowComments: true}],
-      },
+      // rules: {
+      //   // 'json/*': ['error', {allowComments: true}],
+      // },
     })),
 
-  // ♥️my favorites
+  /**
+   * ♥️my favorites
+   * outside recommended set https://eslint.org/docs/latest/rules/
+   */
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     rules: {
+      'consistent-return': 'warn',
+      'func-names': 'warn',
+      'object-shorthand': 'warn',
+      'prefer-const': 'warn',
       'no-param-reassign': 'warn',
+      'prefer-arrow-callback': ['warn', {allowNamedFunctions: true}],
     },
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
       '@typescript-eslint/no-shadow': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
 ];
-
-// TODO add eslint from asweb
