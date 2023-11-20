@@ -1,5 +1,6 @@
 // const {FlatCompat} = require('@eslint/eslintrc');
 const baseConfig = require('../../eslint.config.js');
+const reactConfig = require('../../eslint-react.config.js');
 // const js = require('@eslint/js');
 // const compat = new FlatCompat({
 //   baseDirectory: __dirname,
@@ -7,6 +8,7 @@ const baseConfig = require('../../eslint.config.js');
 // });
 module.exports = [
   ...baseConfig,
+  ...reactConfig,
   // {
   //   files: ['apps/sw-base/**/*.ts', 'apps/sw-base/**/*.tsx', 'apps/sw-base/**/*.js', 'apps/sw-base/**/*.jsx'],
   //   rules: {},
