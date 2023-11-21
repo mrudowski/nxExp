@@ -23,6 +23,7 @@ A place where I'm experimenting with all new and old things in new way
 - develop swBase in 
   - ✅ react (by nx/vite/swc)
   - nextjs / remix / astro / gatsby solution
+- use next to produce SSG sites
 - ✅ turn off noImplicitAny
 - ✅ new flat eslint config in ESLint v9.0.0 (Done, but the world is not ready yet for that)
 - ✅ make plugin:testing-library/recommended works

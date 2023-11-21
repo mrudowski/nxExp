@@ -105,11 +105,9 @@ module.exports = [
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     plugins: {
-      'react-refresh': reactRefreshPlugin,
       'simple-import-sort': simpleImportSortPlugin,
     },
     rules: {
-      'react-refresh/only-export-components': ['warn', {allowConstantExport: true}],
       'simple-import-sort/imports': 'warn',
       'simple-import-sort/exports': 'warn',
     },

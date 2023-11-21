@@ -1,0 +1,165 @@
+@import "./styles/variables"; // TODO @ abs import
+
+.appLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.appHeader {
+  background-color: $sw-color-blue2;
+  padding: $sw-margin-sm;
+  color: $sw-color-white;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: sticky;
+  top: 0;
+  font-size: 14px;
+
+  // https://ryanmulligan.dev/blog/sticky-header-scroll-shadow/
+  // --shadow: 0 0.5rem 0.5rem 0 #{rgba($sw-color-blue2, 0.25)};
+  $shadow: 0 0.5rem 0.5rem 0 rgba($sw-color-blue2, 0.25);
+  // Fall back to persistent shadow
+  // box-shadow: var(--shadow);
+  box-shadow: $shadow;
+
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-shadow linear both;
+    animation-timeline: scroll();
+    animation-range: 0ex 5ex;
+
+    @keyframes scroll-shadow {
+      from {
+        box-shadow: none;
+      }
+      to {
+        // box-shadow: var(--shadow);
+        box-shadow: $shadow;
+      }
+    }
+  }
+
+  @media (min-width: $sw-media-default-min-width) {
+    padding: $sw-margin-sm $sw-margin;
+    font-size: 1rem;
+  }
+
+  @media (min-width: $sw-media-aside-min-width) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: $sw-aside-size;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+  }
+
+  h1 {
+    font-size: 1rem;
+    font-weight: 400;
+    white-space: nowrap;
+    margin-right: $sw-margin-sm;
+
+    @media (min-width: $sw-media-default-min-width) {
+      font-weight: 300;
+      font-size: 2rem;
+    }
+  }
+
+  nav {
+    display: flex;
+    gap: $sw-margin;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+
+    @media (min-width: $sw-media-aside-min-width) {
+      width: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: $sw-margin-sm;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: $sw-margin-sm;
+      margin-bottom: -$sw-margin-sm;
+
+      @media (min-width: $sw-media-aside-min-width) {
+        margin-top: 12px;
+        flex-direction: column;
+      }
+    }
+
+    li {
+      display: block;
+    }
+  }
+}
+
+.navLink {
+  display: block;
+  color: $sw-color-white;
+  padding: $sw-margin-sm;
+  text-align: center;
+
+  @media (min-width: $sw-media-aside-min-width) {
+    text-align: left;
+    padding-left: $sw-margin;
+    padding-right: $sw-margin;
+    margin-left: -$sw-margin;
+  }
+
+  &:hover {
+    border-bottom: unset;
+    background-color: rgba($sw-color-blue3, 0.5);
+  }
+
+  &.pending {
+    background-color: rgba($sw-color-blue3, 0.75);
+  }
+
+  &.active {
+    background-color: $sw-color-blue3;
+  }
+}
+
+.appLoading {
+  &::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: rgba($sw-color-blue1, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    @media (min-width: $sw-media-aside-min-width) {
+      right: 0;
+      bottom: 0;
+      height: auto;
+      width: 2px;
+    }
+  }
+}
+
+.appMain {
+  padding: $sw-margin;
+  flex: 1 1 auto;
+
+  @media (min-width: $sw-media-aside-min-width) {
+    margin-left: $sw-aside-size;
+  }
+
+  h2 {
+    margin-bottom: $sw-margin;
+
+    small {
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -40,14 +40,6 @@ module.exports = [
   // 🚫 not working when `nx lint sw-base-next`
   // as solution I change `lintFilePatterns` in `project.json`
   {
-    ignores: [
-      'apps/sw-base-next/.next/**/*',
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.js',
-      '**/apps/sw-base-next/.next/**/*',
-      '**/.next/**/*',
-      '**/.next/*',
-    ],
+    ignores: ['apps/sw-base-next/.next/**/*', '**/apps/sw-base-next/.next/**/*', '**/.next/**/*', '**/.next/*'],
   },
 ];

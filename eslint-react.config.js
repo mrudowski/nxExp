@@ -1,5 +1,7 @@
 const {FlatCompat} = require('@eslint/eslintrc');
 const js = require('@eslint/js');
+const reactRefreshPlugin = require('eslint-plugin-react-refresh');
+const simpleImportSortPlugin = require('eslint-plugin-simple-import-sort');
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
@@ -64,6 +66,19 @@ module.exports = [
         // 'import/no-named-as-default-member': 'warn',
       },
     })),
+
+  /**
+   * ✅ works great
+   */
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    plugins: {
+      'react-refresh': reactRefreshPlugin,
+    },
+    rules: {
+      'react-refresh/only-export-components': ['warn', {allowConstantExport: true}],
+    },
+  },
 
   /**
    * ♥️my favorites
