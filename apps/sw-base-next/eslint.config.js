@@ -6,12 +6,11 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 });
 
-module.exports = [
+const nextConfig = [
   {
     files: ['apps/sw-base-next/**/*.*'],
     rules: {'@next/next/no-html-link-for-pages': 'off'},
   },
-  ...baseConfig,
   {
     files: [
       'apps/sw-base-next/**/*.ts',
@@ -33,5 +32,22 @@ module.exports = [
       'apps/sw-base-next/**/*.spec.jsx',
     ],
   })),
-  {ignores: ['apps/sw-base-next/.next/**/*']},
+];
+
+module.exports = [
+  ...baseConfig,
+  ...nextConfig,
+  // 🚫 not working when `nx lint sw-base-next`
+  // as solution I change `lintFilePatterns` in `project.json`
+  {
+    ignores: [
+      'apps/sw-base-next/.next/**/*',
+      '**/*.ts',
+      '**/*.tsx',
+      '**/*.js',
+      '**/apps/sw-base-next/.next/**/*',
+      '**/.next/**/*',
+      '**/.next/*',
+    ],
+  },
 ];

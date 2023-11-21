@@ -11,7 +11,7 @@ export const resources = {
 } as const;
 
 // https://github.com/i18next/i18next/issues/1035
-// eslint-disable-next-line import/no-named-as-default-member
+// not needed because we removed in settings: eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({
   lng: 'en',
   defaultNS,

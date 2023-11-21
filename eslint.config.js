@@ -163,6 +163,7 @@ module.exports = [
   // 🚫 not working when nx lint sw-base
   {
     files: ['**/*.json'],
+    ignores: ['project.json'], // working?
     plugins: {
       jsonc: jsoncPlugin,
     },
