@@ -53,7 +53,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/sw-base-next/app/**/*.{ts,tsx,js,jsx,json}"]
+        "lintFilePatterns": ["apps/sw-base-next/src/**/*.{ts,tsx,js,jsx,json}"]
       }
     }
   },

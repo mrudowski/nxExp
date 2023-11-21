@@ -21,7 +21,7 @@ const RootLayout = ({children}: {children: ReactNode}) => {
         <div className={styles.appLayout}>
           <header className={clsx(styles.appHeader)}>
             {/*<header className={clsx(styles.appHeader, navigation.state === 'loading' && styles.appLoading)}>*/}
-            <h1>SW BaseExp NextJs</h1>
+            <h1>SW NextExp</h1>
             <MainNav />
           </header>
           <main className={styles.appMain}>{children}</main>
