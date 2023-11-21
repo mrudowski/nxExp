@@ -2,8 +2,10 @@
 
 `NxExp` is the learning playground / workspace. Monorepo of projects powered by https://nx.dev/.
 
-Learn more here
-https://github.com/mrudowski/nxExp/tree/main/apps/sw-base
+A place where I'm experimenting with all new and old things in new way
+
+On my list
+https://github.com/mrudowski/nxExp/tree/main/apps/sw-base#on-my-list
 
 - - -
 
