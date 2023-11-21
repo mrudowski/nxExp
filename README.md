@@ -2,24 +2,31 @@
 
 `NxExp` is the learning playground / workspace. Monorepo of projects powered by https://nx.dev/.
 
-## Start the app
+Learn more here
+https://github.com/mrudowski/nxExp/tree/main/apps/sw-base
+
+- - -
+
+## Start the app in dev mode
 
 To start the development server run 
 
 ```
 nx serve sw-base
+nx serve sw-base-next
+nx serve iso-tiles
+nx serve css-fun
 ```
 
 Open your browser and navigate to http://localhost:4200/
 
-
 ## Other actions:
 
 ```
-nx lint sw-base
-nx test sw-base
-nx build sw-base
-nx preview sw-base
+nx lint [app-name]
+nx test [app-name]
+nx build [app-name]
+nx preview [app-name]
 ```
 
 - - -
