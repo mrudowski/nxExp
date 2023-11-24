@@ -3,7 +3,7 @@ import '@/styles/index.scss';
 import clsx from 'clsx';
 import {ReactNode} from 'react';
 
-import MainNav from '@/components/mainNav.tsx';
+import MainNav from '@/components/mainNav/mainNav.tsx';
 
 import {latoFont} from './fonts.ts';
 import styles from './layout.module.scss';
