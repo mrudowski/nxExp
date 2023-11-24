@@ -23,7 +23,7 @@ const NavItem = ({route, active}: NavItemProps) => {
   return (
     <li>
       <Link
-        href={route}
+        href={`/${route}`}
         // end={true}
         className={clsx(styles.navLink, active && styles.active)}
       >

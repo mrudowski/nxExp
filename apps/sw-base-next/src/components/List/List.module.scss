@@ -1,0 +1,42 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
+$gap: $sw-margin;
+
+.list {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.listItem {
+  padding: $sw-margin;
+  border: 1px solid $sw-color-yellow;
+  display: flex;
+  gap: $sw-margin;
+
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:hover {
+    border-color: $sw-color-yellow;
+    box-shadow: inset 0 0 0 1px $sw-color-yellow
+  }
+
+  // work
+  //:global(:root[data-theme="dark"]) & {
+  //  border-color:  rgba($sw-color-yellow, 0.75);
+  //}
+
+  // the same as mixin
+  @include darkMode {
+    border-color:  rgba($sw-color-yellow, 0.75);
+
+    &:hover {
+      border-color: $sw-color-yellow;
+    }
+  };
+}

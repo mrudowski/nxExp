@@ -16,7 +16,17 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    // for absolute imports
+    "baseUrl": "src/",
+    "paths": {
+      "@/services/*": ["services/*"],
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"],
+      "@/constants/*": ["constants/*"],
+      "@/types/*": ["types/*"],
+      "@/i18n/*": ["i18n/*"]
+    }
   },
   "include": [
     "**/*.ts",
