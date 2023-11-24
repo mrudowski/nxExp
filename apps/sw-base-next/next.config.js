@@ -21,6 +21,9 @@ const nextConfig = {
       },
     ];
   },
+  // SGG
+  // output: 'export',
+  // distDir: 'out',
 };
 
 const plugins = [

@@ -4,6 +4,11 @@ import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {getCharacterRoute} from '@/services/utils.ts';
 import {RouteId} from '@/types/types.ts';
 
+// SGG
+// export async function generateStaticParams() {
+//   return [{domain: ROUTES.characters}, {domain: ROUTES.planets}, {domain: ROUTES.vehicles}];
+// }
+
 async function getData(domain: RouteId) {
   const res = await fetch(SW_API_URLS[domain]);
   const dict = await getDictionary();
