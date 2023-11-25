@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-exp/common": ["libs/common/src/index.ts"]
+      "@nx-exp/common": ["libs/common/src/index.ts"],
+      "@nx-exp/sw-base-tools": ["libs/sw-base-tools/src/index.ts"]
     },
     "allowImportingTsExtensions": true,
     "strict": true,

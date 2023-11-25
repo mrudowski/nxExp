@@ -10,8 +10,10 @@
     // my for absolute imports
     // "baseUrl": ".", // already defined in root
     "paths": {
-      "@/*": ["apps/sw-base/src/*"]
+      "@/*": ["apps/sw-base/src/*"],
       // "@/*": ["./src/*"], // won't work in nx monorepo
+      // we have to add it here again because... by defining path we replaced the one from root
+      "@nx-exp/sw-base-tools": ["libs/sw-base-tools/src/index.ts"]
     }
   },
   "files": [],

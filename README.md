@@ -4,8 +4,10 @@
 
 A place where I'm experimenting with all new and old things in new way
 
-On my list
-https://github.com/mrudowski/nxExp/tree/main/apps/sw-base#on-my-list
+## On my list
+- Oh, we cannot extends `tsconfig` paths: https://github.com/microsoft/TypeScript/issues/44589
+- more things https://github.com/mrudowski/nxExp/tree/main/apps/sw-base#on-my-list
+
 - - -
 
 ## Start the app in dev mode

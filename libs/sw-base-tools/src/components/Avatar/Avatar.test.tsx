@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import {describe, it} from 'vitest';
 
-import Avatar from '@/components/Avatar/Avatar.tsx';
+import Avatar from './Avatar.tsx';
 
 describe('Avatar', () => {
   it('render first letter of name', async () => {

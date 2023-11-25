@@ -1,6 +1,6 @@
+import {Avatar} from '@nx-exp/sw-base-tools';
 import {ReactNode} from 'react';
 
-import Avatar from '../Avatar/Avatar.tsx';
 import styles from './Details.module.scss';
 import JotaiPlayground from './JotaiPlayground.tsx';
 

@@ -1,9 +1,9 @@
+import {Avatar} from '@nx-exp/sw-base-tools';
 import {Link} from 'react-router-dom';
 
 import {getIdFromUrl} from '@/router/utils.ts';
 import {SWAbstractThing} from '@/services/swApi/types.ts';
 
-import Avatar from '../Avatar/Avatar.tsx';
 import styles from './List.module.scss';
 
 type ListProps = {

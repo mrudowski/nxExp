@@ -12,5 +12,5 @@ Next.js version of React swBase SPA
 - export as static site: Cannot read properties of undefined (reading 'app') https://github.com/vercel/next.js/issues/53562
 - move Avatar and others to nx shared libs
 - try build standalone SPA app with REST API (like swBase)
-- try build standalone SSG app (Static Site Generation like Astro/Gatsby)
+- try build standalone SSG app (Static Site Generation like Astro/Gatsby) (client-side routing thanks to Link, full reload when we chang url by hand)
 - etc...
