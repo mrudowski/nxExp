@@ -1,5 +1,5 @@
 import {atom, getDefaultStore} from 'jotai';
-import {atomWithStorage, loadable} from 'jotai/utils';
+import {atomWithStorage, createJSONStorage, loadable} from 'jotai/utils';
 
 /**
  * If not specified, the default storage implementation uses:
@@ -7,7 +7,12 @@ import {atomWithStorage, loadable} from 'jotai/utils';
  * - JSON.stringify()/JSON.parse() for serialization/deserialization,
  * - and subscribes to storage events for cross-tab synchronization.
  */
-export const counterAtom = atomWithStorage('counter', 0);
+export const counterAtom = atomWithStorage('counter', 0, {
+  // needed in next.js
+  // https://github.com/pmndrs/jotai/issues/1694
+  // https://github.com/pmndrs/jotai/issues/1689
+  ...createJSONStorage(() => localStorage),
+});
 
 // too simple/bad example only to test derived atom functionality :)
 export const derivedCounterAtom = atom(get => {

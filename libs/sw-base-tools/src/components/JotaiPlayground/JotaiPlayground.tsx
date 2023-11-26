@@ -1,3 +1,5 @@
+'use client';
+
 import {useAtom, useAtomValue, useSetAtom} from 'jotai';
 
 import {counterAtom, loadableAsyncAtom, reverseCounterAtom} from '../../state/jotaiAtoms.ts';

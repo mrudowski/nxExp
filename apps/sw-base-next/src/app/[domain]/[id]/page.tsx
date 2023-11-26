@@ -1,3 +1,5 @@
+import {Details} from '@nx-exp/sw-base-tools';
+
 import {getDictionary} from '@/i18n/dictionaries.js';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {getThingQueryUrl} from '@/services/swApi/utils.ts';
@@ -17,13 +19,12 @@ export default async function Thing({params: {domain, id}}: {params: {domain: Ro
   const dict = await getDictionary();
 
   return (
-    <>NAME: {thing.name}</>
-    // <Details name={thing.name}>
-    //   {/*<p>*/}
-    //   {/*  {t('domain.species')}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={character.species} />}*/}
-    //   {/*</p>*/}
-    //   {/*<ConnectedThings title={t('domain.vehicles')} route={ROUTES.vehicles} urlOrUrls={character.vehicles} />*/}
-    //   {/*<ConnectedThings title={t('domain.planets')} route={ROUTES.planets} urlOrUrls={character.homeworld} />*/}
-    // </Details>
+    <Details name={thing.name}>
+      {/*<p>*/}
+      {/*  {t('domain.species')}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={character.species} />}*/}
+      {/*</p>*/}
+      {/*<ConnectedThings title={t('domain.vehicles')} route={ROUTES.vehicles} urlOrUrls={character.vehicles} />*/}
+      {/*<ConnectedThings title={t('domain.planets')} route={ROUTES.planets} urlOrUrls={character.homeworld} />*/}
+    </Details>
   );
 }
