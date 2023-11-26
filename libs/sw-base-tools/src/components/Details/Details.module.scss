@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+.details {
+  h2 {
+    display: flex;
+    gap: $sw-margin;
+    align-items: center;
+  }
+}

@@ -1,6 +1,7 @@
-import {useAtom, useAtomValue, useSetAtom} from 'jotai/index';
+import {useAtom, useAtomValue, useSetAtom} from 'jotai';
 
-import {counterAtom, loadableAsyncAtom, reverseCounterAtom} from '@/state/jotaiAtoms.ts';
+import {counterAtom, loadableAsyncAtom, reverseCounterAtom} from '../../state/jotaiAtoms.ts';
+import styles from './JotaiPlayground.module.scss';
 
 const JotaiPlayground = () => {
   const [counter, setCounter] = useAtom(counterAtom);
@@ -9,7 +10,7 @@ const JotaiPlayground = () => {
   const loadableText = useAtomValue(loadableAsyncAtom);
 
   return (
-    <div className="playground">
+    <div className={styles.playground}>
       <button
         onClick={() => {
           setCounter(prevCounter => prevCounter + 1);

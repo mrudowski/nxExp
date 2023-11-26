@@ -1,8 +1,8 @@
+import {derivedCounterAtom} from '@libs/sw-base-tools/src/state/jotaiAtoms.ts';
 import {IconMoonFilled, IconSunFilled} from '@tabler/icons-react';
 import clsx from 'clsx';
 import {useAtomValue} from 'jotai';
 
-import {derivedCounterAtom} from '@/state/jotaiAtoms.ts';
 import {useThemeContext} from '@/theme';
 
 import styles from './DarkModeSwitch.module.scss';

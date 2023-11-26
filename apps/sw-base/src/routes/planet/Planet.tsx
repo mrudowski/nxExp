@@ -1,8 +1,8 @@
+import {Details} from '@nx-exp/sw-base-tools';
 import {useTranslation} from 'react-i18next';
 import {useParams} from 'react-router-dom';
 
 import ConnectedThings from '@/components/ConnectedThings/ConnectedThings.tsx';
-import Details from '@/components/Details/Details.tsx';
 import PageLoading from '@/components/PageLoading/PageLoading.tsx';
 import {ROUTES} from '@/router/ROUTES.ts';
 import {DetailPageParams} from '@/router/types.ts';
