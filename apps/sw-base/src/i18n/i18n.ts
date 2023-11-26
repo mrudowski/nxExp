@@ -1,12 +1,11 @@
+import {en} from '@nx-exp/sw-base-tools';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
-
-import translation from './resources/en/translation.json';
 
 export const defaultNS = 'translation';
 export const resources = {
   en: {
-    translation,
+    translation: en,
   },
 } as const;
 

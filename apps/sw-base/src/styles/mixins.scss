@@ -1,7 +1,0 @@
-@import "variables";
-
-@mixin darkMode {
-  :global(:root[data-theme="dark"]) & {
-    @content;
-  }
-}
