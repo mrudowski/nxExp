@@ -12,6 +12,7 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  // we cannot `export` when we have redirects
   async redirects() {
     return [
       {

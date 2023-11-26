@@ -79,13 +79,15 @@ export const defineConfigMethod =
         // alias: [{find: '@', replacement: './src'}],
         alias: [
           {find: '@', replacement: `${appPath}/src`},
+          // for scss - to import from libs
           {find: '@libs', replacement: 'libs'},
         ],
       },
-      // nextjs
+      // next,js - not needed?
       // sassOptions: {
       //   includePaths: [path.join(__dirname, 'libs')],
       // },
+      // vite - not needed?
       // css: {
       //   preprocessorOptions: {
       //     scss: {

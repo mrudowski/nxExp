@@ -1,9 +1,9 @@
+import {Avatar} from '@nx-exp/sw-base-tools';
 import Link from 'next/link';
 
 import {SWAbstractThing} from '@/services/swApi/types.ts';
 import {getIdFromUrl} from '@/services/utils.ts';
 
-import Avatar from '../Avatar/Avatar.tsx';
 import styles from './List.module.scss';
 
 type ListProps = {

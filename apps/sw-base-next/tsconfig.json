@@ -17,15 +17,12 @@
       }
     ],
     "types": ["jest", "node"],
-    // for absolute imports
-    "baseUrl": "src/",
     "paths": {
-      "@/services/*": ["services/*"],
-      "@/components/*": ["components/*"],
-      "@/styles/*": ["styles/*"],
-      "@/constants/*": ["constants/*"],
-      "@/types/*": ["types/*"],
-      "@/i18n/*": ["i18n/*"]
+      // for absolute imports
+      "@/*": ["apps/sw-base-next/src/*"],
+      // we have to add it here again because... by defining path we replaced the one from root
+      "@nx-exp/sw-base-tools": ["libs/sw-base-tools/src/index.ts"],
+      "@libs/*": ["libs/*"] // for scss - working in style.scss but not in variables.scss
     }
   },
   "include": [

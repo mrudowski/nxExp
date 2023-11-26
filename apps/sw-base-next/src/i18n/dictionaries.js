@@ -3,7 +3,8 @@ import 'server-only';
 const dictionaries = {
   en: () => {
     console.log('%c [mr] getDictionary', 'background-color:Gold; color: black');
-    return import('./en.json').then(module => module.default);
+    // eslint-disable-next-line @nx/enforce-module-boundaries
+    return import('../../../../libs/sw-base-tools/src/i18n/en.json').then(module => module.default);
   },
 };
 
