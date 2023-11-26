@@ -7,6 +7,10 @@ const {composePlugins, withNx} = require('@nx/next');
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  // https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links
+  // experimental: {
+  //   typedRoutes: true,
+  // },
   nx: {
     // Set this to true if you would like to use SVGR
     // See: https://github.com/gregberge/svgr

@@ -1,7 +1,7 @@
 import List from '@/components/List/List.tsx';
 import {getDictionary} from '@/i18n/dictionaries.js';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
-import {getCharacterRoute} from '@/services/utils.ts';
+import {routesToDetails} from '@/services/utils.ts';
 import {RouteId} from '@/types/types.ts';
 
 // SGG
@@ -21,5 +21,5 @@ export default async function DomainList({params: {domain}}: {params: {domain: R
   const things = await getData(domain);
   const dict = await getDictionary();
 
-  return <List title={dict.domain[domain]} things={things} getRoute={getCharacterRoute} />;
+  return <List title={dict.domain[domain]} things={things} getRoute={routesToDetails[domain]} />;
 }
