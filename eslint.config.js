@@ -250,4 +250,7 @@ module.exports = [
   // },
 
   // -------------- end of i18n json exp
+  {
+    ignores: ['**/.next/**/*'],
+  },
 ];

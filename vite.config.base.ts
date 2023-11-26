@@ -3,8 +3,7 @@
 import {checker} from '@hyoban/vite-plugin-checker';
 import {nxViteTsPaths} from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react-swc';
-// @ts-ignore
-import path from 'path';
+//import * as path from 'path';
 import {loadEnv, UserConfigFn} from 'vite';
 
 // add eslint when dev!
@@ -62,7 +61,6 @@ export const defineConfigMethod =
       //  plugins: [ nxViteTsPaths() ],
       // },
 
-      // @ts-ignore
       test: {
         globals: true,
         cache: {
@@ -78,8 +76,22 @@ export const defineConfigMethod =
       // https://stackoverflow.com/questions/68241263/absolute-path-not-working-in-vite-project-react-ts
       resolve: {
         // alias: [{find: '@', replacement: path.resolve(__dirname, 'src')}],
-        alias: [{find: '@', replacement: `${appPath}/src`}],
         // alias: [{find: '@', replacement: './src'}],
+        alias: [
+          {find: '@', replacement: `${appPath}/src`},
+          {find: '@libs', replacement: 'libs'},
+        ],
       },
+      // nextjs
+      // sassOptions: {
+      //   includePaths: [path.join(__dirname, 'libs')],
+      // },
+      // css: {
+      //   preprocessorOptions: {
+      //     scss: {
+      //       includePaths: [path.join(__dirname, 'libs')],
+      //     },
+      //   },
+      // },
     };
   };

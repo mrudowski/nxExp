@@ -6,6 +6,7 @@ A place where I'm experimenting with all new and old things in new way
 
 ## On my list
 - Oh, we cannot extends `tsconfig` paths: https://github.com/microsoft/TypeScript/issues/44589
+- import scss/css from libs to apps
 - more things https://github.com/mrudowski/nxExp/tree/main/apps/sw-base#on-my-list
 
 - - -

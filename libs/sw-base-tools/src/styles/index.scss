@@ -1,5 +1,4 @@
-@import "@libs/sw-base-tools/src/styles/reset.scss";
-// https://github.com/nrwl/nx/issues/1542#issuecomment-1000996543
+@import "reset";
 @import "variables";
 
 :root[data-theme="light"] {
