@@ -10,8 +10,10 @@ Next.js version of React swBase SPA
 - ✅⚠️ internationalization (i18n) with ~~next-i18next~~ (If you're using Next.js 13/14 with app directory, there is no need for next-i18next, you can directly use i18next and react-i18next)
 - use List component as Layout for list?
 - try errors when fetching
+- ✅ use Jotai
+- make custom dictionary a little better by using some library?
 - export as static site: Cannot read properties of undefined (reading 'app') https://github.com/vercel/next.js/issues/53562
-- move Avatar and others to nx shared libs
+- ✅ move Avatar and others to nx shared libs
 - try build standalone SPA app with REST API (like swBase)
 - try build standalone SSG app (Static Site Generation like Astro/Gatsby) 
   - we get client-side routing thanks to Link, full reload when we chang url by hand)

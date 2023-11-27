@@ -6,6 +6,9 @@ import {counterAtom, loadableAsyncAtom, reverseCounterAtom} from '../../state/jo
 import styles from './JotaiPlayground.module.scss';
 
 const JotaiPlayground = () => {
+  // https://jotai.org/docs/utilities/ssr
+  // useHydrateAtoms([[counterAtom, 0]]); // countFromServer if any
+
   const [counter, setCounter] = useAtom(counterAtom);
   const resetCounter = () => setCounter(0);
   const reverseCounter = useSetAtom(reverseCounterAtom);

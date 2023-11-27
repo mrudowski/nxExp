@@ -1,3 +1,5 @@
+'use client';
+
 import {atom, getDefaultStore} from 'jotai';
 import {atomWithStorage, createJSONStorage, loadable} from 'jotai/utils';
 
@@ -11,7 +13,10 @@ export const counterAtom = atomWithStorage('counter', 0, {
   // needed in next.js
   // https://github.com/pmndrs/jotai/issues/1694
   // https://github.com/pmndrs/jotai/issues/1689
-  ...createJSONStorage(() => localStorage),
+  ...createJSONStorage(() => {
+    return typeof window !== 'undefined' ? window.localStorage : (undefined as unknown as Storage);
+  }),
+  // delayInit: true,
 });
 
 // too simple/bad example only to test derived atom functionality :)

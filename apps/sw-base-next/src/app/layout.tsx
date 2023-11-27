@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import {ReactNode} from 'react';
 
 import MainNav from '@/components/mainNav/mainNav.tsx';
+import JotaiProvider from '@/providers/JotaiProvider.tsx';
 
 import {latoFont} from './fonts.ts';
 import styles from './layout.module.scss';
@@ -24,14 +25,16 @@ const RootLayout = ({children}: RootLayoutProps) => {
   return (
     <html lang="en" className={latoFont.className} data-theme="light">
       <body>
-        <div className={styles.appLayout}>
-          <header className={clsx(styles.appHeader)}>
-            {/*<header className={clsx(styles.appHeader, navigation.state === 'loading' && styles.appLoading)}>*/}
-            <h1>SW NextExp</h1>
-            <MainNav />
-          </header>
-          <main className={styles.appMain}>{children}</main>
-        </div>
+        <JotaiProvider>
+          <div className={styles.appLayout}>
+            <header className={clsx(styles.appHeader)}>
+              {/*<header className={clsx(styles.appHeader, navigation.state === 'loading' && styles.appLoading)}>*/}
+              <h1>SW NextExp</h1>
+              <MainNav />
+            </header>
+            <main className={styles.appMain}>{children}</main>
+          </div>
+        </JotaiProvider>
       </body>
     </html>
   );
