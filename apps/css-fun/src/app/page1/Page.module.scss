@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.header {
+  display: flex;
+
+  &:has(span) {
+    border-bottom: 1px dotted $sw-color-blue2;
+    padding-bottom: 1rem;
+  }
+
+  &:has(span:hover) {
+    border-bottom-style: solid;
+  }
+
+  span {
+    margin-inline-start: auto;
+    width: 4rem;
+    aspect-ratio: 1; // nice
+    border: 1px solid $sw-color-orange1;
+    display: grid;
+    place-content: center;
+  }
+}
+
+.textWrap {
+  text-wrap: balance; // not so pretty and pretty is the same as none :/
+}

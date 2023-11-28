@@ -12,6 +12,7 @@
     "paths": {
       "@/*": ["apps/sw-base/src/*"],
       // "@/*": ["./src/*"], // won't work in nx monorepo
+      "@libs/*": ["libs/*"] // for scss - working in style.scss but not in variables.scss
     }
   },
   "files": [],

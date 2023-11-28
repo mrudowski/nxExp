@@ -1,5 +1,5 @@
-@import "reset";
-@import "variables";
+@import '@libs/sw-base-tools/src/styles/reset.scss';
+@import './variables.scss';
 
 body {
   background-color: #222;
@@ -11,11 +11,21 @@ a {
   color: $sw-color-yellow;
   text-decoration: none;
 
-  &:hover {
+  //&:hover {
+  //  border-bottom: 1px solid $sw-color-yellow;
+  //}
+  &:is(:hover, :focus) {
     border-bottom: 1px solid $sw-color-yellow;
+    outline: 0 none;
   }
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin-bottom: 1rem;
 }
