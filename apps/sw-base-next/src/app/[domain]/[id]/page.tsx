@@ -1,4 +1,5 @@
 import {Details} from '@nx-exp/sw-base-tools';
+import {notFound} from 'next/navigation';
 
 import CharacterSpecies from '@/components/CharacterSpecies.tsx';
 import ClientErrorBoundary from '@/components/ClientErrorBoundary.tsx';
@@ -10,10 +11,10 @@ import {RouteId} from '@/types/types.ts';
 
 async function getData(domain: RouteId, id: string): Promise<CharacterType> {
   const res = await fetch(getThingQueryUrl(SW_API_URLS[domain], id));
-  const dict = await getDictionary();
   if (!res.ok) {
-    // TODO try it
-    throw new Error(dict.errors.problemWhileFetching);
+    notFound();
+    // const dict = await getDictionary();
+    // throw new Error(dict.errors.problemWhileFetching);
   }
   return res.json();
 }

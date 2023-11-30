@@ -1,3 +1,5 @@
+import {notFound} from 'next/navigation';
+
 import List from '@/components/List/List.tsx';
 import {ROUTES} from '@/constants/ROUTES.ts';
 import {getDictionary} from '@/i18n/dictionaries.js';
@@ -12,6 +14,9 @@ export async function generateStaticParams() {
 }
 
 async function getData(domain: RouteId) {
+  if (!Object.keys(ROUTES).includes(domain)) {
+    notFound();
+  }
   const res = await fetch(SW_API_URLS[domain]);
   const dict = await getDictionary();
   if (!res.ok) {

@@ -5,9 +5,22 @@
 A place where I'm experimenting with all new and old things in new way
 
 ## On my list
+
+### nx monorepo
 - 🥲 Oh, we cannot extends `tsconfig` paths: https://github.com/microsoft/TypeScript/issues/44589
 - ✅⚠️ import scss/css from libs to apps - works but nx doesn't know about that connection!
-- more things https://github.com/mrudowski/nxExp/tree/main/apps/sw-base#on-my-list
+- make eslint dev checker works as typescript - in all app dependencies
+
+- try web components
+- develop swBase in
+  - ✅ react (by nx/vite/swc)
+  - nextjs / remix / astro / gatsby solution
+
+### sw-base
+- https://github.com/mrudowski/nxExp/tree/main/apps/sw-base
+
+### sw-base-next
+- https://github.com/mrudowski/nxExp/tree/main/apps/sw-base-next
 
 - - -
 

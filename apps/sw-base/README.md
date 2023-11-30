@@ -9,7 +9,7 @@ A place where I'm experimenting with all new and old things in new way
 - add more test
 - make vitest-preview works
 - ✅ absolute imports
-- ✅ try clsx
+- ✅ try clsx instead of classnames
 - ✅ add light/dark mode without flickering
 - (?) fix common vite.config for SCSS absolute import
 - ✅ useSuspenseQuery
@@ -20,17 +20,12 @@ A place where I'm experimenting with all new and old things in new way
 - try zod with react query https://tkdodo.eu/blog/type-safe-react-query#zod
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context
 - custom errors status
-- develop swBase in 
-  - ✅ react (by nx/vite/swc)
-  - nextjs / remix / astro / gatsby solution
-- use next to produce SSG sites
 - ✅ turn off noImplicitAny
 - ✅ new flat eslint config in ESLint v9.0.0 (Done, but the world is not ready yet for that)
 - ✅ make plugin:testing-library/recommended works
 - find lint to force sort properties alphabetically in i18n resources
   - ⚠️ almost https://github.com/ota-meshi/eslint-plugin-jsonc
   - https://github.com/godaddy/eslint-plugin-i18n-json
-- make eslint dev checker works as typescript - in all app dependencies
 
 # Environment requirements
 
