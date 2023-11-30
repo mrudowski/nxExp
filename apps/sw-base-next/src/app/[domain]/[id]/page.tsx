@@ -1,6 +1,7 @@
 import {Details} from '@nx-exp/sw-base-tools';
 
 import CharacterSpecies from '@/components/CharacterSpecies.tsx';
+import ClientErrorBoundary from '@/components/ClientErrorBoundary.tsx';
 import {getDictionary} from '@/i18n/dictionaries.js';
 import {SW_API_URLS} from '@/services/swApi/constants.ts';
 import {CharacterType} from '@/services/swApi/types.ts';
@@ -24,9 +25,11 @@ export default async function Thing({params: {domain, id}}: {params: {domain: Ro
   return (
     <Details name={thing.name}>
       {domain === 'characters' && (
-        <p>
-          {dict.domain.species}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={thing.species} />}
-        </p>
+        <ClientErrorBoundary>
+          <p>
+            {dict.domain.species}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={thing.species} />}
+          </p>
+        </ClientErrorBoundary>
       )}
       {/*<ConnectedThings title={t('domain.vehicles')} route={ROUTES.vehicles} urlOrUrls={character.vehicles} />*/}
       {/*<ConnectedThings title={t('domain.planets')} route={ROUTES.planets} urlOrUrls={character.homeworld} />*/}
