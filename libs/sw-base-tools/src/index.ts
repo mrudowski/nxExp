@@ -1,4 +1,17 @@
 export {default as Avatar} from './components/Avatar/Avatar.tsx';
+export {default as ConnectedThings} from './components/ConnectedThings/ConnectedThings.tsx';
 export {default as Details} from './components/Details/Details.tsx';
+export {ROUTES} from './constants/constants.ts';
 export {default as en} from './i18n/en.json';
+export {getQueryClientInstance, default as queryClient} from './services/queryClient.ts';
+export {SW_API_URLS} from './services/swApi/constants.ts';
+export {useSuspenseListQuery} from './services/swApi/hooks/useSuspenseListQuery.ts';
+export {useThingQuery} from './services/swApi/hooks/useThingQuery.ts';
+export {default as useThingsQueries} from './services/swApi/hooks/useThingsQueries.ts';
+export * from './services/swApi/queries/queries.ts';
+export * from './services/swApi/types.ts';
+export {getThingQueryUrl} from './services/swApi/utils.ts';
+export * from './state/jotaiAtoms.ts';
+export * from './types/types.ts';
+export * from './utils/utils.ts';
 // export * from './lib/sw-base-tools';

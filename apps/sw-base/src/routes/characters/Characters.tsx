@@ -1,11 +1,9 @@
+import {getCharacterRoute, SW_API_URLS, useSuspenseListQuery} from '@nx-exp/sw-base-tools';
 import {Suspense} from 'react';
 import {useTranslation} from 'react-i18next';
 
 import List from '@/components/List/List.tsx';
 import PageLoading from '@/components/PageLoading/PageLoading.tsx';
-import {getCharacterRoute} from '@/router/utils.ts';
-import {SW_API_URLS} from '@/services/swApi/constants.ts';
-import {useSuspenseListQuery} from '@/services/swApi/hooks/useSuspenseListQuery.ts';
 
 const CharactersList = () => {
   const {t} = useTranslation();

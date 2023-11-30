@@ -1,8 +1,4 @@
-export const ROUTES = {
-  characters: 'characters',
-  planets: 'planets',
-  vehicles: 'vehicles',
-} as const;
+import {ROUTES} from '@nx-exp/sw-base-tools';
 
 export const DETAILS_ROUTES = {
   character: `${ROUTES.characters}/:id`,

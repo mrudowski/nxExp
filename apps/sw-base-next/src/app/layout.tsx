@@ -5,6 +5,7 @@ import {ReactNode} from 'react';
 
 import MainNav from '@/components/mainNav/mainNav.tsx';
 import JotaiProvider from '@/providers/JotaiProvider.tsx';
+import QueryClientProvider from '@/providers/QueryClientProvider.tsx';
 
 import {latoFont} from './fonts.ts';
 import styles from './layout.module.scss';
@@ -18,6 +19,13 @@ type RootLayoutProps = {
   children: ReactNode;
 };
 
+// NEVER DO THIS:
+// const queryClient = new QueryClient()
+//
+// Creating the queryClient at the file root level makes the cache shared
+// between all requests and means _all_ data gets passed to _all_ users.
+// Besides being bad for performance, this also leaks any sensitive data.
+
 const RootLayout = ({children}: RootLayoutProps) => {
   // TODO
   // const navigation = useNavigation();
@@ -26,14 +34,16 @@ const RootLayout = ({children}: RootLayoutProps) => {
     <html lang="en" className={latoFont.className} data-theme="light">
       <body>
         <JotaiProvider>
-          <div className={styles.appLayout}>
-            <header className={clsx(styles.appHeader)}>
-              {/*<header className={clsx(styles.appHeader, navigation.state === 'loading' && styles.appLoading)}>*/}
-              <h1>SW NextExp</h1>
-              <MainNav />
-            </header>
-            <main className={styles.appMain}>{children}</main>
-          </div>
+          <QueryClientProvider>
+            <div className={styles.appLayout}>
+              <header className={clsx(styles.appHeader)}>
+                {/*<header className={clsx(styles.appHeader, navigation.state === 'loading' && styles.appLoading)}>*/}
+                <h1>SW NextExp</h1>
+                <MainNav />
+              </header>
+              <main className={styles.appMain}>{children}</main>
+            </div>
+          </QueryClientProvider>
         </JotaiProvider>
       </body>
     </html>

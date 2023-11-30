@@ -1,4 +1,4 @@
-import {RouteId} from '@/router/types.ts';
+import {RouteId} from '../../types/types.ts';
 
 const SW_API_BASE_URL = 'https://swapi.info/api';
 

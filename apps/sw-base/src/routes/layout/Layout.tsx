@@ -1,10 +1,9 @@
+import {RouteId, ROUTES} from '@nx-exp/sw-base-tools';
 import clsx from 'clsx';
 import {useTranslation} from 'react-i18next';
 import {NavLink, Outlet, useNavigation} from 'react-router-dom';
 
 import DarkModeSwitch from '@/components/DarkModeSwitch/DarkModeSwitch.tsx';
-import {ROUTES} from '@/router/ROUTES.ts';
-import {RouteId} from '@/router/types.ts';
 
 import styles from './Layout.module.scss';
 

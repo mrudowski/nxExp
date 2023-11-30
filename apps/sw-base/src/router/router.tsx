@@ -1,7 +1,10 @@
 import '../styles/index.scss';
 
+import {ROUTES, SW_API_URLS} from '@nx-exp/sw-base-tools';
 import {QueryClient} from '@tanstack/react-query';
 import {createBrowserRouter, Navigate} from 'react-router-dom';
+
+import {listLoader, thingLoader} from '@/router/loaders.ts';
 
 import Character from '../routes/character/Character.tsx';
 import Characters from '../routes/characters/Characters.tsx';
@@ -12,9 +15,7 @@ import Planet from '../routes/planet/Planet.tsx';
 import Planets from '../routes/planets/Planets.tsx';
 import Vehicle from '../routes/vehicle/Vehicle.tsx';
 import Vehicles from '../routes/vehicles/Vehicles.tsx';
-import {SW_API_URLS} from '../services/swApi/constants.ts';
-import {listLoader, thingLoader} from '../services/swApi/loaders/loaders.ts';
-import {DEFAULT_ROUTE, DETAILS_ROUTES, ROUTES} from './ROUTES.ts';
+import {DEFAULT_ROUTE, DETAILS_ROUTES} from './ROUTES.ts';
 
 const getRouter = (queryClient: QueryClient) =>
   createBrowserRouter([

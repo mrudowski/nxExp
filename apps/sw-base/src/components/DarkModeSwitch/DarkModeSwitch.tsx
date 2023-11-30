@@ -1,4 +1,4 @@
-import {derivedCounterAtom} from '@libs/sw-base-tools/src/state/jotaiAtoms.ts';
+import {derivedCounterAtom} from '@nx-exp/sw-base-tools';
 import {IconMoonFilled, IconSunFilled} from '@tabler/icons-react';
 import clsx from 'clsx';
 import {useAtomValue} from 'jotai';

@@ -1,5 +1,5 @@
-import {ROUTES} from './ROUTES.ts';
-import {RouteId} from './types.ts';
+import {ROUTES} from '../constants/constants.ts';
+import {RouteId} from '../types/types.ts';
 
 export const getIdFromUrl = (url: string) => {
   return url.split('/').at(-1) as string;

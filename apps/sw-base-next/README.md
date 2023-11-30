@@ -12,6 +12,7 @@ Next.js version of React swBase SPA
 - how to use the same translation for server and client components?
 - use List component as Layout for list?
 - try errors when fetching
+- move more common components to libs
 - ✅ use Jotai
 - export as static site: Cannot read properties of undefined (reading 'app') https://github.com/vercel/next.js/issues/53562
 - ✅ move Avatar and others to nx shared libs

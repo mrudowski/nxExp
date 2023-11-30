@@ -1,6 +1,5 @@
+import {useThingsQueries} from '@nx-exp/sw-base-tools';
 import {useTranslation} from 'react-i18next';
-
-import useThingsQueries from '@/services/swApi/hooks/useThingsQueries.ts';
 
 type CharacterSpeciesProps = {
   urls: string[];

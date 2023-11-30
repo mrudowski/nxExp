@@ -1,10 +1,10 @@
+import {getThingQueryUrl, swApiListQuery, swApiThingQuery} from '@nx-exp/sw-base-tools';
 import {QueryClient} from '@tanstack/react-query';
 import {Params} from 'react-router-dom';
 
-import {DetailPageParams} from '@/router/types.ts';
-
-import {swApiListQuery, swApiThingQuery} from '../queries/queries.ts';
-import {getThingQueryUrl} from '../utils.ts';
+type DetailPageParams = {
+  id: string;
+};
 
 // real answer to react router loader params
 // https://stackoverflow.com/questions/75324193/react-router-6-how-to-strongly-type-the-params-option-in-route-loader

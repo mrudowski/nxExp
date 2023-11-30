@@ -1,7 +1,6 @@
 import {useQueries} from '@tanstack/react-query';
 
-import {fetchThing} from '@/services/swApi/swApi.ts';
-
+import {fetchThing} from '../swApi.ts';
 import {SWAbstractThing} from '../types.ts';
 
 const isThing = (thing: SWAbstractThing | undefined): thing is SWAbstractThing => {
