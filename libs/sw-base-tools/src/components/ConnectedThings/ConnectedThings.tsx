@@ -1,5 +1,6 @@
 'use client';
 
+import {ReactNode} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 
@@ -13,13 +14,12 @@ import styles from './ConnectedThings.module.scss';
 type ContentProps = {
   route: RouteId;
   things: SWAbstractThing[];
-  // getLink: (props: {href: string; label: string}) => ReactNode;
-  framework?: 'next';
+  getLink?: (props: {href: string; label: string}) => ReactNode;
   pending: boolean;
   isError: boolean;
   isSuccess: boolean;
 };
-const Content = ({route, things, framework, pending, isError, isSuccess}: ContentProps) => {
+const Content = ({route, things, getLink, pending, isError, isSuccess}: ContentProps) => {
   const {t} = useTranslation();
   if (pending) {
     return <>{t('utils.loading')}</>;
@@ -37,10 +37,10 @@ const Content = ({route, things, framework, pending, isError, isSuccess}: Conten
           const id = getIdFromUrl(thing.url);
           return (
             <li key={id}>
-              {framework === 'next' ? (
-                <div>test</div>
+              {getLink ? (
+                // next
+                getLink({href: getThingRoute(route, id), label: thing.name})
               ) : (
-                // <NextLink href={getThingRoute(route, id)}>{thing.name}</NextLink>
                 <Link to={getThingRoute(route, id)}>{thing.name}</Link>
               )}
             </li>
@@ -56,11 +56,10 @@ export type ConnectedThingsProps = {
   title: string;
   route: RouteId;
   urlOrUrls: string | string[];
-  // getLink: ContentProps['getLink'];
-  framework?: ContentProps['framework'];
+  getLink?: ContentProps['getLink'];
 };
 
-const ConnectedThings = ({title, route, urlOrUrls, framework}: ConnectedThingsProps) => {
+const ConnectedThings = ({title, route, urlOrUrls, getLink}: ConnectedThingsProps) => {
   const {data: things, pending, isSuccess, isError} = useThingsQueries(urlOrUrls);
 
   return (
@@ -69,7 +68,7 @@ const ConnectedThings = ({title, route, urlOrUrls, framework}: ConnectedThingsPr
       <Content
         route={route}
         things={things}
-        framework={framework}
+        getLink={getLink}
         pending={pending}
         isSuccess={isSuccess}
         isError={isError}
