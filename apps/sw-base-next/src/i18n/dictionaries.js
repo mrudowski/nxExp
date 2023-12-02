@@ -4,6 +4,8 @@ const dictionaries = {
   en: () => {
     console.log('%c [mr] getDictionary', 'background-color:Gold; color: black');
     // eslint-disable-next-line @nx/enforce-module-boundaries
+
+    // TODO fix it
     return import('../../../../libs/sw-base-tools/src/i18n/en.json').then(module => module.default);
   },
 };

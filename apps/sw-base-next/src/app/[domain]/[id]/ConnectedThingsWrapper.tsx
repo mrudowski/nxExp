@@ -18,7 +18,8 @@ type ConnectedThingsWrapperProps = {
 };
 
 export default function ConnectedThingsWrapper({children}: ConnectedThingsWrapperProps) {
-  // Pitfall - Using Children is uncommon and can lead to fragile code
+  // Pitfall (legacy api)
+  // Using Children is uncommon  and can lead to fragile code
   // but it's only because we want to use two different Links in our expamples
   // https://react.dev/reference/react/Children#alternatives
   return Children.map(children, (child: any) => {

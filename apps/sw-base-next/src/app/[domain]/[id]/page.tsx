@@ -1,25 +1,45 @@
-import ConnectedThings from '@libs/sw-base-tools/src/components/ConnectedThings/ConnectedThings.tsx';
-import {Details} from '@nx-exp/sw-base-tools';
+import {
+  CharacterType,
+  ConnectedThings,
+  Details,
+  getThingQueryUrl,
+  PlanetType,
+  RouteId,
+  ROUTES,
+  SW_API_URLS,
+  VehicleType,
+} from '@nx-exp/sw-base-tools';
 import {notFound} from 'next/navigation';
 
 import ConnectedThingsWrapper from '@/app/[domain]/[id]/ConnectedThingsWrapper.tsx';
 import CharacterSpecies from '@/components/CharacterSpecies.tsx';
 import ClientErrorBoundary from '@/components/ClientErrorBoundary.tsx';
-import {ROUTES} from '@/constants/ROUTES.ts';
 import {getDictionary} from '@/i18n/dictionaries.js';
-import {SW_API_URLS} from '@/services/swApi/constants.ts';
-import {CharacterType} from '@/services/swApi/types.ts';
-import {getThingQueryUrl} from '@/services/swApi/utils.ts';
-import {RouteId} from '@/types/types.ts';
 
-async function getData(domain: RouteId, id: string): Promise<CharacterType> {
+// testing Discriminated Unions
+// https://github.com/gibbok/typescript-book#discriminated-unions
+interface CharacterTypeExt extends CharacterType {
+  domain: 'characters'; // have to be string - RouteId won't work!
+}
+type PlanetTypeExt = PlanetType & {
+  domain: 'planets';
+};
+type VehicleTypeExt = VehicleType & {
+  domain: 'vehicles';
+};
+
+async function getData(domain: RouteId, id: string): Promise<CharacterTypeExt | PlanetTypeExt | VehicleTypeExt> {
   const res = await fetch(getThingQueryUrl(SW_API_URLS[domain], id));
   if (!res.ok) {
     notFound();
     // const dict = await getDictionary();
     // throw new Error(dict.errors.problemWhileFetching);
   }
-  return res.json();
+  const data = await res.json();
+  return {
+    ...data,
+    domain,
+  };
 }
 
 /**
@@ -38,7 +58,7 @@ export default async function Thing({params: {domain, id}}: {params: {domain: Ro
 
   return (
     <Details name={thing.name}>
-      {domain === 'characters' && (
+      {thing.domain === 'characters' && (
         <>
           <ClientErrorBoundary>
             <p>
@@ -50,6 +70,16 @@ export default async function Thing({params: {domain, id}}: {params: {domain: Ro
             <ConnectedThings title={dict.domain.planets} route={ROUTES.planets} urlOrUrls={thing.homeworld} />
           </ConnectedThingsWrapper>
         </>
+      )}
+      {thing.domain === 'planets' && (
+        <ConnectedThingsWrapper>
+          <ConnectedThings title={dict.domain.residents} route={ROUTES.characters} urlOrUrls={thing.residents} />
+        </ConnectedThingsWrapper>
+      )}
+      {thing.domain === 'vehicles' && (
+        <ConnectedThingsWrapper>
+          <ConnectedThings title={dict.domain.pilots} route={ROUTES.characters} urlOrUrls={thing.pilots} />
+        </ConnectedThingsWrapper>
       )}
     </Details>
   );

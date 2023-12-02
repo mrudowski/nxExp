@@ -1,8 +1,5 @@
-import {Avatar} from '@nx-exp/sw-base-tools';
+import {Avatar, getIdFromUrl, SWAbstractThing} from '@nx-exp/sw-base-tools';
 import Link from 'next/link';
-
-import {SWAbstractThing} from '@/services/swApi/types.ts';
-import {getIdFromUrl} from '@/services/utils.ts';
 
 import styles from './List.module.scss';
 

@@ -1,4 +1,5 @@
-import {ROUTES} from '@/constants/ROUTES.ts';
+import {ROUTES} from '@nx-exp/sw-base-tools';
+
 import {getDictionary} from '@/i18n/dictionaries.js';
 
 import NavItem from './NavItem.tsx';
