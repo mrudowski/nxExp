@@ -1,10 +1,9 @@
 'use client';
 
-import {useTranslations} from 'next-intl';
 import {ReactNode} from 'react';
 import {Link} from 'react-router-dom';
+import {useTranslations} from 'use-intl';
 
-// import {Link} from 'react-router-dom';
 import useThingsQueries from '../../services/swApi/hooks/useThingsQueries.ts';
 import {SWAbstractThing} from '../../services/swApi/types.ts';
 import {RouteId} from '../../types/types.ts';
@@ -20,6 +19,8 @@ type ContentProps = {
   isSuccess: boolean;
 };
 const Content = ({route, things, getLink, pending, isError, isSuccess}: ContentProps) => {
+  // try https://github.com/amannn/next-intl/blob/main/packages/use-intl/README.md
+  // in both - next and react at once
   const t = useTranslations();
   if (pending) {
     return <>{t('utils.loading')}</>;

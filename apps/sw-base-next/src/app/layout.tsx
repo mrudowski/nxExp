@@ -19,7 +19,7 @@ type RootLayoutProps = {
 // But here we tru Option 3: Providing individual messages
 
 const RootLayout = ({children}: RootLayoutProps) => {
-  const messages = useMessages();
+  const messages = useMessages(); // we can use `use` when no async shared comp?
 
   return (
     <JotaiProvider>
