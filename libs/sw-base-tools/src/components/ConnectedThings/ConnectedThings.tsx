@@ -1,7 +1,7 @@
 'use client';
 
+import {useTranslations} from 'next-intl';
 import {ReactNode} from 'react';
-import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 
 // import {Link} from 'react-router-dom';
@@ -20,7 +20,7 @@ type ContentProps = {
   isSuccess: boolean;
 };
 const Content = ({route, things, getLink, pending, isError, isSuccess}: ContentProps) => {
-  const {t} = useTranslation();
+  const t = useTranslations();
   if (pending) {
     return <>{t('utils.loading')}</>;
   }
