@@ -10,15 +10,29 @@ export default createMiddleware({
 });
 
 export const config = {
-  // Match only internationalized pathnames
-  // matcher: ['/', '/(de|en)/:path*'],
   matcher: [
+    // Skip all internal paths (_next)
+    '/((?!_next).*)',
+
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+
+    // https://next-intl-docs.vercel.app/docs/routing/middleware#matcher-no-prefix
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|_next|_vercel|.*\\..*).*)',
+    '/((?!api|_vercel|.*\\..*).*)',
     // Match all pathnames within `/users`, optionally with a locale prefix
-    // TODO
-    //'/([\\w-]+)?/:path*',
+    // '/([\\w-]+)?/users/(.+)'
+
+    // Match only internationalized pathnames
+    '/',
+    '/(en)/:path*',
   ],
 };
