@@ -1,10 +1,10 @@
-import {getDictionary} from '@/i18n/dictionaries.js';
+import {getTranslations} from 'next-intl/server';
 
 async function getData(urls: string[]) {
-  const dict = await getDictionary();
+  const t = await getTranslations('errors');
   const responses = await Promise.all(urls.map(url => fetch(url)));
   if (responses.some(res => !res.ok)) {
-    throw new Error(dict.errors.problemWhileFetching);
+    throw new Error(t('problemWhileFetching'));
   }
   return Promise.all(responses.map(res => res.json()));
 }

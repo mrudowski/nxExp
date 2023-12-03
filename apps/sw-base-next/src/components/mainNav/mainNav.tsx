@@ -1,17 +1,16 @@
 import {ROUTES} from '@nx-exp/sw-base-tools';
-
-import {getDictionary} from '@/i18n/dictionaries.js';
+import {getTranslations} from 'next-intl/server';
 
 import NavItem from './NavItem.tsx';
 
 export default async function MainNav() {
-  const dict = await getDictionary();
+  const t = await getTranslations('domain');
   return (
     <nav>
       <ul>
-        <NavItem route={ROUTES.characters} label={dict.domain.characters} />
-        <NavItem route={ROUTES.planets} label={dict.domain.planets} />
-        <NavItem route={ROUTES.vehicles} label={dict.domain.vehicles} />
+        <NavItem route={ROUTES.characters} label={t('characters')} />
+        <NavItem route={ROUTES.planets} label={t('planets')} />
+        <NavItem route={ROUTES.vehicles} label={t('vehicles')} />
       </ul>
       {/*<DarkModeSwitch /> TODO */}
     </nav>

@@ -10,11 +10,11 @@ import {
   VehicleType,
 } from '@nx-exp/sw-base-tools';
 import {notFound} from 'next/navigation';
+import {getTranslations} from 'next-intl/server';
 
 import CharacterSpecies from '@/components/CharacterSpecies.tsx';
 import ClientErrorBoundary from '@/components/ClientErrorBoundary.tsx';
 import ConnectedThingsWrapper from '@/components/ConnectedThingsWrapper.tsx';
-import {getDictionary} from '@/i18n/dictionaries.js';
 
 // testing Discriminated Unions
 // https://github.com/gibbok/typescript-book#discriminated-unions
@@ -54,7 +54,7 @@ async function getData(domain: RouteId, id: string): Promise<CharacterTypeExt | 
 
 export default async function Thing({params: {domain, id}}: {params: {domain: RouteId; id: string}}) {
   const thing = await getData(domain, id);
-  const dict = await getDictionary();
+  const t = await getTranslations('domain');
 
   return (
     <Details name={thing.name}>
@@ -62,24 +62,34 @@ export default async function Thing({params: {domain, id}}: {params: {domain: Ro
         <>
           <ClientErrorBoundary>
             <p>
-              {dict.domain.species}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={thing.species} />}
+              {t('species')}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={thing.species} />}
             </p>
           </ClientErrorBoundary>
           <ConnectedThingsWrapper>
-            <ConnectedThings title={dict.domain.vehicles} route={ROUTES.vehicles} urlOrUrls={thing.vehicles} />
-            <ConnectedThings title={dict.domain.planets} route={ROUTES.planets} urlOrUrls={thing.homeworld} />
+            <ConnectedThings title={t('vehicles')} route={ROUTES.vehicles} urlOrUrls={thing.vehicles} />
+            <ConnectedThings title={t('planets')} route={ROUTES.planets} urlOrUrls={thing.homeworld} />
           </ConnectedThingsWrapper>
         </>
       )}
       {thing.domain === 'planets' && (
-        <ConnectedThingsWrapper>
-          <ConnectedThings title={dict.domain.residents} route={ROUTES.characters} urlOrUrls={thing.residents} />
-        </ConnectedThingsWrapper>
+        <>
+          <p>
+            {t('population')}: {thing.population}
+          </p>
+          <ConnectedThingsWrapper>
+            <ConnectedThings title={t('residents')} route={ROUTES.characters} urlOrUrls={thing.residents} />
+          </ConnectedThingsWrapper>
+        </>
       )}
       {thing.domain === 'vehicles' && (
-        <ConnectedThingsWrapper>
-          <ConnectedThings title={dict.domain.pilots} route={ROUTES.characters} urlOrUrls={thing.pilots} />
-        </ConnectedThingsWrapper>
+        <>
+          <p>
+            {t('vehicleType')}: {thing.vehicle_class}
+          </p>
+          <ConnectedThingsWrapper>
+            <ConnectedThings title={t('pilots')} route={ROUTES.characters} urlOrUrls={thing.pilots} />
+          </ConnectedThingsWrapper>
+        </>
       )}
     </Details>
   );

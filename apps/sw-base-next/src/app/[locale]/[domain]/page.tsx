@@ -3,7 +3,6 @@ import {notFound} from 'next/navigation';
 import {getTranslations} from 'next-intl/server';
 
 import List from '@/components/List/List.tsx';
-import {getDictionary} from '@/i18n/dictionaries.js';
 
 // for SGG and more
 // https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#generating-static-params
@@ -16,9 +15,9 @@ async function getData(domain: RouteId) {
     notFound();
   }
   const res = await fetch(SW_API_URLS[domain]);
-  const dict = await getDictionary();
+  const t = await getTranslations('errors');
   if (!res.ok) {
-    throw new Error(dict.errors.problemWhileFetching);
+    throw new Error(t('problemWhileFetching'));
   }
   return res.json();
 }
