@@ -32,8 +32,7 @@ async function getData(domain: RouteId, id: string): Promise<CharacterTypeExt | 
   const res = await fetch(getThingQueryUrl(SW_API_URLS[domain], id));
   if (!res.ok) {
     notFound();
-    // const dict = await getDictionary();
-    // throw new Error(dict.errors.problemWhileFetching);
+    // throw new Error('problemWhileFetching');
   }
   const data = await res.json();
   return {

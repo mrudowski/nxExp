@@ -31,6 +31,9 @@ const RootLayout = ({children}: RootLayoutProps) => {
             {
               utils: messages.utils,
               errors: messages.errors,
+              errorPage: {
+                sorry: (messages as Messages).errorPage.sorry,
+              },
             }
           }
         >
