@@ -1,5 +1,6 @@
 import {RouteId, ROUTES, routesToDetails, SW_API_URLS} from '@nx-exp/sw-base-tools';
 import {notFound} from 'next/navigation';
+import {getTranslations} from 'next-intl/server';
 
 import List from '@/components/List/List.tsx';
 import {getDictionary} from '@/i18n/dictionaries.js';
@@ -23,7 +24,8 @@ async function getData(domain: RouteId) {
 }
 export default async function DomainList({params: {domain}}: {params: {domain: RouteId}}) {
   const things = await getData(domain);
-  const dict = await getDictionary();
+  // const t = useTranslations('domain');
+  const t = await getTranslations('domain');
 
-  return <List title={dict.domain[domain]} things={things} getRoute={routesToDetails[domain]} />;
+  return <List title={t(domain)} things={things} getRoute={routesToDetails[domain]} />;
 }

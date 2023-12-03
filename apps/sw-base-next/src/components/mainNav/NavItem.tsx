@@ -1,12 +1,11 @@
 'use client';
 
+import {RouteId} from '@nx-exp/sw-base-tools';
 import clsx from 'clsx';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 
-import {RouteId} from '@/types/types.ts';
-
-import styles from '../../app/layout.module.scss';
+import styles from '../../app/[locale]/layout.module.scss';
 
 const isActive = (route: RouteId, currentPathName: string) => {
   return `/${route}` === currentPathName;

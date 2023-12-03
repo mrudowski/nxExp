@@ -8,6 +8,8 @@ Next.js version of React swBase SPA
 - ✅ routing
 - ✅ change lists routes to dynamic routes
 - ✅⚠️ internationalization (i18n) with ~~next-i18next~~ (If you're using Next.js 13/14 with app directory, there is no need for next-i18next, you can directly use i18next and react-i18next)
+  - https://next-intl-docs.vercel.app/docs/getting-started/app-router
+  - it's harder than I expected, including routing / navigation (localizedPathnamesNavigation)
 - make custom dictionary a little better by using some library?
 - how to use the same translation for server and client components?
 - clean TODOs

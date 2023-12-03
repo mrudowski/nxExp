@@ -11,9 +11,9 @@ import {
 } from '@nx-exp/sw-base-tools';
 import {notFound} from 'next/navigation';
 
-import ConnectedThingsWrapper from '@/app/[domain]/[id]/ConnectedThingsWrapper.tsx';
 import CharacterSpecies from '@/components/CharacterSpecies.tsx';
 import ClientErrorBoundary from '@/components/ClientErrorBoundary.tsx';
+import ConnectedThingsWrapper from '@/components/ConnectedThingsWrapper.tsx';
 import {getDictionary} from '@/i18n/dictionaries.js';
 
 // testing Discriminated Unions
