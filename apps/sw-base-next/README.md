@@ -7,17 +7,17 @@ Next.js version of React swBase SPA
 - ✅ absolute import
 - ✅ routing
 - ✅ change lists routes to dynamic routes
-- ✅⚠️ internationalization (i18n) with ~~next-i18next~~ (If you're using Next.js 13/14 with app directory, there is no need for next-i18next, you can directly use i18next and react-i18next)
-  - https://next-intl-docs.vercel.app/docs/getting-started/app-router
-  - it's harder than I expected, including routing / navigation (localizedPathnamesNavigation)
-- make custom dictionary a little better by using some library?
-- how to use the same translation for server and client components?
+- ✅ internationalization (i18n) with ~~next-i18next~~ (If you're using Next.js 13/14 with app directory, there is no need for next-i18next, you can directly use i18next and react-i18next)
+  - ✅ make custom dictionary a little better by using some library
+  - ✅ I choose https://next-intl-docs.vercel.app/docs/getting-started/app-router
+  - ✅⚠️ like it but it's harder than I expected when including routing / navigation (localizedPathnamesNavigation)
+  - ✅ find how to use the same translation for server and client components
 - clean TODOs
 - add dark/light theme switch
-- ✅ try errors when fetching
+- ✅ try errors when fetching on backend and frontend
 - ✅ use Jotai
 - ✅ move Avatar and others to nx shared libs
-- fix page flickering when loading dynamic content
+- ⛔️ fix page flickering when loading dynamic content
 - ❗️ export as static site: Cannot read properties of undefined (reading 'app') https://github.com/vercel/next.js/issues/53562
 - 🤔 try build standalone SPA app with REST API (like swBase)
   - possible when we tread Next.js only as build tool
