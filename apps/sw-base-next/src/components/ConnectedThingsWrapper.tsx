@@ -9,7 +9,7 @@ import {Children, cloneElement, ReactNode} from 'react';
  * https://github.com/vercel/next.js/discussions/47846
  * So... we pass it from client to client
  */
-const getLink: ConnectedThingsProps['getLink'] = async ({href, label}) => {
+const getLink: ConnectedThingsProps['getLink'] = ({href, label}) => {
   return <Link href={href}>{label}</Link>;
 };
 
