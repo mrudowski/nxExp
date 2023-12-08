@@ -11,6 +11,7 @@ import {
 } from '@nx-exp/sw-base-tools';
 import {notFound} from 'next/navigation';
 import {getTranslations} from 'next-intl/server';
+import {Suspense} from 'react';
 
 import CharacterSpecies from '@/components/CharacterSpecies.tsx';
 import ClientErrorBoundary from '@/components/ClientErrorBoundary.tsx';
@@ -54,6 +55,7 @@ async function getData(domain: RouteId, id: string): Promise<CharacterTypeExt | 
 export default async function Thing({params: {domain, id}}: {params: {domain: RouteId; id: string}}) {
   const thing = await getData(domain, id);
   const t = await getTranslations('domain');
+  const tUtils = await getTranslations('utils');
 
   return (
     <Details name={thing.name}>
@@ -61,7 +63,10 @@ export default async function Thing({params: {domain, id}}: {params: {domain: Ro
         <>
           <ClientErrorBoundary>
             <p>
-              {t('species')}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={thing.species} />}
+              {/*Without Suspense whole page will wait for it, pageLoader handle be used*/}
+              <Suspense fallback={tUtils('loading')}>
+                {t('species')}: {thing.species.length === 0 ? '–' : <CharacterSpecies urls={thing.species} />}
+              </Suspense>
             </p>
           </ClientErrorBoundary>
           <ConnectedThingsWrapper>
