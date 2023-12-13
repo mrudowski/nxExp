@@ -2,6 +2,38 @@
 // https://github.com/testing-library/jest-dom#with-vitest
 import '@testing-library/jest-dom/vitest';
 
+import {http, HttpResponse} from 'msw';
+import {setupServer} from 'msw/node';
+
+// https://testing-library.com/docs/react-testing-library/example-intro#step-by-step
+// https://mswjs.io/docs/integrations/node#setup
+
+const server = setupServer(
+  // capture "GET /greeting" requests
+  http.get('https://swapi.info/api/people', () => {
+    // respond using a mocked JSON body
+    return HttpResponse.json([
+      {
+        name: 'Luke Skywalker',
+        url: 'https://swapi.info/api/people/1',
+      },
+      {
+        name: 'C-3PO',
+        url: 'https://swapi.info/api/people/2',
+      },
+    ]);
+  })
+);
+
+// To confirm a successful setup, create a simple outgoing request listener on the server object:
+server.events.on('request:start', ({request}) => {
+  console.log('MSW intercepted:', request.method, request.url);
+});
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
 // old way
 // import '@testing-library/jest-dom/extend-expect';
 

@@ -6,6 +6,7 @@ A place where I'm experimenting with all new and old things in new way
 # On my list
 - ✅ use fine https://swapi.info/ (in the place of a little slow https://swapi.dev/)
 - ✅ add vitest and tests
+- ✅ add https://mswjs.io/ - Industry standard API mocking for JavaScript
 - add more test
 - make vitest-preview works
 - ✅ absolute imports
@@ -15,7 +16,7 @@ A place where I'm experimenting with all new and old things in new way
 - ✅ useSuspenseQuery
 - ✅ use QueryErrorResetBoundary
 - ✅ try Jotai - Primitive and flexible state management for React
-- try Zustand - Bear necessities for state management in React
+- ✅ try Zustand - Bear necessities for state management in React
 - add cancellation https://github.com/sindresorhus/ky#cancellation
 - try zod with react query https://tkdodo.eu/blog/type-safe-react-query#zod
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context
