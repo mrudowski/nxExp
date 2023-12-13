@@ -5,10 +5,10 @@
  * In both libraries it is recommended that you manually apply render optimizations by using selectors.
  */
 
-import {CharactersStore, useCharactersStore} from '../../state/zustandStores';
+import {CharactersStore, removeAllCharactersStandalone, useCharactersStore} from '../../state/zustandStores';
 import styles from './ZustandPlayground.module.scss';
 
-// 🚨
+// 🚨very very bad
 const WholeStore = () => {
   const characters = useCharactersStore();
 
@@ -20,6 +20,8 @@ const WholeStore = () => {
 // ✅ stable as hell
 const ActionsOnly = () => {
   const addCharacter = useCharactersStore(store => store.addCharacter);
+  const addCharacterWithImmerInline = useCharactersStore(store => store.addCharacterWithImmerInline);
+  const addCharacterWithImmerMiddleware = useCharactersStore(store => store.addCharacterWithImmerMiddleware);
   const removeAllCharacters = useCharactersStore(store => store.removeAllCharacters);
 
   console.log('%c [mr] ActionsOnly', 'background-color:Gold; color: black');
@@ -29,7 +31,8 @@ const ActionsOnly = () => {
       <button
         onClick={() => {
           addCharacter({name: 'Tom'});
-          addCharacter({name: 'Jerry'});
+          addCharacterWithImmerInline({name: 'Jerry'});
+          addCharacterWithImmerMiddleware({name: 'Ken'});
         }}
       >
         add 2 characters
@@ -40,6 +43,13 @@ const ActionsOnly = () => {
         }}
       >
         remove all characters
+      </button>
+      <button
+        onClick={() => {
+          removeAllCharactersStandalone();
+        }}
+      >
+        remove all characters (standalone without use hook)
       </button>
     </>
   );
