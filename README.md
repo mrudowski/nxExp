@@ -12,9 +12,13 @@ A place where I'm experimenting with all new and old things in new way
 - make eslint dev checker works as typescript - in all app dependencies
 
 - try web components
+- try StyleX from Meta: https://stylexjs.com/docs/learn/
 - develop swBase in
   - ✅ react (by nx/vite/swc)
-  - nextjs / remix / astro / gatsby solution
+  - ✅ next.js
+  - remix / astro / gatsby solution
+  - switch react router to https://tanstack.com/router/v1/docs/overview
+  - 
 
 ### sw-base
 - https://github.com/mrudowski/nxExp/tree/main/apps/sw-base

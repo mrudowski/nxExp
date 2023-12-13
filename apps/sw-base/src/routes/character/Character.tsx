@@ -1,3 +1,4 @@
+import ZustandPlayground from '@libs/sw-base-tools/src/components/ZustandPlayground/ZustandPlayground.tsx';
 import {
   CharacterType,
   ConnectedThings,
@@ -28,7 +29,8 @@ const Character = () => {
   }
 
   return (
-    <Details name={Character.name}>
+    <Details name={character.name}>
+      <ZustandPlayground />
       <p>
         {t('domain.species')}: {character.species.length === 0 ? '–' : <CharacterSpecies urls={character.species} />}
       </p>

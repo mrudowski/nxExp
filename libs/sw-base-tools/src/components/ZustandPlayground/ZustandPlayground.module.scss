@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.playground {
+  border: 1px solid hsla(0, 0%, 0%, 0.2);
+  padding: 1rem;
+  display: flex;
+  gap: $sw-margin;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  @include darkMode {
+    border-color: hsla(0, 0%, 100%, 0.2);
+  }
+}

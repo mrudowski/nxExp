@@ -12,6 +12,7 @@ export * from './services/swApi/queries/queries.ts';
 export * from './services/swApi/types.ts';
 export {getThingQueryUrl} from './services/swApi/utils.ts';
 export * from './state/jotaiAtoms.ts';
+export * from './state/zustandStores.ts';
 export * from './types/types.ts';
 export * from './utils/utils.ts';
 // export * from './lib/sw-base-tools';

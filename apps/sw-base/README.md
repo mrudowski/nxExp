@@ -15,7 +15,7 @@ A place where I'm experimenting with all new and old things in new way
 - ✅ useSuspenseQuery
 - ✅ use QueryErrorResetBoundary
 - ✅ try Jotai - Primitive and flexible state management for React
-- try Zustang - Bear necessities for state management in React
+- try Zustand - Bear necessities for state management in React
 - add cancellation https://github.com/sindresorhus/ky#cancellation
 - try zod with react query https://tkdodo.eu/blog/type-safe-react-query#zod
 - use react router outlet context https://reactrouter.com/en/main/hooks/use-outlet-context

@@ -16,10 +16,10 @@ Next.js version of React swBase SPA
 - add dark/light theme switch
 - ✅ try errors when fetching on backend and frontend
 - ✅ use Jotai
-  - ❗️"Detected multiple Jotai instances. It may cause unexpected behavior with the default store"
+  - ⚠️️"Detected multiple Jotai instances. It may cause unexpected behavior with the default store"
 - ✅ move Avatar and others to nx shared libs
 - ✅ fix page flickering when loading dynamic content (all because async (by accident) getLink)
-- ❗️ export as static site: Cannot read properties of undefined (reading 'app') https://github.com/vercel/next.js/issues/53562
+- ⛔️️ export as static site: Cannot read properties of undefined (reading 'app') https://github.com/vercel/next.js/issues/53562
 - 🤔 try build standalone SPA app with REST API (like swBase)
   - possible when we tread Next.js only as build tool
 - 🤔 try build standalone SSG app (Static Site Generation like Astro/Gatsby) 
