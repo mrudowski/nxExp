@@ -4,7 +4,9 @@
 .playground {
   border: 1px solid hsla(0, 0%, 0%, 0.2);
   padding: 1rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  //flex-wrap: wrap;
   gap: $sw-margin;
   align-items: center;
   margin-bottom: 1rem;
