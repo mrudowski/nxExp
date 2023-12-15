@@ -3,6 +3,8 @@ import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 
+import {CharacterType} from '../services/swApi/types.ts';
+
 type State = {
   characters: {name: string}[];
 };
@@ -13,6 +15,7 @@ type Action = {
   addCharacterWithImmerInline: (character: {name: string}) => void;
   addCharacterWithImmerMiddleware: (character: {name: string}) => void;
   removeAllCharacters: () => void;
+  fetch: (url: string) => void;
 };
 
 export type CharactersStore = State & Action;
@@ -51,28 +54,16 @@ export const useCharactersStore = create<CharactersStore>()(
       removeAllCharacters: () => set({characters: initialState.characters}),
       // in this case the same as
       // reset: () => set(initialState),
+      // Async actions https://github.com/pmndrs/zustand?tab=readme-ov-file#async-actions
+      fetch: async (url: string) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        const name = (data as CharacterType).name;
+        get().addCharacter({name});
+      },
     })),
     {
       name: 'characters-storage',
-      // storage: createJSONStorage(() => localStorage), // default
-    }
-  )
-);
-
-type BearStore = {
-  bears: number;
-  addABear: () => void;
-};
-export const useBearStore = create<BearStore>()(
-  persist(
-    (set, get) => ({
-      bears: 0,
-      addABear: () => set({bears: get().bears + 1}),
-      addABearAlt: () => set(state => ({bears: state.bears + 1})),
-      // increase: by => set(state => ({bears: state.bears + by})),
-    }),
-    {
-      name: 'food-storage',
       // storage: createJSONStorage(() => localStorage), // default
     }
   )

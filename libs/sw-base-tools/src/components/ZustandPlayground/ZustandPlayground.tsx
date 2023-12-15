@@ -8,6 +8,8 @@
 import {createSelector} from 'reselect';
 import {useShallow} from 'zustand/react/shallow';
 
+import {SW_API_URLS} from '../../services/swApi/constants';
+import {getThingQueryUrl} from '../../services/swApi/utils';
 import {CharactersStore, removeAllCharactersStandalone, useCharactersStore} from '../../state/zustandStores';
 import styles from './ZustandPlayground.module.scss';
 
@@ -26,6 +28,7 @@ const ActionsOnly = () => {
   const addCharacterWithImmerInline = useCharactersStore(store => store.addCharacterWithImmerInline);
   const addCharacterWithImmerMiddleware = useCharactersStore(store => store.addCharacterWithImmerMiddleware);
   const removeAllCharacters = useCharactersStore(store => store.removeAllCharacters);
+  const fetch = useCharactersStore(store => store.fetch);
 
   console.log('%c [mr] ActionsOnly', 'background-color:Gold; color: black');
 
@@ -53,6 +56,13 @@ const ActionsOnly = () => {
         }}
       >
         remove all characters (standalone without use hook)
+      </button>
+      <button
+        onClick={() => {
+          fetch(getThingQueryUrl(SW_API_URLS.characters, '1'));
+        }}
+      >
+        fetch for Luke
       </button>
     </>
   );
@@ -96,6 +106,7 @@ const FirstCharacterOnlyButInArray = () => {
 };
 
 // ✅ stable thanks to `createSelector` from `Reselect` (like redux toolkit)
+// ✅ it's not only stable but memorized - if firstCharacterOnlySelector is the same
 const firstCharacterOnlyButInArraySelector = createSelector(firstCharacterOnlySelector, firstCharacter => {
   return [firstCharacter];
 });
@@ -106,20 +117,30 @@ const FirstCharacterOnlyButInArrayAlt = () => {
   return <div>first character name: {firstCharacter[0]?.name}</div>;
 };
 
-// TODO
-// - selector with id
+// ✅ stable because we return the same object
+// ⚠️ when used with createSelector we have to obey the sames rules as in redux toolkit
+const FirstTom = () => {
+  const firstTom = useCharactersStore((store: CharactersStore) => store.characters.find(char => char.name === 'Tom'));
+  console.log('%c [mr] FirstTom', 'background-color:Gold; color: black', firstTom);
+
+  return <div>first Tom: {firstTom?.name}</div>;
+};
+
 // - async?  - https://github.com/pmndrs/zustand?tab=readme-ov-file#async-actions
 
 const ZustandPlayground = () => {
   return (
     <div className={styles.playground}>
       <WholeStore />
-      <ActionsOnly />
+      <div className={styles.actions}>
+        <ActionsOnly />
+      </div>
       <CharactersOnly />
       <div>
         <FirstCharacterOnly />
         <FirstCharacterOnlyButInArray />
         <FirstCharacterOnlyButInArrayAlt />
+        <FirstTom />
       </div>
     </div>
   );
