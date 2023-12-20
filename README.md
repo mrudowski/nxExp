@@ -37,6 +37,7 @@ nx serve sw-base
 nx serve sw-base-next
 nx serve iso-tiles
 nx serve css-fun
+nx serve zen-gardens
 ```
 
 Open your browser and navigate to http://localhost:4200/
