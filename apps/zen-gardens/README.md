@@ -28,6 +28,10 @@ a tiny isometric block gardens builder
 - when we select more then one tile we randomize
 - when `selection` mode we single select tile (and see it's options in Phase II)
 
+## Base blueprint
+
+![Blueprint](blueprint.png)
+
 - - -
 
 ## Develop
