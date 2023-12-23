@@ -28,7 +28,7 @@ const atlas = [
       {
         x: 1,
         y: 1,
-        name: 'grass',
+        name: 'grass2',
       },
     ],
   },
