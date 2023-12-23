@@ -32,8 +32,6 @@ a tiny isometric block gardens builder
 
 ![Blueprint](blueprint.png)
 
-- - -
-
 ## Develop
 
 ```
