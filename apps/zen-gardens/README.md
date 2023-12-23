@@ -1,6 +1,6 @@
 # zen-gardens
 
-a tiny isometric block gardens builder
+a tiny isometric block gardens builder (test)
 
 ## Main assumptions:
 - only html, css and images (no canvas)
