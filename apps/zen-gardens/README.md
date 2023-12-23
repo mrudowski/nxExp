@@ -9,8 +9,8 @@ a tiny isometric block gardens builder (test)
 
 ### Phase I
 
-#### Switchable tiles palette
-- one at once - we cannot mix it
+#### Switchable tiles palette/atlas
+- one at once - we cannot mix it (json + png)
 - images + meta desc file
 - full of blocks
 - with names
