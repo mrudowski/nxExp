@@ -14,7 +14,7 @@ const atlas = [
     tilHeight: 18,
     tiles: [
       {
-        x: 1,
+        x: 2,
         y: 1,
         name: 'grass',
       },
