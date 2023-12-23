@@ -16,7 +16,7 @@ const atlas = [
     name: 'tinyBlock',
     desc: '@danimaccari -> https://dani-maccari.itch.io/',
     image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,
-    scale: 4,
+    scale: 8,
     width: 180,
     height: 160,
     tileWidth: 16,
