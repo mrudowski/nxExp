@@ -1,79 +1,49 @@
-// const TILE_SIZE = {w: 18, h: 18};
 import {CSSProperties} from 'react';
+
+import {AtlasTile, AtlasTileSet} from '@/data/atlas.ts';
 
 import styles from './styles.module.scss';
 
-export interface TileCssProperties extends CSSProperties {
-  '--width': string;
-  '--height': string;
-  // '--x': number;
-  // '--y': number;
+const SVG_SIZE = 80;
+
+interface TileProps {
+  tileSet: AtlasTileSet;
+  tile: AtlasTile;
 }
 
-const atlas = [
-  {
-    id: 'tinyBlock',
-    name: 'tinyBlock',
-    desc: '@danimaccari -> https://dani-maccari.itch.io/',
-    image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,
-    scale: 8,
-    width: 180,
-    height: 160,
-    tileWidth: 16,
-    tileHeight: 18,
-    tileWidthFrame: 18,
-    tileHeightFrame: 18,
-    blockWidth: 16,
-    tiles: [
-      {
-        x: 2,
-        y: 1,
-        name: 'grass2',
-      },
-    ],
-  },
-];
+const Tile = ({tileSet, tile}: TileProps) => {
+  const width = tileSet.tileWidth * tileSet.scale;
+  const height = tileSet.tileHeight * tileSet.scale;
+  const backgroundPositionX = getBackgroundPosition(tile.x, tileSet.tileWidthFrame, tileSet.tileWidth, tileSet.scale);
+  const backgroundPositionY = getBackgroundPosition(tile.y, tileSet.tileHeightFrame, tileSet.tileHeight, tileSet.scale);
 
-const data = atlas[0].tiles[0];
-
-const Tile = () => {
-  const tileStyle = {
-    width: atlas[0].tileWidth * atlas[0].scale,
-    height: atlas[0].tileHeight * atlas[0].scale,
-    '--width': `${atlas[0].tileWidth * atlas[0].scale}px`,
-    '--height': `${atlas[0].tileHeight * atlas[0].scale}px`,
-    // '--x': -data.x,
-    // '--y': -data.y,
-  };
-  const imgStyle = {
-    backgroundImage: 'url("/assets/tinyBlocks/tinyBlocks_NOiL.png")',
-    backgroundPositionX:
-      (-data.x * atlas[0].tileWidthFrame - (atlas[0].tileWidthFrame - atlas[0].tileWidth) / 2) * atlas[0].scale,
-    backgroundPositionY:
-      (-data.y * atlas[0].tileHeightFrame - (atlas[0].tileHeightFrame - atlas[0].tileHeight) / 2) * atlas[0].scale,
-    backgroundSize: `${atlas[0].scale * atlas[0].width}px auto`,
-    ...tileStyle,
+  const tileStyle: TileCssProperties = {
+    '--width': `${width}px`,
+    '--height': `${height}px`,
+    '--imageUrl': `url(${tileSet.image})`,
+    '--imagePosition': `${backgroundPositionX}px ${backgroundPositionY}px`,
+    '--imageSize': `${tileSet.scale * tileSet.width}px auto`,
   };
 
-  const viewBox = `0 0 ${tileStyle.width} ${tileStyle.height}`;
+  const viewBox = `0 0 ${width} ${height}`;
+  const transform = `scale(${width / SVG_SIZE}, ${height / SVG_SIZE})`;
 
   return (
     <div className={styles.tile} style={tileStyle}>
-      <div className={styles.img} style={imgStyle} />
-      {/*<div className={styles.env} />*/}
+      <div className={styles.img} />
       <svg viewBox={viewBox} className={styles.hotspot}>
         <g
-          transform={`scale(${tileStyle.width / 80}, ${tileStyle.height / 80}) translate(0, 0)`}
+          transform={transform}
           onClick={() => {
-            console.log('def');
+            console.log('TODO');
           }}
         >
-          <path className="bottom" d="M40,80 0,60 40,40 80,60 z" />
-          <path className="backLeft" d="M0,20 40,0 40,40 0,60 z" />
-          <path className="backRight" d="M40,0 80,20 80,60 40,40 z" />
-          <path className="frontLeft" d="M0,20 40,40 40,80 0,60 z" />
-          <path className="frontRight" d="M40,40 80,20 80,60 40,80 z" />
-          <path className="top" d="M40,40 0,20 40,0 80,20 z" />
+          {/*<path className="faceB" d="M40,80 0,60 40,40 80,60 z" />*/}
+          {/*<path className="faceBL" d="M0,20 40,0 40,40 0,60 z" />*/}
+          {/*<path className="faceBR" d="M40,0 80,20 80,60 40,40 z" />*/}
+          <path className="faceFL" d="M0,20 40,40 40,80 0,60 z" />
+          <path className="faceFR" d="M40,40 80,20 80,60 40,80 z" />
+          <path className="faceF" d="M40,40 0,20 40,0 80,20 z" />
         </g>
       </svg>
     </div>
@@ -81,3 +51,15 @@ const Tile = () => {
 };
 
 export default Tile;
+
+export interface TileCssProperties extends CSSProperties {
+  '--width': string;
+  '--height': string;
+  '--imageUrl': string;
+  '--imagePosition': string;
+  '--imageSize': string;
+}
+
+function getBackgroundPosition(tilePos: number, tileSizeFrame: number, tileSize: number, scale: number) {
+  return (-tilePos * tileSizeFrame - (tileSizeFrame - tileSize) / 2) * scale;
+}

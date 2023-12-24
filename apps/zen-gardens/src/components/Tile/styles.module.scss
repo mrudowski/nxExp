@@ -1,55 +1,40 @@
 .tile {
-  //border: 1px solid red;
   position: relative;
   width: var(--width);
   height: var(--height);
-  //--cube-size: 18px;
   pointer-events: none;
 
-  :global {
-    * {
-      pointer-events: none;
-    }
-  }
+  //:global {
+  //  * {
+  //    pointer-events: none;
+  //  }
+  //}
 }
 
 .img {
-  //display: none;
   position: absolute;
   background-repeat: no-repeat;
   image-rendering: pixelated;
   width: var(--width);
   height: var(--height);
-  opacity: 1;
-  pointer-events: none;
-  // backgroundPositionX: -data.x * tileStyle.width,
-  // backgroundPositionY: -data.y * tileStyle.height,
+  // https://blog.coderfy.io/css-variables-dont-work-with-the-url-function
+  // background-image: url(var(--imageUrl));
+  background-image: var(--imageUrl);
+  background-position: var(--imagePosition);
+  background-size: var(--imageSize);
 }
 
 .hotspot {
-  //display: none;
   position: absolute;
   pointer-events: none;
-  //top: -2px;
-  //left: 7px;
-
-  //& > g {
-  //  //  cursor: pointer;
-  //  fill: red;
-  //}
-  //
-  //g {
-  //  fill: red !important;
-  //}
 
   g {
     path {
       pointer-events: auto;
       cursor: pointer;
-      //fill: rgba(#ccc, 0.2);
       fill: transparent;
+      //fill: rgba(#ccc, 0.2);
       //opacity: 0.25;
-
       //stroke: yellow;
       stroke-width: 1;
     }
