@@ -7,11 +7,14 @@ a tiny isometric block gardens builder (test)
 - all new
 - with some nice licensed tile sets
 
+### Phase 0
+- ✅ Superb Scene component with svg hotspot
+
 ### Phase I
 
 #### Switchable tiles palette/atlas
-- one at once - we cannot mix it (json + png)
-- images + meta desc file
+- we cannot mix tile sets
+- ✅ images + meta desc file
 - full of blocks
 - with names
 - when switch we switch all tiles - in palette and on canvas
@@ -20,6 +23,7 @@ a tiny isometric block gardens builder (test)
 - show/hide not used
 - multi selection (working with filters)
 - active in `paint` mode / disabled in `selection` mode
+- different height of tiles?
 
 #### Iso Canvas
 - 5x5 or bigger? (selectable in Phase II)

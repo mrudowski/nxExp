@@ -7,17 +7,32 @@ import styles from './styles.module.scss';
 const SVG_SIZE = 80;
 
 interface TileProps {
+  id: string;
+  x: number;
+  y: number;
   tileSet: AtlasTileSet;
-  tile: AtlasTile;
+  tile: AtlasTile | null;
 }
 
-const Tile = ({tileSet, tile}: TileProps) => {
+const Tile = ({id, x, y, tileSet, tile}: TileProps) => {
   const width = tileSet.tileWidth * tileSet.scale;
   const height = tileSet.tileHeight * tileSet.scale;
-  const backgroundPositionX = getBackgroundPosition(tile.x, tileSet.tileWidthFrame, tileSet.tileWidth, tileSet.scale);
-  const backgroundPositionY = getBackgroundPosition(tile.y, tileSet.tileHeightFrame, tileSet.tileHeight, tileSet.scale);
+  const backgroundPositionX = getBackgroundPosition(
+    tile?.x ?? 0,
+    tileSet.tileWidthFrame,
+    tileSet.tileWidth,
+    tileSet.scale
+  );
+  const backgroundPositionY = getBackgroundPosition(
+    tile?.y ?? 0,
+    tileSet.tileHeightFrame,
+    tileSet.tileHeight,
+    tileSet.scale
+  );
 
   const tileStyle: TileCssProperties = {
+    '--x': `${x}px`,
+    '--y': `${y}px`,
     '--width': `${width}px`,
     '--height': `${height}px`,
     '--imageUrl': `url(${tileSet.image})`,
@@ -46,6 +61,7 @@ const Tile = ({tileSet, tile}: TileProps) => {
           <path className="faceF" d="M40,40 0,20 40,0 80,20 z" />
         </g>
       </svg>
+      <span>[{id}]</span>
     </div>
   );
 };
@@ -53,6 +69,8 @@ const Tile = ({tileSet, tile}: TileProps) => {
 export default Tile;
 
 export interface TileCssProperties extends CSSProperties {
+  '--x': string;
+  '--y': string;
   '--width': string;
   '--height': string;
   '--imageUrl': string;

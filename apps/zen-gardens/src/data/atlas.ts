@@ -27,7 +27,7 @@ export const atlas: Atlas = [
     name: 'tinyBlock',
     desc: '@danimaccari -> https://dani-maccari.itch.io/',
     image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,
-    scale: 4,
+    scale: 6,
     width: 180,
     height: 160,
     tileWidth: 16,
@@ -36,7 +36,7 @@ export const atlas: Atlas = [
     tileHeightFrame: 18,
     tiles: [
       {
-        x: 4,
+        x: 0,
         y: 1,
         name: 'grass',
       },

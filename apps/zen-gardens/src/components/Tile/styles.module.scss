@@ -1,5 +1,9 @@
+@import '@/styles/variables';
+
 .tile {
-  position: relative;
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
   width: var(--width);
   height: var(--height);
   pointer-events: none;
@@ -9,6 +13,13 @@
   //    pointer-events: none;
   //  }
   //}
+
+  span {
+    position: absolute;
+    inset: 5px 0 0 0;
+    text-align: center;
+    color: black;
+  }
 }
 
 .img {
