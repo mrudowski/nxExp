@@ -40,7 +40,7 @@ const Level = ({tileSet, tilesInRow, boardWidth, widthHalfFloored, heightQuarter
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 
-        return <Tile key={slot.id} id={slot.id} x={x} y={y} tileSet={tileSet} tile={tileSet.tiles[0]} />;
+        return <Tile key={slot.id} id={slot.id} x={x} y={y} tile={tileSet.tiles[0]} />;
       })}
     </section>
   );

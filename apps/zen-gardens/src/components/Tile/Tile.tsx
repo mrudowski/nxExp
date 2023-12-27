@@ -1,6 +1,8 @@
-import {CSSProperties} from 'react';
+import {useAtomValue} from 'jotai';
 
-import {AtlasTile, AtlasTileSet} from '@/data/atlas.ts';
+import {AtlasTile} from '@/data/atlas.ts';
+import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
+import {tileHeightSceneScaledAtom, tileSetAtom, tileWidthSceneScaledAtom} from '@/state/atlasAtom.ts';
 
 import styles from './styles.module.scss';
 
@@ -10,41 +12,27 @@ interface TileProps {
   id: string;
   x: number;
   y: number;
-  tileSet: AtlasTileSet;
-  tile: AtlasTile | null;
+  tile: AtlasTile;
 }
 
-const Tile = ({id, x, y, tileSet, tile}: TileProps) => {
-  const width = tileSet.tileWidth * tileSet.scale;
-  const height = tileSet.tileHeight * tileSet.scale;
-  const backgroundPositionX = getBackgroundPosition(
-    tile?.x ?? 0,
-    tileSet.tileWidthFrame,
-    tileSet.tileWidth,
-    tileSet.scale
-  );
-  const backgroundPositionY = getBackgroundPosition(
-    tile?.y ?? 0,
-    tileSet.tileHeightFrame,
-    tileSet.tileHeight,
-    tileSet.scale
-  );
+const Tile = ({id, x, y, tile}: TileProps) => {
+  const tileSet = useAtomValue(tileSetAtom);
+  const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
+  const tileHeightScaled = useAtomValue(tileHeightSceneScaledAtom);
 
-  const tileStyle: TileCssProperties = {
+  const tileStyle = useGetTileStyle({tile, tileSet, tileWidthScaled, tileHeightScaled, tileScale: tileSet.sceneScale});
+
+  const tileStyleWithXY = {
+    ...tileStyle,
     '--x': `${x}px`,
     '--y': `${y}px`,
-    '--width': `${width}px`,
-    '--height': `${height}px`,
-    '--imageUrl': `url(${tileSet.image})`,
-    '--imagePosition': `${backgroundPositionX}px ${backgroundPositionY}px`,
-    '--imageSize': `${tileSet.scale * tileSet.width}px auto`,
   };
 
-  const viewBox = `0 0 ${width} ${height}`;
-  const transform = `scale(${width / SVG_SIZE}, ${height / SVG_SIZE})`;
+  const viewBox = `0 0 ${tileWidthScaled} ${tileHeightScaled}`;
+  const transform = `scale(${tileWidthScaled / SVG_SIZE}, ${tileHeightScaled / SVG_SIZE})`;
 
   return (
-    <div className={styles.tile} style={tileStyle}>
+    <div className={styles.tile} style={tileStyleWithXY}>
       <div className={styles.img} />
       <svg viewBox={viewBox} className={styles.hotspot}>
         <g
@@ -67,17 +55,3 @@ const Tile = ({id, x, y, tileSet, tile}: TileProps) => {
 };
 
 export default Tile;
-
-export interface TileCssProperties extends CSSProperties {
-  '--x': string;
-  '--y': string;
-  '--width': string;
-  '--height': string;
-  '--imageUrl': string;
-  '--imagePosition': string;
-  '--imageSize': string;
-}
-
-function getBackgroundPosition(tilePos: number, tileSizeFrame: number, tileSize: number, scale: number) {
-  return (-tilePos * tileSizeFrame - (tileSizeFrame - tileSize) / 2) * scale;
-}

@@ -1,0 +1,18 @@
+@import '@/styles/variables';
+
+.paletteTile {
+  width: var(--width);
+  height: var(--height);
+}
+
+.img {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  width: var(--width);
+  height: var(--height);
+  // https://blog.coderfy.io/css-variables-dont-work-with-the-url-function
+  // background-image: url(var(--imageUrl));
+  background-image: var(--imageUrl);
+  background-position: var(--imagePosition);
+  background-size: var(--imageSize);
+}

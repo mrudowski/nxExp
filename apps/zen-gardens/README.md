@@ -3,12 +3,14 @@
 a tiny isometric block gardens builder (test)
 
 ## Main assumptions:
-- only html, css and images (no canvas)
+- only html, svg, css and images (no canvas)
 - all new
 - with some nice licensed tile sets
 
 ### Phase 0
-- ✅ Superb Scene component with svg hotspot
+- ✅ Superb `PaletteTile` component with svg hotspot
+- ✅ placed on `Palette`
+- ✅ which is a part of bigger (multi level) `Scene`
 
 ### Phase I
 

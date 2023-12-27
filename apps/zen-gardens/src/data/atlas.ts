@@ -9,7 +9,8 @@ export type AtlasTileSet = {
   name: string;
   desc: string;
   image: string;
-  scale: number;
+  sceneScale: number;
+  paletteScale: number;
   width: number;
   height: number;
   tileWidth: number;
@@ -27,7 +28,8 @@ export const atlas: Atlas = [
     name: 'tinyBlock',
     desc: '@danimaccari -> https://dani-maccari.itch.io/',
     image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,
-    scale: 6,
+    sceneScale: 6,
+    paletteScale: 2,
     width: 180,
     height: 160,
     tileWidth: 16,
@@ -39,6 +41,16 @@ export const atlas: Atlas = [
         x: 0,
         y: 1,
         name: 'grass',
+      },
+      {
+        x: 0,
+        y: 2,
+        name: 'sand',
+      },
+      {
+        x: 4,
+        y: 1,
+        name: 'snow',
       },
     ],
   },
