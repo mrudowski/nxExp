@@ -4,6 +4,7 @@ import '@testing-library/jest-dom/vitest';
 
 import {http, HttpResponse} from 'msw';
 import {setupServer} from 'msw/node';
+import {vi} from 'vitest';
 
 // https://testing-library.com/docs/react-testing-library/example-intro#step-by-step
 // https://mswjs.io/docs/integrations/node#setup
@@ -54,3 +55,18 @@ afterAll(() => server.close());
 // Note: have to be fired before any other package which require css
 // require.extensions['.css'] = () => ({});
 // require.extensions['.scss'] = () => ({});
+
+// https://github.com/vitest-dev/vitest/issues/821
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});

@@ -1,15 +1,15 @@
+import {MantineProvider} from '@mantine/core';
 import {render, screen} from '@testing-library/react';
 
 import App from './App.tsx';
 
 describe('App', () => {
   it('should render successfully', () => {
-    const {baseElement} = render(<App />);
-    expect(baseElement).toBeTruthy();
-  });
-
-  it('should have a greeting as the title', () => {
-    render(<App />);
-    expect(screen.getByText(/Welcome zen-gardens/i)).toBeInTheDocument();
+    render(
+      <MantineProvider>
+        <App />
+      </MantineProvider>
+    );
+    expect(screen.getByText('[3,3]')).toBeInTheDocument();
   });
 });
