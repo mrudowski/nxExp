@@ -24,7 +24,16 @@
       };
       const theme = getInitialTheme();
       document.documentElement.dataset.theme = theme;
+
+      // alt from https://mantine.dev/theming/color-schemes/#colorschemescript
+      // try {
+      //   var _colorScheme = window.localStorage.getItem("zen-gardens-color-scheme");
+      //   var colorScheme = _colorScheme === "light" || _colorScheme === "dark" || _colorScheme === "auto" ? _colorScheme : "auto";
+      //   var computedColorScheme = colorScheme !== "auto" ? colorScheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      //   document.documentElement.setAttribute("data-mantine-color-scheme", computedColorScheme);
+      // } catch (e) {}
     </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

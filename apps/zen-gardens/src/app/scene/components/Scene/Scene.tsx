@@ -1,4 +1,4 @@
-import Level from '@/components/Level/Level.tsx';
+import Level from '@/app/scene/components/Level/Level.tsx';
 import {AtlasTileSet} from '@/data/atlas.ts';
 
 import styles from './styles.module.scss';

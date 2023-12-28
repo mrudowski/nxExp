@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme='dark'>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>ZenGardens</title>
@@ -12,6 +12,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      try {
+        // it's faster but has no effect on useComputedColorScheme
+        // but will work with custom window.document.documentElement.getAttribute
+        var _colorScheme = window.localStorage.getItem("zen-gardens-color-scheme");
+        var colorScheme = _colorScheme === "light" || _colorScheme === "dark" || _colorScheme === "auto" ? _colorScheme : "auto";
+        var computedColorScheme = colorScheme !== "auto" ? colorScheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-mantine-color-scheme", computedColorScheme);
+      } catch (e) {}
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import PaletteTile from '@/components/PaletteTile/PaletteTile.tsx';
+import PaletteTile from '@/app/palette/components/PaletteTile/PaletteTile.tsx';
 import {AtlasTileSet} from '@/data/atlas.ts';
 
 import styles from './styles.module.scss';

@@ -1,6 +1,6 @@
 import {useMemo} from 'react';
 
-import Tile from '@/components/Tile/Tile.tsx';
+import Tile from '@/app/scene/components/Tile/Tile.tsx';
 import {AtlasTileSet} from '@/data/atlas.ts';
 
 import styles from './styles.module.scss';

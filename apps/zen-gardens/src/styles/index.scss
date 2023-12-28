@@ -1,19 +1,5 @@
 @import 'variables';
-@import 'libs/sw-base-tools/src/styles/reset';
-
-:root {
-  color-scheme: light;
-  --color: #{$sw-color-blue3};
-  --linkColor: #{$sw-color-orange2};
-  --background: #{$sw-color-white};
-}
-
-:root[data-theme='dark'] {
-  color-scheme: dark;
-  --color: #{$sw-color-blue1};
-  --linkColor: #{$sw-color-orange1};
-  --background: #{$sw-color-blue3};
-}
+//@import 'libs/sw-base-tools/src/styles/reset';
 
 // --------------------------------------
 
@@ -30,18 +16,6 @@ body {
 //}
 
 body {
-  color: var(--color);
-  background-color: var(--background);
-  font-family: 'Lato', sans-serif;
   display: grid;
   place-content: center;
-}
-
-a {
-  color: var(--linkColor);
-  text-decoration: none;
-
-  &:hover {
-    border-bottom: 1px solid var(--linkColor);
-  }
 }

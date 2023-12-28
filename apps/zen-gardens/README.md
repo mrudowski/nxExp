@@ -5,11 +5,13 @@ a tiny isometric block gardens builder (test)
 ## Main assumptions:
 - only html, svg, css and images (no canvas)
 - all new
+- Jotai https://jotai.org/
+- Mantine https://mantine.dev/
 - with some nice licensed tile sets
 
 ### Phase 0
-- ✅ Superb `PaletteTile` component with svg hotspot
-- ✅ placed on `Palette`
+- ✅ Superb `Tile` component with svg hotspot
+- ✅ placed on `Level`
 - ✅ which is a part of bigger (multi level) `Scene`
 
 ### Phase I
