@@ -1,5 +1,6 @@
 import {useAtomValue} from 'jotai';
 
+import Sprite from '@/components/Sprite/Sprite.tsx';
 import {AtlasTile} from '@/data/atlas.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
 import {tileHeightSceneScaledAtom, tileSetAtom, tileWidthSceneScaledAtom} from '@/state/atlasAtom.ts';
@@ -33,7 +34,7 @@ const Tile = ({id, x, y, tile}: TileProps) => {
 
   return (
     <div className={styles.tile} style={tileStyleWithXY}>
-      <div className={styles.img} />
+      <Sprite className={styles.sprite} />
       <svg viewBox={viewBox} className={styles.hotspot}>
         <g
           transform={transform}

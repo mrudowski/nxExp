@@ -1,5 +1,6 @@
 import {useAtomValue} from 'jotai/index';
 
+import Sprite from '@/components/Sprite/Sprite.tsx';
 import {AtlasTile} from '@/data/atlas.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
 import {tileHeightPaletteScaledAtom, tileSetAtom, tileWidthPaletteScaledAtom} from '@/state/atlasAtom.ts';
@@ -24,10 +25,10 @@ const PaletteTile = ({tile}: PaletteTileProps) => {
   });
 
   return (
-    <div className={styles.tile} style={tileStyle}>
-      <div className={styles.img} />
+    <button className={styles.paletteTile} style={tileStyle}>
+      <Sprite />
       <div>{tile.name}</div>
-    </div>
+    </button>
   );
 };
 
