@@ -3,7 +3,7 @@ import {useAtomValue} from 'jotai';
 import Sprite from '@/components/Sprite/Sprite.tsx';
 import {AtlasTile} from '@/data/atlas.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
-import {tileHeightSceneScaledAtom, tileSetAtom, tileWidthSceneScaledAtom} from '@/state/atlasAtom.ts';
+import {tileHeightSceneScaledAtom, tileSetAtom, tileWidthSceneScaledAtom} from '@/stateAtoms/atlas.ts';
 
 import styles from './styles.module.scss';
 
@@ -20,6 +20,7 @@ const Tile = ({id, x, y, tile}: TileProps) => {
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
   const tileHeightScaled = useAtomValue(tileHeightSceneScaledAtom);
+  // const [selectedTiles] = useAtom(selectedPaletteTilesAtom);
 
   const tileStyle = useGetTileStyle({tile, tileSet, tileWidthScaled, tileHeightScaled, tileScale: tileSet.sceneScale});
 
@@ -32,16 +33,15 @@ const Tile = ({id, x, y, tile}: TileProps) => {
   const viewBox = `0 0 ${tileWidthScaled} ${tileHeightScaled}`;
   const transform = `scale(${tileWidthScaled / SVG_SIZE}, ${tileHeightScaled / SVG_SIZE})`;
 
+  const handleClick = () => {
+    //if in pain mode
+  };
+
   return (
     <div className={styles.tile} style={tileStyleWithXY}>
       <Sprite className={styles.sprite} />
       <svg viewBox={viewBox} className={styles.hotspot}>
-        <g
-          transform={transform}
-          onClick={() => {
-            console.log('TODO');
-          }}
-        >
+        <g transform={transform} onClick={handleClick}>
           {/*<path className="faceB" d="M40,80 0,60 40,40 80,60 z" />*/}
           {/*<path className="faceBL" d="M0,20 40,0 40,40 0,60 z" />*/}
           {/*<path className="faceBR" d="M40,0 80,20 80,60 40,40 z" />*/}

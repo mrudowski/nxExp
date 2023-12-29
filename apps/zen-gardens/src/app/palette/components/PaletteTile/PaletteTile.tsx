@@ -6,12 +6,8 @@ import Sprite from '@/components/Sprite/Sprite.tsx';
 import Tooltip from '@/components/Tooltip/Tooltip.tsx';
 import {AtlasTile} from '@/data/atlas.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
-import {
-  selectedPaletteTilesAtom,
-  tileHeightPaletteScaledAtom,
-  tileSetAtom,
-  tileWidthPaletteScaledAtom,
-} from '@/state/atlasAtom.ts';
+import {tileHeightPaletteScaledAtom, tileSetAtom, tileWidthPaletteScaledAtom} from '@/stateAtoms/atlas.ts';
+import {selectedPaletteTilesAtom} from '@/stateAtoms/palette.ts';
 
 import styles from './styles.module.scss';
 
