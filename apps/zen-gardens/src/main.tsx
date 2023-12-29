@@ -5,7 +5,7 @@ import {ColorSchemeScript, MantineProvider} from '@mantine/core';
 import {StrictMode} from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-import {COLOR_SCHEME_LOCAL_STORAGE_KEY, colorSchemeManager, theme} from '@/styles/theme.ts';
+import {COLOR_SCHEME_LS_KEY, colorSchemeManager, theme} from '@/styles/theme.ts';
 
 import App from './app/App.tsx';
 
@@ -14,7 +14,7 @@ import App from './app/App.tsx';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <ColorSchemeScript defaultColorScheme="auto" localStorageKey={COLOR_SCHEME_LOCAL_STORAGE_KEY} />
+    <ColorSchemeScript defaultColorScheme="auto" localStorageKey={COLOR_SCHEME_LS_KEY} />
     <MantineProvider theme={theme} defaultColorScheme="auto" colorSchemeManager={colorSchemeManager}>
       <App />
     </MantineProvider>

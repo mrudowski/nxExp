@@ -1,6 +1,9 @@
 import {atom} from 'jotai';
+import {atomWithStorage} from 'jotai/utils';
 
 import {atlas} from '@/data/atlas.ts';
+
+import {LS_KEY_PREFIX} from '../../constants.ts';
 
 // activeTileSet
 // -----------------------------
@@ -32,5 +35,7 @@ export const tileHeightPaletteScaledAtom = atom(get => {
 // selectedTiles
 // -----------------------------
 
+const SELECTED_PALETTE_TILES_LS_KEY = `${LS_KEY_PREFIX}-selected-palette-tiles`;
+
 const emptyArray: string[] = [];
-export const selectedTiles = atom(emptyArray);
+export const selectedPaletteTilesAtom = atomWithStorage(SELECTED_PALETTE_TILES_LS_KEY, emptyArray);

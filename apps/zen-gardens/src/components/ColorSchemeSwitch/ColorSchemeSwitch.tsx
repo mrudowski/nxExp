@@ -1,6 +1,8 @@
-import {Switch, Tooltip, useMantineColorScheme, useMantineTheme} from '@mantine/core';
+import {Switch, useMantineColorScheme, useMantineTheme} from '@mantine/core';
 import {IconMoonFilled, IconSunFilled} from '@tabler/icons-react';
 import {useMediaQuery} from 'usehooks-ts';
+
+import Tooltip from '@/components/Tooltip/Tooltip.tsx';
 
 const ColorSchemeSwitch = () => {
   const theme = useMantineTheme();

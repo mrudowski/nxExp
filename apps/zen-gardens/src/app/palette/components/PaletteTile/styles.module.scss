@@ -1,11 +1,20 @@
 @import '@/styles/variables';
 
 .paletteTile {
-  //width: var(--width);
-  //height: var(--height);
+  --size: max(var(--width) + 8px, var(--height) + 8px);
+  width: var(--size);
+  height: var(--size);
   flex: 0 0 auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
-    background-color: white;
+    background-color: var(--mantine-color-cyan-9);
+  }
+
+  &.active {
+    background-color: var(--mantine-color-cyan-4);
   }
 }
