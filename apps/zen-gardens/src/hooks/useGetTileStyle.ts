@@ -11,15 +11,20 @@ export interface TileCssProperties extends CSSProperties {
 }
 interface useGetTileStyleArgs {
   tileSet: AtlasTileSet;
-  tile: AtlasTile;
+  tile: AtlasTile | null;
   tileWidthScaled: number;
   tileHeightScaled: number;
   tileScale: number;
 }
 
 const useGetTileStyle = ({tileSet, tile, tileWidthScaled, tileHeightScaled, tileScale}: useGetTileStyleArgs) => {
-  const backgroundPositionX = getBackgroundPosition(tile.x, tileSet.tileWidthFrame, tileSet.tileWidth, tileScale);
-  const backgroundPositionY = getBackgroundPosition(tile.y, tileSet.tileHeightFrame, tileSet.tileHeight, tileScale);
+  const backgroundPositionX = getBackgroundPosition(tile?.x ?? 0, tileSet.tileWidthFrame, tileSet.tileWidth, tileScale);
+  const backgroundPositionY = getBackgroundPosition(
+    tile?.y ?? 0,
+    tileSet.tileHeightFrame,
+    tileSet.tileHeight,
+    tileScale
+  );
 
   const tileStyle: TileCssProperties = {
     '--width': `${tileWidthScaled}px`,

@@ -5,7 +5,7 @@ export type AtlasTile = {
 };
 
 export type AtlasTileSet = {
-  id: string;
+  id: number;
   name: string;
   desc: string;
   image: string;
@@ -24,7 +24,7 @@ export type Atlas = AtlasTileSet[];
 
 export const atlas: Atlas = [
   {
-    id: 'tinyBlock',
+    id: 0,
     name: 'tinyBlock',
     desc: '@danimaccari -> https://dani-maccari.itch.io/',
     image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,

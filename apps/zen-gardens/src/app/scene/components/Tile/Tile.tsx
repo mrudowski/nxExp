@@ -13,10 +13,11 @@ interface TileProps {
   id: string;
   x: number;
   y: number;
-  tile: AtlasTile;
+  tile: AtlasTile | null;
+  onClick: (id: string) => void;
 }
 
-const Tile = ({id, x, y, tile}: TileProps) => {
+const Tile = ({id, x, y, tile, onClick}: TileProps) => {
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
   const tileHeightScaled = useAtomValue(tileHeightSceneScaledAtom);
@@ -34,12 +35,12 @@ const Tile = ({id, x, y, tile}: TileProps) => {
   const transform = `scale(${tileWidthScaled / SVG_SIZE}, ${tileHeightScaled / SVG_SIZE})`;
 
   const handleClick = () => {
-    //if in pain mode
+    onClick(id);
   };
 
   return (
     <div className={styles.tile} style={tileStyleWithXY}>
-      <Sprite className={styles.sprite} />
+      {tile ? <Sprite className={styles.sprite} /> : null}
       <svg viewBox={viewBox} className={styles.hotspot}>
         <g transform={transform} onClick={handleClick}>
           {/*<path className="faceB" d="M40,80 0,60 40,40 80,60 z" />*/}

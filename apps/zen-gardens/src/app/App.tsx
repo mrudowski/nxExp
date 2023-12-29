@@ -8,7 +8,6 @@ import {atlas} from '@/data/atlas.ts';
 
 import styles from './style.module.scss';
 
-const tilesInRow = 5;
 const tileSet = atlas[0];
 
 export function App() {
@@ -17,7 +16,7 @@ export function App() {
       <Palette tileSet={tileSet} />
       <div className={styles.main}>
         <ColorSchemeSwitch />
-        <Scene tilesInRow={tilesInRow} tileSet={tileSet} />
+        <Scene tileSet={tileSet} />
       </div>
     </div>
   );
