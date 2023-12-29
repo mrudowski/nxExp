@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 const SVG_SIZE = 80;
 
-interface TileProps {
+interface SlotProps {
   id: string;
   x: number;
   y: number;
@@ -17,7 +17,7 @@ interface TileProps {
   onClick: (id: string) => void;
 }
 
-const Tile = ({id, x, y, tile, onClick}: TileProps) => {
+const Slot = ({id, x, y, tile, onClick}: SlotProps) => {
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
   const tileHeightScaled = useAtomValue(tileHeightSceneScaledAtom);
@@ -56,4 +56,4 @@ const Tile = ({id, x, y, tile, onClick}: TileProps) => {
   );
 };
 
-export default Tile;
+export default Slot;

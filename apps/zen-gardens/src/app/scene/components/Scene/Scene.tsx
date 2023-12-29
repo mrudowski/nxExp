@@ -31,7 +31,7 @@ const Scene = ({tileSet}: SceneProps) => {
           id={sceneLevel.id}
           key={sceneLevel.id}
           tilesInRow={tilesInRow}
-          tiles={sceneLevel.tiles}
+          filledSlots={sceneLevel.slots}
           tileSet={tileSet}
           boardWidth={sceneStyle.width}
           widthHalfFloored={widthHalfFloored}

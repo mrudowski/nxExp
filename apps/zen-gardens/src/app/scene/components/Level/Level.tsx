@@ -1,7 +1,7 @@
 import {useSetAtom} from 'jotai/index';
 import {useCallback, useMemo} from 'react';
 
-import Tile from '@/app/scene/components/Tile/Tile.tsx';
+import Slot from '@/app/scene/components/Slot/Slot.tsx';
 import {AtlasTileSet} from '@/data/atlas.ts';
 import {SceneAtom, sceneLevelTileAtom} from '@/stateAtoms/scene.ts';
 
@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 interface LevelProps {
   id: number;
   tileSet: AtlasTileSet;
-  tiles: SceneAtom['levels'][number]['tiles'];
+  filledSlots: SceneAtom['levels'][number]['slots'];
   // sceneLevelAtom: Atom<SceneAtom['levels'][number]>;
   tilesInRow: number;
   boardWidth: number;
@@ -32,7 +32,15 @@ const getSlots = (tilesInRow: number) => {
   return data;
 };
 
-const Level = ({id, tileSet, tiles, tilesInRow, boardWidth, widthHalfFloored, heightQuarterFloored}: LevelProps) => {
+const Level = ({
+  id,
+  tileSet,
+  filledSlots,
+  tilesInRow,
+  boardWidth,
+  widthHalfFloored,
+  heightQuarterFloored,
+}: LevelProps) => {
   const setTile = useSetAtom(sceneLevelTileAtom);
 
   const slots = useMemo(() => {
@@ -41,23 +49,22 @@ const Level = ({id, tileSet, tiles, tilesInRow, boardWidth, widthHalfFloored, he
 
   const start = boardWidth / 2 - widthHalfFloored;
 
-  const tileSetId = tileSet.id;
   const handleClick = useCallback(
     (slotId: string) => {
-      setTile({slotId, levelId: id, tileName: 'grass', tileSetId});
+      setTile({slotId, levelId: id});
     },
-    [setTile, id, tileSetId]
+    [setTile, id]
   );
 
   return (
     <section className={styles.level}>
       {slots.map(slot => {
-        const attachedTile = tiles[slot.id];
-        const tile = attachedTile ? tileSet.tiles.find(t => t.name === attachedTile.tileName) ?? null : null;
+        const filledSlot = filledSlots[slot.id];
+        const tile = filledSlot ? tileSet.tiles.find(t => t.name === filledSlot.tileName) ?? null : null;
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 
-        return <Tile key={slot.id} id={slot.id} x={x} y={y} tile={tile} onClick={handleClick} />;
+        return <Slot key={slot.id} id={slot.id} x={x} y={y} tile={tile} onClick={handleClick} />;
       })}
     </section>
   );

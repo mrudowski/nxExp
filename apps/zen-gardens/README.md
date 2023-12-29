@@ -10,7 +10,7 @@ a tiny isometric block gardens builder (test)
 - with some nice licensed tile sets
 
 ### Phase 0
-- ✅ Superb `Tile` component with svg hotspot
+- ✅ Superb `Slot` component with svg hotspot
 - ✅ placed on `Level`
 - ✅ which is a part of bigger (multi level) `Scene`
 

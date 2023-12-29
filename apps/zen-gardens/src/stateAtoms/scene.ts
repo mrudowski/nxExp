@@ -10,14 +10,14 @@ import {LS_KEY_PREFIX} from '../../constants.ts';
 
 const SCENE_LS_KEY = `${LS_KEY_PREFIX}-scene`;
 
-interface Tile {
+interface Slot {
   tileSetId: number;
   tileName: string;
 }
 interface Level {
   id: number;
   // position: if order in array would be a problem
-  tiles: Record<string, Tile>;
+  slots: Record<string, Slot>;
 }
 export interface SceneAtom {
   size: number;
@@ -29,7 +29,7 @@ const sceneAtomInitialValue: SceneAtom = {
   levels: [
     {
       id: 0,
-      tiles: {},
+      slots: {},
     },
   ],
 };
@@ -50,9 +50,7 @@ export const sceneLevelsAtom = atom(get => {
 
 interface Update {
   levelId: number;
-  slotId: string; // TODO REFACTOR - change tile to TileSlot!
-  tileName: string;
-  tileSetId: number;
+  slotId: string;
 }
 export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   // const scene = get(sceneAtom);
@@ -63,8 +61,8 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
       if (lvl.id === update.levelId) {
         return {
           ...lvl,
-          tiles: {
-            ...lvl.tiles,
+          slots: {
+            ...lvl.slots,
             [update.slotId]: {
               tileSetId: selectedPaletteTiles[0].tileSetId,
               tileName: selectedPaletteTiles[0].tileName,
