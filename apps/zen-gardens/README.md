@@ -10,31 +10,44 @@ a tiny isometric block gardens builder (test)
 - with some nice licensed tile sets
 
 ### Phase 0
-- ✅ Superb `Slot` component with svg hotspot
+- ✅ Superb `Slot` component with tile `Sprite` and svg hotspot
 - ✅ placed on `Level`
 - ✅ which is a part of bigger (multi level) `Scene`
+- ✅ simple Palette
 
 ### Phase I
 
-#### Switchable tiles palette/atlas
+#### Palette
 - we cannot mix tile sets
 - ✅ images + meta desc file
 - full of blocks
-- with names
+- ✅ with names (in tooltips)
 - when switch we switch all tiles - in palette and on canvas
-- searchable
 - used counter
 - show/hide not used
-- multi selection (working with filters)
 - active in `paint` mode / disabled in `selection` mode
 - different height of tiles?
 
-#### Iso Canvas
-- 5x5 or bigger? (selectable in Phase II)
-- multilevel in the future (in Phase II)
-- when `paint` mode we paint (by click and dragging)
-- when we select more then one tile we randomize
-- when `selection` mode we single select tile (and see it's options in Phase II)
+#### Scene
+- ✅ 5x5 or bigger
+- ✅ one level
+- when `paint` mode we paint
+  - ✅ by click 
+  - and drag
+- when we select more then one tile on Palette we randomize them when paint
+
+### Phase II
+
+#### Palette
+- searchable
+- multi selection (working with filters)
+- different height of tiles?
+
+#### Scene
+- selectable size
+- multilevel in the future
+- when `selection` mode we single select tile and see it's options
+
 
 ## Base blueprint
 
