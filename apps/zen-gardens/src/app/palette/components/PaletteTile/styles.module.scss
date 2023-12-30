@@ -11,7 +11,7 @@
   align-items: center;
 
   &:hover {
-    background-color: var(--mantine-color-cyan-9);
+    background-color: rgba($zen-color-primary, 0.4);
   }
 
   &.active {

@@ -1,8 +1,6 @@
 @import 'variables';
 //@import 'libs/sw-base-tools/src/styles/reset';
 
-// --------------------------------------
-
 // modern way
 body {
   min-height: 100vh;
@@ -18,4 +16,15 @@ body {
 body {
   display: grid;
   place-content: center;
+}
+
+// some overwriting
+// --------------------------------------
+
+:root[data-mantine-color-scheme='light'] {
+  --mantine-color-body: #{$zen-color-body-light};
+}
+
+:root[data-mantine-color-scheme='dark'] {
+  --mantine-color-body: #{$zen-color-body-dark};
 }
