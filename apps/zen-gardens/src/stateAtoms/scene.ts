@@ -35,11 +35,6 @@ const sceneAtomInitialValue: SceneAtom = {
 };
 
 export const sceneAtom = atomWithStorage<SceneAtom>(SCENE_LS_KEY, sceneAtomInitialValue);
-export const sceneSizeAtom = atom(get => {
-  console.log('%c [mr] sceneSizeAtom', 'background-color:Gold; color: black', get(sceneAtom).size);
-  return get(sceneAtom).size;
-});
-
 export const sceneLevelsAtom = atom(get => {
   return get(sceneAtom).levels;
 });
@@ -78,3 +73,9 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
 
 // not very helpful because of React key rule
 // export const sceneLevelAtomsAtom = splitAtom(sceneLevelsAtom);
+
+// ------
+
+const SCENE_SIZE_LS_KEY = `${LS_KEY_PREFIX}-scene-size`;
+
+export const sceneSizeAtom = atomWithStorage(SCENE_SIZE_LS_KEY, 5);
