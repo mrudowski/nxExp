@@ -1,6 +1,7 @@
 @import '@/styles/variables';
 
-.tile {
+.slot {
+  user-select: none;
   position: absolute;
   top: var(--y);
   left: var(--x);
@@ -16,9 +17,10 @@
 
   span {
     position: absolute;
-    inset: 5px 0 0 0;
+    inset: 15px 0 0 0;
     text-align: center;
     color: black;
+    font-size: 12px;
   }
 }
 

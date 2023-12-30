@@ -1,11 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // import styles from './app.module.scss';
 
-import Palette from '@/app/palette/components/Palette/Palette.tsx';
-import Scene from '@/app/scene/components/Scene/Scene';
 import ColorSchemeSwitch from '@/components/ColorSchemeSwitch/ColorSchemeSwitch.tsx';
 import {atlas} from '@/data/atlas.ts';
 
+import ModeSwitch from './actions/components/ModeSwitch/ModeSwitch';
+import Palette from './palette/components/Palette/Palette.tsx';
+import Scene from './scene/components/Scene/Scene';
 import styles from './style.module.scss';
 
 const tileSet = atlas[0];
@@ -15,7 +16,10 @@ export function App() {
     <div className={styles.app}>
       <Palette tileSet={tileSet} />
       <div className={styles.main}>
-        <ColorSchemeSwitch />
+        <div className={styles.actions}>
+          <ModeSwitch />
+          <ColorSchemeSwitch />
+        </div>
         <Scene tileSet={tileSet} />
       </div>
     </div>

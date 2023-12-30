@@ -2,9 +2,6 @@ import {atom} from 'jotai';
 
 import {atlas} from '@/data/atlas.ts';
 
-// activeTileSet
-// -----------------------------
-
 export const activeTileSetIndexAtom = atom(0);
 export const tileSetAtom = atom(get => {
   console.log('%c [mr] tileSetAtom', 'background-color:Gold; color: black');
@@ -28,6 +25,3 @@ export const tileHeightPaletteScaledAtom = atom(get => {
   const tileSet = get(tileSetAtom);
   return tileSet.tileHeight * tileSet.paletteScale;
 });
-
-// selectedPaletteTilesAtom
-// -----------------------------

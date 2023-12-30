@@ -1,0 +1,20 @@
+@import '@/styles/variables';
+
+.switch {
+  :global {
+    .mantine-Switch-thumb {
+      --_switch-thumb-bg: var(--mantine-color-yellow-6);
+      --_switch-thumb-bd: var(--mantine-color-blue-4);
+    }
+
+    .mantine-Switch-body > input:checked + * > .mantine-Switch-thumb {
+      --_switch-thumb-bg: var(--mantine-color-blue-0);
+      --_switch-thumb-bd: var(--mantine-color-blue-9);
+    }
+
+    .mantine-Switch-track {
+      --_switch-bg: var(--mantine-color-blue-4);
+      --_switch-bd: var(--mantine-color-blue-4);
+    }
+  }
+}

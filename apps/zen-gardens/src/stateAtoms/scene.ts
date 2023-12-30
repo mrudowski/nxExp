@@ -53,6 +53,7 @@ interface Update {
   slotId: string;
 }
 export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
+  // if paint mode!
   // const scene = get(sceneAtom);
   const selectedPaletteTiles = get(selectedPaletteTilesAtom);
   set(sceneAtom, prevState => ({

@@ -14,6 +14,7 @@ a tiny isometric block gardens builder (test)
 - ✅ placed on `Level`
 - ✅ which is a part of bigger (multi level) `Scene`
 - ✅ simple Palette
+- ✅ Beautiful theme switcher
 
 ### Phase I
 
@@ -31,10 +32,9 @@ a tiny isometric block gardens builder (test)
 #### Scene
 - ✅ 5x5 or bigger
 - ✅ one level
-- when `paint` mode we paint
+- ✅ when `paint` mode we paint
   - ✅ by click 
-  - and drag
-- when we select more then one tile on Palette we randomize them when paint
+  - ✅ and drag 
 
 ### Phase II
 
@@ -44,6 +44,7 @@ a tiny isometric block gardens builder (test)
 - different height of tiles?
 
 #### Scene
+- when we select more then one tile on Palette we randomize them when paint
 - selectable size
 - multilevel in the future
 - when `selection` mode we single select tile and see it's options

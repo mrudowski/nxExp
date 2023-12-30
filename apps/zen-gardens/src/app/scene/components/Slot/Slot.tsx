@@ -1,4 +1,5 @@
 import {useAtomValue} from 'jotai';
+import {MouseEventHandler} from 'react';
 
 import Sprite from '@/components/Sprite/Sprite.tsx';
 import {AtlasTile} from '@/data/atlas.ts';
@@ -14,10 +15,10 @@ interface SlotProps {
   x: number;
   y: number;
   tile: AtlasTile | null;
-  onClick: (id: string) => void;
+  onInteraction: (id: string) => void;
 }
 
-const Slot = ({id, x, y, tile, onClick}: SlotProps) => {
+const Slot = ({id, x, y, tile, onInteraction}: SlotProps) => {
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
   const tileHeightScaled = useAtomValue(tileHeightSceneScaledAtom);
@@ -34,15 +35,29 @@ const Slot = ({id, x, y, tile, onClick}: SlotProps) => {
   const viewBox = `0 0 ${tileWidthScaled} ${tileHeightScaled}`;
   const transform = `scale(${tileWidthScaled / SVG_SIZE}, ${tileHeightScaled / SVG_SIZE})`;
 
-  const handleClick = () => {
-    onClick(id);
+  // const handleClick = () => {
+  //   onClick(id);
+  // };
+
+  const handleMouseDown = () => {
+    onInteraction(id);
   };
 
+  const handleMouseEnter: MouseEventHandler<SVGGElement> = e => {
+    if (e.buttons) {
+      onInteraction(id);
+    }
+  };
+
+  // const handleMouseEnter = e => {
+  //   console.log('handleMouseDown: ', e.target, e.currentTarget);
+  // };
+
   return (
-    <div className={styles.tile} style={tileStyleWithXY}>
+    <div className={styles.slot} style={tileStyleWithXY}>
       {tile ? <Sprite className={styles.sprite} /> : null}
       <svg viewBox={viewBox} className={styles.hotspot}>
-        <g transform={transform} onClick={handleClick}>
+        <g transform={transform} onMouseDown={handleMouseDown} onMouseEnter={handleMouseEnter}>
           {/*<path className="faceB" d="M40,80 0,60 40,40 80,60 z" />*/}
           {/*<path className="faceBL" d="M0,20 40,0 40,40 0,60 z" />*/}
           {/*<path className="faceBR" d="M40,0 80,20 80,60 40,40 z" />*/}

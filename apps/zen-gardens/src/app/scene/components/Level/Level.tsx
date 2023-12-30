@@ -49,7 +49,7 @@ const Level = ({
 
   const start = boardWidth / 2 - widthHalfFloored;
 
-  const handleClick = useCallback(
+  const handleInteraction = useCallback(
     (slotId: string) => {
       setTile({slotId, levelId: id});
     },
@@ -64,7 +64,7 @@ const Level = ({
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 
-        return <Slot key={slot.id} id={slot.id} x={x} y={y} tile={tile} onClick={handleClick} />;
+        return <Slot key={slot.id} id={slot.id} x={x} y={y} tile={tile} onInteraction={handleInteraction} />;
       })}
     </section>
   );

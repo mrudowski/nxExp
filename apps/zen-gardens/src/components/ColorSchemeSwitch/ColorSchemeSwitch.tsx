@@ -1,8 +1,10 @@
 import {Switch, useMantineColorScheme, useMantineTheme} from '@mantine/core';
-import {IconMoonFilled, IconSunFilled} from '@tabler/icons-react';
+import {IconCloudFilled, IconSparkles} from '@tabler/icons-react';
 import {useMediaQuery} from 'usehooks-ts';
 
 import Tooltip from '@/components/Tooltip/Tooltip.tsx';
+
+import styles from './styles.module.scss';
 
 const ColorSchemeSwitch = () => {
   const theme = useMantineTheme();
@@ -19,9 +21,9 @@ const ColorSchemeSwitch = () => {
   const _computedColorScheme = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light';
   const computedColorScheme = colorScheme === 'auto' ? _computedColorScheme : colorScheme;
 
-  const sunIcon = <IconSunFilled size={18} style={{color: theme.colors.yellow[6]}} />;
+  const sunIcon = <IconCloudFilled size={18} style={{color: theme.colors.blue[0]}} />;
 
-  const moonIcon = <IconMoonFilled size={18} style={{color: theme.colors.blue[6]}} />;
+  const moonIcon = <IconSparkles size={18} style={{color: theme.colors.blue[2]}} />;
 
   const label = computedColorScheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode';
 
@@ -29,11 +31,12 @@ const ColorSchemeSwitch = () => {
     <Tooltip label={label} refProp="rootRef">
       <Switch
         size="md"
-        color="dark.4"
+        color="blue.9"
         onLabel={moonIcon}
         offLabel={sunIcon}
         checked={computedColorScheme !== 'light'}
         onChange={toggleColorScheme}
+        className={styles.switch}
       />
     </Tooltip>
   );
