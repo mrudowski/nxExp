@@ -49,6 +49,8 @@ a tiny isometric block gardens builder (test)
 - multilevel in the future
 - when `selection` mode we single select tile and see it's options
 
+### Phase III
+- working on mobile (touchEvent)
 
 ## Base blueprint
 
