@@ -24,10 +24,7 @@ a tiny isometric block gardens builder (test)
 - full of blocks
 - ✅ with names (in tooltips)
 - when switch we switch all tiles - in palette and on canvas
-- used counter
-- show/hide not used
-- active in `paint` mode / disabled in `selection` mode
-- different height of tiles?
+- active in `paint` mode / disabled in `erese` / 'select' mode
 
 #### Scene
 - ✅ 5x5 or bigger
@@ -35,6 +32,18 @@ a tiny isometric block gardens builder (test)
 - ✅ when `paint` mode we paint
   - ✅ by click 
   - ✅ and drag 
+- show/hide ghost/empty slot
+
+#### Info (slot/tile info)
+- single selection
+- display info about selected tile
+  - slot id
+  - slot ghost / tile sprite
+  - tile name (+tileSetName?)
+  - size
+- actions:
+  - set it lower/higher (in phase II working multilevel)
+
 
 ### Phase II
 
@@ -42,12 +51,15 @@ a tiny isometric block gardens builder (test)
 - searchable
 - multi selection (working with filters)
 - different height of tiles?
+- used counter
+- show/hide not used
 
 #### Scene
 - when we select more then one tile on Palette we randomize them when paint
 - selectable size
-- multilevel in the future
 - when `selection` mode we single select tile and see it's options
+- multilevel in the future
+- undo/redo (in memory, last snapshot of state)
 
 ### Phase III
 - working on mobile (touchEvent)

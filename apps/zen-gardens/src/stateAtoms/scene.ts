@@ -4,6 +4,7 @@
 import {atom} from 'jotai';
 import {atomWithStorage} from 'jotai/utils';
 
+import {modeAtom} from '@/stateAtoms/mode.ts';
 import {selectedPaletteTilesAtom} from '@/stateAtoms/palette.ts';
 
 import {LS_KEY_PREFIX} from '../../constants.ts';
@@ -12,7 +13,7 @@ const SCENE_LS_KEY = `${LS_KEY_PREFIX}-scene`;
 
 interface Slot {
   tileSetId: number;
-  tileName: string;
+  tileName: string | null;
 }
 interface Level {
   id: number;
@@ -47,10 +48,29 @@ interface Update {
   levelId: number;
   slotId: string;
 }
+
 export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
-  // if paint mode!
-  // const scene = get(sceneAtom);
+  const mode = get(modeAtom);
+  if (mode === 'select') {
+    return;
+  }
+
   const selectedPaletteTiles = get(selectedPaletteTilesAtom);
+  let updatedSlot: Slot;
+
+  if (mode === 'paint') {
+    updatedSlot = {
+      tileSetId: selectedPaletteTiles[0].tileSetId,
+      tileName: selectedPaletteTiles[0].tileName,
+    };
+  }
+  if (mode === 'erase') {
+    updatedSlot = {
+      tileSetId: selectedPaletteTiles[0].tileSetId,
+      tileName: null,
+    };
+  }
+
   set(sceneAtom, prevState => ({
     ...prevState,
     levels: prevState.levels.map(lvl => {
@@ -59,10 +79,7 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
           ...lvl,
           slots: {
             ...lvl.slots,
-            [update.slotId]: {
-              tileSetId: selectedPaletteTiles[0].tileSetId,
-              tileName: selectedPaletteTiles[0].tileName,
-            },
+            [update.slotId]: updatedSlot,
           },
         };
       }
