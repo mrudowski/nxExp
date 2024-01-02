@@ -7,6 +7,12 @@ export const tileSetAtom = atom(get => {
   console.log('%c [mr] tileSetAtom', 'background-color:Gold; color: black');
   return atlas[get(activeTileSetIndexAtom)];
 });
+
+/**
+ * It's works fast and is ref stable (but we check it every tile
+ * with almost no penalty?
+ */
+
 export const tileWidthSceneScaledAtom = atom(get => {
   const tileSet = get(tileSetAtom);
   console.log('%c [mr] tileWidthSceneScaledAtom', 'background-color:Gold; color: black');

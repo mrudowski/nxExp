@@ -20,6 +20,7 @@ a tiny isometric block gardens builder (test)
 
 #### Palette
 - we cannot mix tile sets
+- display size and other globals from selected tileSet
 - ✅ images + meta desc file
 - full of blocks
 - ✅ with names (in tooltips)
@@ -33,6 +34,7 @@ a tiny isometric block gardens builder (test)
   - ✅ by click 
   - ✅ and drag 
 - show/hide ghost/empty slot
+- show/hide axis
 
 #### Info (slot/tile info)
 - single selection

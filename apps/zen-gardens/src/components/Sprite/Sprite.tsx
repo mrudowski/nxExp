@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 
 interface SpriteProps {
   className?: string;
+  // style?: CSSProperties;
 }
 
 const Sprite = ({className}: SpriteProps) => {

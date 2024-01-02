@@ -1,5 +1,5 @@
-import {useSetAtom} from 'jotai/index';
-import {useCallback, useMemo} from 'react';
+import {useSetAtom} from 'jotai';
+import {memo, useCallback, useMemo} from 'react';
 
 import Slot from '@/app/scene/components/Slot/Slot.tsx';
 import {AtlasTileSet} from '@/data/atlas.ts';
@@ -17,6 +17,8 @@ interface LevelProps {
   widthHalfFloored: number;
   heightQuarterFloored: number;
 }
+
+const SlotMemorized = memo(Slot);
 
 const getSlots = (tilesInRow: number) => {
   const data = [];
@@ -64,7 +66,7 @@ const Level = ({
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 
-        return <Slot key={slot.id} id={slot.id} x={x} y={y} tile={tile} onInteraction={handleInteraction} />;
+        return <SlotMemorized key={slot.id} id={slot.id} x={x} y={y} tile={tile} onInteraction={handleInteraction} />;
       })}
     </section>
   );

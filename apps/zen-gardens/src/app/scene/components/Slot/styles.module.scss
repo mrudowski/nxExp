@@ -37,17 +37,19 @@
       pointer-events: auto;
       cursor: pointer;
       fill: transparent;
-      //fill: rgba(#ccc, 0.2);
-      //opacity: 0.25;
-      //stroke: yellow;
+      stroke: $zen-color-primary;
+      stroke-opacity: 0.2;
       stroke-width: 1;
     }
   }
 
   g:hover {
     path {
-      //fill: rgba(#ccc, 0.6);
-      stroke: yellow;
+      fill: rgba($zen-color-primary, 0.25);
+      stroke-opacity: 1;
+      opacity: 1;
+      //stroke-width: 2;
+      //stroke: red;
     }
   }
 }
