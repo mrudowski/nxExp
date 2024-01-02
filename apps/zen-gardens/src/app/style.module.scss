@@ -2,12 +2,13 @@
 
 .app {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .main {
   display: flex;
   flex-direction: column;
+  padding: 1.5rem 0;
   gap: 1rem;
 }
 

@@ -23,8 +23,16 @@ body {
 
 :root[data-mantine-color-scheme='light'] {
   --mantine-color-body: #{$zen-color-body-light};
+
+  .mantine-Paper-root {
+    background-color: rgba(#fff, 0.4);
+  }
 }
 
 :root[data-mantine-color-scheme='dark'] {
   --mantine-color-body: #{$zen-color-body-dark};
+
+  .mantine-Paper-root {
+    background-color: rgba(#000, 0.2);
+  }
 }

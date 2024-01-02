@@ -1,4 +1,4 @@
-import {createTheme, localStorageColorSchemeManager} from '@mantine/core';
+import {createTheme, localStorageColorSchemeManager, rem} from '@mantine/core';
 
 import {LS_KEY_PREFIX} from '../../constants.ts';
 
@@ -6,6 +6,13 @@ export const theme = createTheme({
   fontFamily: 'Lato, sans-serif',
   primaryColor: 'cyan',
   cursorType: 'pointer',
+  fontSizes: {
+    xs: rem(10),
+    sm: rem(12),
+    md: rem(14),
+    lg: rem(16),
+    xl: rem(20),
+  },
 });
 
 export const COLOR_SCHEME_LS_KEY = `${LS_KEY_PREFIX}-color-scheme`;

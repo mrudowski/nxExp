@@ -1,14 +1,25 @@
 @import '@/styles/variables';
 
 .palette {
-  //border: 1px solid rgba(yellow, 0.25);
-  font-size: 14px;
+  //font-size: 14px;
+  //display: flex;
+  //flex-direction: column;
+  width: 182px;
+}
+
+.tileSetInfo {
+  margin: 0.5rem 0 1rem 1px;
+
+  span {
+    opacity: 0.7;
+  }
+}
+
+.tiles {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
-  width: 182px;
-  padding: 1rem;
 }

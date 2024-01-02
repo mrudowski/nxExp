@@ -37,16 +37,24 @@
       pointer-events: auto;
       cursor: pointer;
       fill: transparent;
+      //transition: fill 100ms;
       stroke: $zen-color-primary;
-      stroke-opacity: 0.2;
       stroke-width: 1;
+
+      @include lightMode {
+        stroke-opacity: 0.4;
+      }
+
+      @include darkMode {
+        stroke-opacity: 0.2;
+      }
     }
   }
 
   g:hover {
     path {
       fill: rgba($zen-color-primary, 0.25);
-      stroke-opacity: 1;
+      stroke-opacity: 1 !important;
       opacity: 1;
       //stroke-width: 2;
       //stroke: red;

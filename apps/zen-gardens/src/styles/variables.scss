@@ -1,3 +1,15 @@
 $zen-color-body-light: #ece9df;
-$zen-color-body-dark: #152330;
+$zen-color-body-dark: #142028;
 $zen-color-primary: #3bc9db; // cyan
+
+@mixin lightMode {
+  :global(:root[data-mantine-color-scheme='light']) & {
+    @content;
+  }
+}
+
+@mixin darkMode {
+  :global(:root[data-mantine-color-scheme='dark']) & {
+    @content;
+  }
+}
