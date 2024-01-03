@@ -13,7 +13,7 @@ describe('useGetTileStyle', () => {
     const {result} = renderHook(() =>
       useGetTileStyle({
         tileSet: getAtlas(atlas)[0],
-        tile: getAtlas(atlas)[0].tilesGroups[0],
+        tile: getAtlas(atlas)[0].tilesGroups[0].tiles[0],
         tileWidthScaled: 32,
         tileHeightScaled: 32,
         tileScale: 2,
