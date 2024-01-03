@@ -25,8 +25,8 @@ export type Atlas = AtlasTileSet[];
 export const atlas: Atlas = [
   {
     id: 0,
-    name: 'tinyBlock',
-    desc: '@danimaccari -> https://dani-maccari.itch.io/',
+    name: 'tiny Blocks',
+    desc: 'by dani maccari',
     image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,
     sceneScale: 6,
     paletteScale: 2,
@@ -43,6 +43,11 @@ export const atlas: Atlas = [
         name: 'grass',
       },
       {
+        x: 2,
+        y: 1,
+        name: 'grass sm',
+      },
+      {
         x: 0,
         y: 2,
         name: 'sand',
@@ -51,6 +56,11 @@ export const atlas: Atlas = [
         x: 4,
         y: 1,
         name: 'snow',
+      },
+      {
+        x: 4,
+        y: 2,
+        name: 'water',
       },
     ],
   },
