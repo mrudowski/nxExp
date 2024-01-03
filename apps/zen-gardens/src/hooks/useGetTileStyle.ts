@@ -1,6 +1,6 @@
 import {CSSProperties} from 'react';
 
-import {AtlasTile, AtlasTileSet} from '@/data/atlas.ts';
+import {AtlasTile, AtlasTileSet} from '@/data/types.ts';
 
 export interface TileCssProperties extends CSSProperties {
   '--width': string;

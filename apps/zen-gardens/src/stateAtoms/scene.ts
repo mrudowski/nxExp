@@ -13,7 +13,7 @@ const SCENE_LS_KEY = `${LS_KEY_PREFIX}-scene`;
 
 interface Slot {
   tileSetId: number;
-  tileName: string | null;
+  tileId: string | null;
 }
 interface Level {
   id: number;
@@ -61,13 +61,13 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   if (mode === 'paint') {
     updatedSlot = {
       tileSetId: selectedPaletteTiles[0].tileSetId,
-      tileName: selectedPaletteTiles[0].tileName,
+      tileId: selectedPaletteTiles[0].tileId,
     };
   }
   if (mode === 'erase') {
     updatedSlot = {
       tileSetId: selectedPaletteTiles[0].tileSetId,
-      tileName: null,
+      tileId: null,
     };
   }
 

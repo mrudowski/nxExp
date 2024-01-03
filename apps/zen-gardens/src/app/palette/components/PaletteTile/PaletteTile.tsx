@@ -4,7 +4,7 @@ import {useAtom, useAtomValue} from 'jotai';
 
 import Sprite from '@/components/Sprite/Sprite.tsx';
 import Tooltip from '@/components/Tooltip/Tooltip.tsx';
-import {AtlasTile} from '@/data/atlas.ts';
+import {AtlasTile} from '@/data/types.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
 import {tileHeightPaletteScaledAtom, tileSetAtom, tileWidthPaletteScaledAtom} from '@/stateAtoms/atlas.ts';
 import {selectedPaletteTilesAtom} from '@/stateAtoms/palette.ts';
@@ -30,13 +30,13 @@ const PaletteTile = ({tile}: PaletteTileProps) => {
   });
 
   const active = selectedTiles.some(
-    selectedTile => selectedTile.tileSetId === tileSet.id && selectedTile.tileName === tile.name
+    selectedTile => selectedTile.tileSetId === tileSet.id && selectedTile.tileId === tile.id
   );
 
   const className = clsx(styles.paletteTile, active && styles.active);
 
   const handleClick = () => {
-    setSelectedTile([{tileSetId: tileSet.id, tileName: tile.name}]);
+    setSelectedTile([{tileSetId: tileSet.id, tileId: tile.id}]);
   };
 
   return (

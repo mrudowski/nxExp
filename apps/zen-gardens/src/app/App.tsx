@@ -3,13 +3,14 @@
 
 import ColorSchemeSwitch from '@/components/ColorSchemeSwitch/ColorSchemeSwitch.tsx';
 import {atlas} from '@/data/atlas.ts';
+import {getAtlas} from '@/data/getAtlas.ts';
 
 import ModeSwitch from './actions/components/ModeSwitch/ModeSwitch';
 import Palette from './palette/components/Palette/Palette.tsx';
 import Scene from './scene/components/Scene/Scene';
 import styles from './style.module.scss';
 
-const tileSet = atlas[0];
+const tileSet = getAtlas(atlas)[0];
 
 export function App() {
   return (

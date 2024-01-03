@@ -1,7 +1,7 @@
 import {useAtomValue} from 'jotai';
 
 import Level from '@/app/scene/components/Level/Level.tsx';
-import {AtlasTileSet} from '@/data/atlas.ts';
+import {AtlasTileSet} from '@/data/types.ts';
 import {sceneLevelsAtom, sceneSizeAtom} from '@/stateAtoms/scene.ts';
 
 import styles from './styles.module.scss';

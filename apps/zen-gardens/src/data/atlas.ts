@@ -1,31 +1,8 @@
-export type AtlasTile = {
-  x: number;
-  y: number;
-  name: string;
-};
+import {_Atlas} from '@/data/types.ts';
 
-export type AtlasTileSet = {
-  id: number;
-  name: string;
-  desc: string;
-  image: string;
-  sceneScale: number;
-  paletteScale: number;
-  width: number;
-  height: number;
-  tileWidth: number;
-  tileHeight: number;
-  tileWidthFrame: number;
-  tileHeightFrame: number;
-  tiles: AtlasTile[];
-};
-
-export type Atlas = AtlasTileSet[];
-
-export const atlas: Atlas = [
+export const atlas: _Atlas = [
   {
-    id: 0,
-    name: 'tiny Blocks',
+    name: 'Tiny Blocks',
     desc: 'by dani maccari',
     image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,
     sceneScale: 6,
@@ -36,31 +13,56 @@ export const atlas: Atlas = [
     tileHeight: 18,
     tileWidthFrame: 18,
     tileHeightFrame: 18,
-    tiles: [
+    tilesGroups: [
       {
-        x: 0,
-        y: 1,
-        name: 'grass',
+        name: 'Grass',
+        tiles: [
+          {
+            x: 0,
+            y: 1,
+            name: '',
+          },
+          {
+            x: 2,
+            y: 1,
+            name: ' sm',
+          },
+        ],
       },
       {
-        x: 2,
-        y: 1,
-        name: 'grass sm',
+        name: 'Sand',
+        tiles: [
+          {
+            x: 0,
+            y: 2,
+            name: '',
+          },
+        ],
       },
       {
-        x: 0,
-        y: 2,
-        name: 'sand',
+        name: 'Snow',
+        tiles: [
+          {
+            x: 4,
+            y: 1,
+            name: '',
+          },
+          {
+            x: 7,
+            y: 1,
+            name: ' xs',
+          },
+        ],
       },
       {
-        x: 4,
-        y: 1,
-        name: 'snow',
-      },
-      {
-        x: 4,
-        y: 2,
-        name: 'water',
+        name: 'Water',
+        tiles: [
+          {
+            x: 4,
+            y: 2,
+            name: '',
+          },
+        ],
       },
     ],
   },

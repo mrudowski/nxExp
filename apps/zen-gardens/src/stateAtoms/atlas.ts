@@ -1,11 +1,12 @@
 import {atom} from 'jotai';
 
 import {atlas} from '@/data/atlas.ts';
+import {getAtlas} from '@/data/getAtlas.ts';
 
 export const activeTileSetIndexAtom = atom(0);
 export const tileSetAtom = atom(get => {
   console.log('%c [mr] tileSetAtom', 'background-color:Gold; color: black');
-  return atlas[get(activeTileSetIndexAtom)];
+  return getAtlas(atlas)[get(activeTileSetIndexAtom)];
 });
 
 /**

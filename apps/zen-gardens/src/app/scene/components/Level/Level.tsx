@@ -2,7 +2,7 @@ import {useSetAtom} from 'jotai';
 import {memo, useCallback, useMemo} from 'react';
 
 import Slot from '@/app/scene/components/Slot/Slot.tsx';
-import {AtlasTileSet} from '@/data/atlas.ts';
+import {AtlasTileSet} from '@/data/types.ts';
 import {SceneAtom, sceneLevelTileAtom} from '@/stateAtoms/scene.ts';
 
 import styles from './styles.module.scss';
@@ -62,7 +62,9 @@ const Level = ({
     <section className={styles.level}>
       {slots.map(slot => {
         const filledSlot = filledSlots[slot.id];
-        const tile = filledSlot ? tileSet.tiles.find(t => t.name === filledSlot.tileName) ?? null : null;
+        const tile = filledSlot
+          ? tileSet.tilesGroups.flatMap(tileGroup => tileGroup.tiles).find(t => t.name === filledSlot.tileId) ?? null
+          : null;
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 

@@ -1,6 +1,7 @@
 import {renderHook} from '@testing-library/react';
 
 import {atlas} from '@/data/atlas.ts';
+import {getAtlas} from '@/data/getAtlas.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
 
 /**
@@ -11,8 +12,8 @@ describe('useGetTileStyle', () => {
   it('to return something', () => {
     const {result} = renderHook(() =>
       useGetTileStyle({
-        tileSet: atlas[0],
-        tile: atlas[0].tiles[0],
+        tileSet: getAtlas(atlas)[0],
+        tile: getAtlas(atlas)[0].tilesGroups[0],
         tileWidthScaled: 32,
         tileHeightScaled: 32,
         tileScale: 2,

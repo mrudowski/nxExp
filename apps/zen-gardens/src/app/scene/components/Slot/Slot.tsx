@@ -2,7 +2,7 @@ import {useAtomValue} from 'jotai';
 import {MouseEventHandler} from 'react';
 
 import Sprite from '@/components/Sprite/Sprite.tsx';
-import {AtlasTile} from '@/data/atlas.ts';
+import {AtlasTile} from '@/data/types.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
 import {tileHeightSceneScaledAtom, tileSetAtom, tileWidthSceneScaledAtom} from '@/stateAtoms/atlas.ts';
 
