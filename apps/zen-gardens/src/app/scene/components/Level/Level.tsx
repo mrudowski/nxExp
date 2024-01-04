@@ -3,7 +3,7 @@ import {memo, useCallback, useMemo} from 'react';
 
 import Slot from '@/app/scene/components/Slot/Slot.tsx';
 import {AtlasTileSet} from '@/data/types.ts';
-import {SceneAtom, sceneLevelTileAtom} from '@/stateAtoms/scene.ts';
+import {SceneAtom, sceneLevelTileAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 import styles from './styles.module.scss';
 

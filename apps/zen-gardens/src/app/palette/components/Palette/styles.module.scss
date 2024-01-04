@@ -9,18 +9,44 @@
 }
 
 .tileSetInfo {
-  margin: 0.5rem 0 1rem 1px;
+  margin: 0.5rem 0 1rem 2px;
+  list-style: none;
+  padding: 0;
+  //display: flex;
+  //gap: $sw-margin-sm;
+  //margin-bottom: -$sw-margin-sm;
 
   span {
     opacity: 0.7;
   }
 }
 
-.tiles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
+.group {
+  margin-top: 0.5rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  h4 {
+    padding: 0 0.5rem 0 0;
+    border-bottom: 1px dashed rgba(#000, 0.25);
+
+    @include darkMode {
+      border-bottom-color: rgba(#fff, 0.25);
+    }
+  }
+
+  & > section {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    //justify-content: center;
+  }
+}
+
+.disabled {
+  opacity: 0.25;
+  pointer-events: none;
 }

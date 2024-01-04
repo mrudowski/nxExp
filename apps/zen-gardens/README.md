@@ -28,13 +28,14 @@ a tiny isometric block gardens builder (test)
 - active in `paint` mode / disabled in `erese` / 'select' mode
 
 #### Scene
-- ✅ 5x5 or bigger
+- ✅ 5x5
 - ✅ one level
 - ✅ when `paint` mode we paint
   - ✅ by click 
   - ✅ and drag 
-- show/hide ghost/empty slot
-- show/hide axis
+- ! show/hide ghost/empty slot
+- ! show/hide axis
+- ! zoom in/out our scene
 
 #### Info (slot/tile info)
 - single selection
@@ -65,11 +66,14 @@ a tiny isometric block gardens builder (test)
 
 ### Phase III
 - working on mobile (touchEvent)
+- add key shortcuts (undo/redo/b-brush,e,p and so on)
+- replace Mantine with https://tailwindui.com/templates/catalyst
 
 ## Base blueprint
 
 ![Blueprint](blueprint.png)
-
+[ex.js](..%2F..%2F..%2F..%2FDownloads%2Ffunctional-light-v3%2Fimpurity%2Fex.js)
+[README.md](..%2F..%2F..%2F..%2FDownloads%2Ffunctional-light-v3%2Fimpurity%2FREADME.md)
 ## Develop
 
 ```

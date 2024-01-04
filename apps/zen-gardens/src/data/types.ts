@@ -37,7 +37,7 @@ export interface AtlasTilesGroup extends _AtlasTilesGroup {
 }
 
 export interface AtlasTileSet extends _AtlasTileSet {
-  id: number;
+  id: string;
   tilesGroups: AtlasTilesGroup[];
 }
 

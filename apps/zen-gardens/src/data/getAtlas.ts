@@ -4,11 +4,10 @@ let atlasMemorized: Atlas | null = null;
 
 export const getAtlas = (atlas: _Atlas): Atlas => {
   if (atlasMemorized) return atlasMemorized;
-  console.log('%c [mr] getAtlas - only once', 'background-color:red; color: white');
   atlasMemorized = atlas.map((tileSet, tileSetIndex) => {
     return {
       ...tileSet,
-      id: tileSetIndex,
+      id: tileSetIndex + '',
       tilesGroups: tileSet.tilesGroups.map(tilesGroup => {
         return {
           ...tilesGroup,

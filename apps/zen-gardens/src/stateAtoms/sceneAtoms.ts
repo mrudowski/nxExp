@@ -4,15 +4,15 @@
 import {atom} from 'jotai';
 import {atomWithStorage} from 'jotai/utils';
 
-import {modeAtom} from '@/stateAtoms/mode.ts';
-import {selectedPaletteTilesAtom} from '@/stateAtoms/palette.ts';
+import {modeAtom} from '@/stateAtoms/modeAtoms.ts';
+import {selectedPaletteTilesAtom} from '@/stateAtoms/paletteAtoms.ts';
 
 import {LS_KEY_PREFIX} from '../../constants.ts';
 
 const SCENE_LS_KEY = `${LS_KEY_PREFIX}-scene`;
 
 interface Slot {
-  tileSetId: number;
+  tileSetId: string;
   tileId: string | null;
 }
 interface Level {
@@ -96,3 +96,9 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
 const SCENE_SIZE_LS_KEY = `${LS_KEY_PREFIX}-scene-size`;
 
 export const sceneSizeAtom = atomWithStorage(SCENE_SIZE_LS_KEY, 5);
+
+// ------
+
+const SCENE_SCALE_LS_KEY = `${LS_KEY_PREFIX}-scene-scale`;
+
+export const sceneScaleAtom = atomWithStorage(SCENE_SCALE_LS_KEY, 2);

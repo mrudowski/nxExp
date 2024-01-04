@@ -12,7 +12,12 @@
   gap: 1rem;
 }
 
-.actions {
+.actionsTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionsBottom {
   display: flex;
   justify-content: space-between;
 }

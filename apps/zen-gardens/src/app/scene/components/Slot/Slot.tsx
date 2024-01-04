@@ -4,7 +4,7 @@ import {MouseEventHandler} from 'react';
 import Sprite from '@/components/Sprite/Sprite.tsx';
 import {AtlasTile} from '@/data/types.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
-import {tileHeightSceneScaledAtom, tileSetAtom, tileWidthSceneScaledAtom} from '@/stateAtoms/atlas.ts';
+import {tileHeightSceneScaledAtom, tileSetAtom, tileWidthSceneScaledAtom} from '@/stateAtoms/paletteAtoms.ts';
 
 import styles from './styles.module.scss';
 

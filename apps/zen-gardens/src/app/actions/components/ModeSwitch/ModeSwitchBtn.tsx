@@ -4,7 +4,7 @@ import {useAtom} from 'jotai';
 import {ReactNode} from 'react';
 
 import Tooltip from '@/components/Tooltip/Tooltip';
-import {ModeAtom, modeAtom} from '@/stateAtoms/mode.ts';
+import {ModeAtom, modeAtom} from '@/stateAtoms/modeAtoms.ts';
 
 interface ModeSwitchBtnProps {
   label: string;

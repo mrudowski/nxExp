@@ -1,17 +1,17 @@
 import {useAtomValue} from 'jotai';
 
 import Level from '@/app/scene/components/Level/Level.tsx';
-import {AtlasTileSet} from '@/data/types.ts';
-import {sceneLevelsAtom, sceneSizeAtom} from '@/stateAtoms/scene.ts';
+import {tileSetAtom} from '@/stateAtoms/paletteAtoms.ts';
+import {sceneLevelsAtom, sceneSizeAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 import styles from './styles.module.scss';
 
-interface SceneProps {
-  tileSet: AtlasTileSet;
-  // children: ReactNode;
-}
+// interface SceneProps {
+//   // children: ReactNode;
+// }
 
-const Scene = ({tileSet}: SceneProps) => {
+const Scene = () => {
+  const tileSet = useAtomValue(tileSetAtom);
   const widthHalfFloored = Math.floor(tileSet.tileWidth / 2) * tileSet.sceneScale;
   const heightQuarterFloored = Math.floor(tileSet.tileHeight / 4) * tileSet.sceneScale;
   const tilesInRow = useAtomValue(sceneSizeAtom);

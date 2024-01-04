@@ -6,8 +6,12 @@ import Sprite from '@/components/Sprite/Sprite.tsx';
 import Tooltip from '@/components/Tooltip/Tooltip.tsx';
 import {AtlasTile} from '@/data/types.ts';
 import useGetTileStyle from '@/hooks/useGetTileStyle.ts';
-import {tileHeightPaletteScaledAtom, tileSetAtom, tileWidthPaletteScaledAtom} from '@/stateAtoms/atlas.ts';
-import {selectedPaletteTilesAtom} from '@/stateAtoms/palette.ts';
+import {
+  selectedPaletteTilesAtom,
+  tileHeightPaletteScaledAtom,
+  tileSetAtom,
+  tileWidthPaletteScaledAtom,
+} from '@/stateAtoms/paletteAtoms.ts';
 
 import styles from './styles.module.scss';
 
@@ -16,6 +20,7 @@ interface PaletteTileProps {
 }
 
 const PaletteTile = ({tile}: PaletteTileProps) => {
+  // TODO should we move it to parent?
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthPaletteScaledAtom);
   const tileHeightScaled = useAtomValue(tileHeightPaletteScaledAtom);
