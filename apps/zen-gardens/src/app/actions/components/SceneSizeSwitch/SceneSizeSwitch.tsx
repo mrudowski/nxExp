@@ -18,6 +18,8 @@ const SceneSizeSwitch = () => {
   return (
     <Tooltip label="Scene size">
       <Select
+        w={88}
+        size="xs"
         data={selectData}
         value={sceneSize + ''}
         onChange={val => {

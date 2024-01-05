@@ -7,8 +7,8 @@ export const theme = createTheme({
   primaryColor: 'cyan',
   cursorType: 'pointer',
   fontSizes: {
-    xs: rem(10),
-    sm: rem(12),
+    xs: rem(14),
+    sm: rem(14),
     md: rem(14),
     lg: rem(16),
     xl: rem(20),

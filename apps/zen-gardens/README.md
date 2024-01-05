@@ -13,12 +13,12 @@ a tiny isometric block gardens builder (test)
 - ✅ Superb `Slot` component with tile `Sprite` and svg hotspot
 - ✅ placed on `Level`
 - ✅ which is a part of bigger (multi level) `Scene`
-- ✅ simple Palette
+- ✅ simple Info
 - ✅ Beautiful theme switcher
 
 ### Phase I
 
-#### Palette
+#### Info
 - we cannot mix tile sets
 - display size and other globals from selected tileSet
 - ✅ images + meta desc file
@@ -50,7 +50,7 @@ a tiny isometric block gardens builder (test)
 
 ### Phase II
 
-#### Palette
+#### Info
 - searchable
 - multi selection (working with filters)
 - different height of tiles?
@@ -58,7 +58,7 @@ a tiny isometric block gardens builder (test)
 - show/hide not used
 
 #### Scene
-- when we select more then one tile on Palette we randomize them when paint
+- when we select more then one tile on Info we randomize them when paint
 - selectable size
 - when `selection` mode we single select tile and see it's options
 - multilevel in the future

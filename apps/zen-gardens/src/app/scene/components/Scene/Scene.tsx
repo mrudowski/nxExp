@@ -25,20 +25,22 @@ const Scene = () => {
   };
 
   return (
-    <main className={styles.scene} style={sceneStyle}>
-      {sceneLevels.map(sceneLevel => (
-        <Level
-          id={sceneLevel.id}
-          key={sceneLevel.id}
-          tilesInRow={tilesInRow}
-          filledSlots={sceneLevel.slots}
-          tileSet={tileSet}
-          boardWidth={sceneStyle.width}
-          widthHalfFloored={widthHalfFloored}
-          heightQuarterFloored={heightQuarterFloored}
-        />
-      ))}
-    </main>
+    <div className={styles.scroll}>
+      <main className={styles.scene} style={sceneStyle}>
+        {sceneLevels.map(sceneLevel => (
+          <Level
+            id={sceneLevel.id}
+            key={sceneLevel.id}
+            tilesInRow={tilesInRow}
+            filledSlots={sceneLevel.slots}
+            tileSet={tileSet}
+            boardWidth={sceneStyle.width}
+            widthHalfFloored={widthHalfFloored}
+            heightQuarterFloored={heightQuarterFloored}
+          />
+        ))}
+      </main>
+    </div>
   );
 };
 

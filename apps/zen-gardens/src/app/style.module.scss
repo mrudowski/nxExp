@@ -1,8 +1,16 @@
 @import '@/styles/variables';
 
 .app {
-  display: flex;
-  gap: 2rem;
+  height: 100%;
+  border: 1px solid green;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 240px minmax(200px, auto) 240px 1fr;
+  grid-template-rows: 1fr minmax(320px, auto) 1fr;
+  grid-template-areas:
+    '. . . . .'
+    '. palette main info .'
+    '. . . . .';
 }
 
 .main {
@@ -10,6 +18,7 @@
   flex-direction: column;
   padding: 1.5rem 0;
   gap: 1rem;
+  grid-area: main;
 }
 
 .actionsTop {

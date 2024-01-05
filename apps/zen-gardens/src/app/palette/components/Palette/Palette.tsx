@@ -45,7 +45,7 @@ const Palette = () => {
           <span>size:</span> {displaySize(tileSet.tileWidth, tileSet.tileHeight)}
         </li>
       </ul>
-      <ScrollArea h={250}>
+      <ScrollArea h={150}>
         <div className={clsx(disabled && styles.disabled)}>
           {tileSet.tilesGroups.map(tilesGroup => {
             return (

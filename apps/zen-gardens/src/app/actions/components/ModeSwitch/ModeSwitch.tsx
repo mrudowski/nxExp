@@ -1,9 +1,11 @@
-import {ActionIcon} from '@mantine/core';
-
-import Tooltip from '@/components/Tooltip/Tooltip';
+import {ActionIcon, Tooltip} from '@mantine/core';
+import React from 'react';
 
 import ModeSwitchBtn from './ModeSwitchBtn';
 import styles from './styles.module.scss';
+
+// SegmentedControl as alt solution
+// https://mantine.dev/core/segmented-control/
 
 const ModeSwitch = () => {
   return (

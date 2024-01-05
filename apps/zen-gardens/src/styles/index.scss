@@ -14,8 +14,14 @@ body {
 //}
 
 body {
-  display: grid;
-  place-content: center;
+  //display: grid;
+  //place-content: center;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
 }
 
 p,
