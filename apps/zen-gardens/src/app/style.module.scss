@@ -4,7 +4,7 @@
   height: 100%;
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr 240px minmax(200px, auto) 240px 1fr;
+  grid-template-columns: 1fr 240px minmax(256px, auto) 240px 1fr;
   grid-template-rows: 1fr minmax(320px, auto) 1fr;
   grid-template-areas:
     '. . . . .'
@@ -29,4 +29,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.sceneSizeAndScale {
+  display: flex;
+  gap: 0.5rem;
 }

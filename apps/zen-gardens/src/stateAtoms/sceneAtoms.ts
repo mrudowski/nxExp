@@ -102,3 +102,7 @@ export const sceneSizeAtom = atomWithStorage(SCENE_SIZE_LS_KEY, 5);
 const SCENE_SCALE_LS_KEY = `${LS_KEY_PREFIX}-scene-scale`;
 
 export const sceneScaleAtom = atomWithStorage(SCENE_SCALE_LS_KEY, 2);
+
+// ------
+
+export const sceneZoomAtom = atom(1);

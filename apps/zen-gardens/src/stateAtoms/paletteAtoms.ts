@@ -3,7 +3,7 @@ import {atomWithStorage} from 'jotai/utils';
 
 import {atlas} from '@/data/atlas.ts';
 import {getAtlas} from '@/data/getAtlas.ts';
-import {sceneScaleAtom} from '@/stateAtoms/sceneAtoms.ts';
+import {sceneScaleAtom, sceneZoomAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 import {LS_KEY_PREFIX} from '../../constants.ts';
 
@@ -37,13 +37,15 @@ export const writeActiveTileSetIdAtom = atom(null, (get, set, update: string) =>
 export const tileWidthSceneScaledAtom = atom(get => {
   const tileSet = get(tileSetAtom);
   const sceneScale = get(sceneScaleAtom);
+  const sceneZoom = get(sceneZoomAtom);
   console.log('%c [mr] tileWidthSceneScaledAtom', 'background-color:Gold; color: black');
-  return tileSet.tileWidth * sceneScale;
+  return tileSet.tileWidth * sceneScale * sceneZoom;
 });
 export const tileHeightSceneScaledAtom = atom(get => {
   const tileSet = get(tileSetAtom);
   const sceneScale = get(sceneScaleAtom);
-  return tileSet.tileHeight * sceneScale;
+  const sceneZoom = get(sceneZoomAtom);
+  return tileSet.tileHeight * sceneScale * sceneZoom;
 });
 export const tileWidthPaletteScaledAtom = atom(get => {
   const tileSet = get(tileSetAtom);
