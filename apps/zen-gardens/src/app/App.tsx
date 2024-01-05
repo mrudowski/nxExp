@@ -5,6 +5,7 @@ import ColorSchemeSwitch from '@/components/ColorSchemeSwitch/ColorSchemeSwitch.
 
 import ModeSwitch from './actions/components/ModeSwitch/ModeSwitch';
 import SceneSizeSwitch from './actions/components/SceneSizeSwitch/SceneSizeSwitch.tsx';
+import SceneZoomSlider from './actions/components/SceneZoomSlider/SceneZoomSlider.tsx';
 import Info from './info/components/Info/Info.tsx';
 import Palette from './palette/components/Palette/Palette.tsx';
 import Scene from './scene/components/Scene/Scene';
@@ -22,7 +23,7 @@ export function App() {
         <Scene />
         <div className={styles.actionsBottom}>
           <SceneSizeSwitch />
-          <span>SceneZoomSlider</span>
+          <SceneZoomSlider />
         </div>
       </div>
       <Info />

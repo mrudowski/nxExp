@@ -1,0 +1,7 @@
+@import '@/styles/variables';
+
+.sceneZoomSlider {
+  @include lightMode {
+    --slider-track-bg: #{rgba(#000, 0.15)};
+  }
+}

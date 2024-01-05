@@ -14,6 +14,7 @@ interface _AtlasTileSet {
   desc: string;
   image: string;
   sceneScale: number;
+  sceneScaleRange: number[];
   paletteScale: number;
   width: number;
   height: number;

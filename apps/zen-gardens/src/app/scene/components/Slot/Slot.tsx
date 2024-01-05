@@ -15,17 +15,19 @@ interface SlotProps {
   id: string;
   x: number;
   y: number;
+  tileScale: number;
   tile: AtlasTile | null;
   onInteraction: (id: string) => void;
 }
 
-const Slot = ({id, x, y, tile, onInteraction}: SlotProps) => {
+const Slot = ({id, x, y, tile, tileScale, onInteraction}: SlotProps) => {
+  // TODO should we move it to parent?
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
   const tileHeightScaled = useAtomValue(tileHeightSceneScaledAtom);
   // const [selectedTiles] = useAtom(selectedPaletteTilesAtom);
 
-  const tileStyle = useGetTileStyle({tile, tileSet, tileWidthScaled, tileHeightScaled, tileScale: tileSet.sceneScale});
+  const tileStyle = useGetTileStyle({tile, tileSet, tileWidthScaled, tileHeightScaled, tileScale});
 
   const tileStyleWithXY = {
     ...tileStyle,
@@ -63,7 +65,7 @@ const Slot = ({id, x, y, tile, onInteraction}: SlotProps) => {
           <path className="faceF" d={`M40,${40 - 2 * FIX} 0,${20 - FIX} 40,0 80,${20 - FIX} z`} />
         </g>
       </svg>
-      <span>[{id}]</span>
+      {/*<span>[{id}]</span>*/}
     </div>
   );
 };

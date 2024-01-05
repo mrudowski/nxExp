@@ -6,6 +6,7 @@ export const atlas: _Atlas = [
     desc: 'by dani maccari',
     image: `/assets/tinyBlocks/tinyBlocks_NOiL.png`,
     sceneScale: 6,
+    sceneScaleRange: [2, 4, 6],
     paletteScale: 2,
     width: 180,
     height: 160,

@@ -14,6 +14,7 @@ interface LevelProps {
   // sceneLevelAtom: Atom<SceneAtom['levels'][number]>;
   tilesInRow: number;
   boardWidth: number;
+  tileScale: number;
   widthHalfFloored: number;
   heightQuarterFloored: number;
 }
@@ -37,6 +38,7 @@ const getSlots = (tilesInRow: number) => {
 const Level = ({
   id,
   tileSet,
+  tileScale,
   filledSlots,
   tilesInRow,
   boardWidth,
@@ -68,7 +70,17 @@ const Level = ({
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 
-        return <SlotMemorized key={slot.id} id={slot.id} x={x} y={y} tile={tile} onInteraction={handleInteraction} />;
+        return (
+          <SlotMemorized
+            key={slot.id}
+            id={slot.id}
+            x={x}
+            y={y}
+            tileScale={tileScale}
+            tile={tile}
+            onInteraction={handleInteraction}
+          />
+        );
       })}
     </section>
   );

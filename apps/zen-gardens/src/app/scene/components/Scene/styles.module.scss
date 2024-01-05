@@ -2,8 +2,22 @@
 
 .scroll {
   max-height: 100%;
-  border: 1px solid red;
+  //border: 1px solid red;
   overflow: scroll;
+
+  // grid breaks here when we are bigger then screen
+  // display: flex;
+  // place-content: center;
+
+  flex: 1 1 auto;
+}
+
+.sceneWrapper {
+  display: flex; // grid breaks here when we are bigger then screen
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .scene {
