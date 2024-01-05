@@ -45,22 +45,24 @@ const Palette = () => {
           <span>size:</span> {displaySize(tileSet.tileWidth, tileSet.tileHeight)}
         </li>
       </ul>
-      <ScrollArea h={150}>
-        <div className={clsx(disabled && styles.disabled)}>
-          {tileSet.tilesGroups.map(tilesGroup => {
-            return (
-              <div key={tilesGroup.name} className={styles.group}>
-                <h4>{tilesGroup.name}</h4>
-                <section>
-                  {tilesGroup.tiles.map(tile => {
-                    return <PaletteTile key={tile.id} tile={tile} />;
-                  })}
-                </section>
-              </div>
-            );
-          })}
-        </div>
-      </ScrollArea>
+      <div className={styles.scrollWrapper}>
+        <ScrollArea className={styles.scroll}>
+          <div className={clsx(disabled && styles.disabled)}>
+            {tileSet.tilesGroups.map(tilesGroup => {
+              return (
+                <div key={tilesGroup.name} className={styles.group}>
+                  <h4>{tilesGroup.name}</h4>
+                  <section>
+                    {tilesGroup.tiles.map(tile => {
+                      return <PaletteTile key={tile.id} tile={tile} />;
+                    })}
+                  </section>
+                </div>
+              );
+            })}
+          </div>
+        </ScrollArea>
+      </div>
     </Paper>
   );
 };

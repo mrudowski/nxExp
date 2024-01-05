@@ -2,7 +2,6 @@
 
 .app {
   height: 100%;
-  border: 1px solid green;
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 240px minmax(200px, auto) 240px 1fr;
