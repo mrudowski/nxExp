@@ -6,7 +6,6 @@ import ColorSchemeSwitch from '@/components/ColorSchemeSwitch/ColorSchemeSwitch.
 import ModeSwitch from './actions/components/ModeSwitch/ModeSwitch';
 import SceneScaleSwitch from './actions/components/SceneScaleSwitch/SceneScaleSwitch.tsx';
 import SceneSizeSwitch from './actions/components/SceneSizeSwitch/SceneSizeSwitch.tsx';
-import SceneZoomSlider from './actions/components/SceneZoomSlider/SceneZoomSlider.tsx';
 import Info from './info/components/Info/Info.tsx';
 import Palette from './palette/components/Palette/Palette.tsx';
 import Scene from './scene/components/Scene/Scene';
@@ -27,7 +26,7 @@ export function App() {
             <SceneSizeSwitch />
             <SceneScaleSwitch />
           </div>
-          <SceneZoomSlider />
+          <span>TODO view options</span>
         </div>
       </div>
       <Info />

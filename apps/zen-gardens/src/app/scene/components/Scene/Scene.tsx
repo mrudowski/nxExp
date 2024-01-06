@@ -2,7 +2,7 @@ import {useAtomValue} from 'jotai';
 
 import Level from '@/app/scene/components/Level/Level.tsx';
 import {tileSetAtom} from '@/stateAtoms/paletteAtoms.ts';
-import {sceneLevelsAtom, sceneScaleAtom, sceneSizeAtom, sceneZoomAtom} from '@/stateAtoms/sceneAtoms.ts';
+import {sceneLevelsAtom, sceneScaleAtom, sceneSizeAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 import styles from './styles.module.scss';
 
@@ -13,11 +13,9 @@ import styles from './styles.module.scss';
 const Scene = () => {
   const tileSet = useAtomValue(tileSetAtom);
   const sceneScale = useAtomValue(sceneScaleAtom);
-  const sceneZoom = useAtomValue(sceneZoomAtom);
 
-  const widthHalfFlooredNotZoomed = Math.floor(tileSet.tileWidth / 2) * sceneScale;
-  const widthHalfFloored = widthHalfFlooredNotZoomed * sceneZoom;
-  const heightQuarterFloored = Math.floor(tileSet.tileHeight / 4) * sceneScale * sceneZoom;
+  const widthHalfFloored = Math.floor(tileSet.tileWidth / 2) * sceneScale;
+  const heightQuarterFloored = Math.floor(tileSet.tileHeight / 4) * sceneScale;
   const tilesInRow = useAtomValue(sceneSizeAtom);
   // not very helpful because of React key rule
   // const sceneLevelAtoms = useAtomValue(sceneLevelAtomsAtom);
@@ -25,7 +23,8 @@ const Scene = () => {
 
   const sceneStyle = {
     width: tilesInRow * tileSet.tileWidth * sceneScale,
-    height: tilesInRow * widthHalfFlooredNotZoomed + tileSet.tileHeight * sceneScale - widthHalfFlooredNotZoomed,
+    // TODO width?
+    height: tilesInRow * widthHalfFloored + tileSet.tileHeight * sceneScale - widthHalfFloored,
   };
 
   return (
@@ -40,7 +39,7 @@ const Scene = () => {
               filledSlots={sceneLevel.slots}
               tileSet={tileSet}
               boardWidth={sceneStyle.width}
-              tileScale={sceneScale * sceneZoom}
+              tileScale={sceneScale}
               widthHalfFloored={widthHalfFloored}
               heightQuarterFloored={heightQuarterFloored}
             />

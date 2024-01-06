@@ -1,10 +1,11 @@
 import {useSetAtom} from 'jotai';
-import {memo, useCallback, useMemo} from 'react';
+import {Fragment, memo, useCallback, useMemo} from 'react';
 
 import Slot from '@/app/scene/components/Slot/Slot.tsx';
 import {AtlasTileSet} from '@/data/types.ts';
 import {SceneAtom, sceneLevelTileAtom} from '@/stateAtoms/sceneAtoms.ts';
 
+import AxisLabel from '../AxisLabel/AxisLabel';
 import styles from './styles.module.scss';
 
 interface LevelProps {
@@ -20,6 +21,7 @@ interface LevelProps {
 }
 
 const SlotMemorized = memo(Slot);
+const AxisLabelMemorized = memo(AxisLabel);
 
 const getSlots = (tilesInRow: number) => {
   const data = [];
@@ -70,16 +72,39 @@ const Level = ({
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 
+        const axisXNumber =
+          slot.y === tilesInRow - 1 ? (
+            <AxisLabelMemorized
+              axis="x"
+              value={slot.x}
+              x={x + widthHalfFloored / 4}
+              y={y + heightQuarterFloored * 3}
+              tileSize={heightQuarterFloored * 4}
+            />
+          ) : null;
+        const axisYNumber =
+          slot.x === tilesInRow - 1 ? (
+            <AxisLabelMemorized
+              axis="y"
+              value={slot.y}
+              x={x + widthHalfFloored * 2 - widthHalfFloored / 2}
+              y={y + heightQuarterFloored * 3}
+              tileSize={heightQuarterFloored * 4}
+            />
+          ) : null;
+
         return (
-          <SlotMemorized
-            key={slot.id}
-            id={slot.id}
-            x={x}
-            y={y}
-            tileScale={tileScale}
-            tile={tile}
-            onInteraction={handleInteraction}
-          />
+          <Fragment key={slot.id}>
+            {axisXNumber} {axisYNumber}
+            <SlotMemorized
+              id={slot.id}
+              x={x}
+              y={y}
+              tileScale={tileScale}
+              tile={tile}
+              onInteraction={handleInteraction}
+            />
+          </Fragment>
         );
       })}
     </section>

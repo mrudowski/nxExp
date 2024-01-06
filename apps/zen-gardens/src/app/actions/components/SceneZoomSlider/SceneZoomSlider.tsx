@@ -1,7 +1,4 @@
 import {Slider, SliderProps} from '@mantine/core';
-import {useAtom} from 'jotai';
-
-import {sceneZoomAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 import styles from './styles.module.scss';
 
@@ -10,7 +7,7 @@ import styles from './styles.module.scss';
 const label: SliderProps['label'] = value => `Zoom: ${value}`;
 
 const SceneZoomSlider = () => {
-  const [sceneZoom, setSceneZoom] = useAtom(sceneZoomAtom);
+  // const [sceneZoom, setSceneZoom] = useAtom(sceneZoomAtom);
 
   return (
     <Slider
@@ -22,8 +19,8 @@ const SceneZoomSlider = () => {
       max={4}
       step={1}
       label={label}
-      value={sceneZoom}
-      onChange={setSceneZoom}
+      // value={sceneZoom}
+      // onChange={setSceneZoom}
       className={styles.sceneZoomSlider}
     />
   );

@@ -8,6 +8,7 @@ a tiny isometric block gardens builder (test)
 - Jotai https://jotai.org/
 - Mantine https://mantine.dev/
 - with some nice licensed tile sets
+- we cannot mix them
 
 ### Phase 0
 - ✅ Superb `Slot` component with tile `Sprite` and svg hotspot
@@ -18,14 +19,11 @@ a tiny isometric block gardens builder (test)
 
 ### Phase I
 
-#### Info
-- we cannot mix tile sets
-- display size and other globals from selected tileSet
+#### Palette
+- ✅ display size and other globals from selected tileSet
 - ✅ images + meta desc file
-- full of blocks
 - ✅ with names (in tooltips)
-- when switch we switch all tiles - in palette and on canvas
-- active in `paint` mode / disabled in `erese` / 'select' mode
+- ✅ active in `paint` mode / disabled in `erese` / 'select' mode
 
 #### Scene
 - ✅ 5x5
@@ -35,7 +33,8 @@ a tiny isometric block gardens builder (test)
   - ✅ and drag 
 - ! show/hide ghost/empty slot
 - ! show/hide axis
-- ! zoom in/out our scene
+- ~~zoom in/out our scene~~
+- add settings with option: layout: full / tiny (pro/cosy)
 
 #### Info (slot/tile info)
 - single selection
@@ -50,7 +49,9 @@ a tiny isometric block gardens builder (test)
 
 ### Phase II
 
-#### Info
+#### Palette
+- when switch we switch all tiles - in palette and on canvas
+- full of blocks
 - searchable
 - multi selection (working with filters)
 - different height of tiles?
@@ -59,7 +60,7 @@ a tiny isometric block gardens builder (test)
 
 #### Scene
 - when we select more then one tile on Info we randomize them when paint
-- selectable size
+- ✅ selectable size
 - when `selection` mode we single select tile and see it's options
 - multilevel in the future
 - undo/redo (in memory, last snapshot of state)

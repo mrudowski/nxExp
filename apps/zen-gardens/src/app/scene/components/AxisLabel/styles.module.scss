@@ -1,0 +1,21 @@
+@import '@/styles/variables';
+
+.axisLabel {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  font-weight: 700;
+  color: #000;
+  //text-shadow: 0 0 3px #000;
+  background-color: rgba(#fff, 0.5);
+  width: var(--size);
+  height: var(--size);
+  line-height: var(--size);
+  font-size: clamp(10px, calc(var(--size) - var(--size) / 8), 128px);
+  text-align: center;
+  display: block;
+  border-radius: 50%;
+}
