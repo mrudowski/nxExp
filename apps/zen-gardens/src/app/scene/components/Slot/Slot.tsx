@@ -65,7 +65,7 @@ const Slot = ({id, x, y, tile, tileScale, onInteraction}: SlotProps) => {
           <path className="faceF" d={`M40,${40 - 2 * FIX} 0,${20 - FIX} 40,0 80,${20 - FIX} z`} />
         </g>
       </svg>
-      {/*<span>[{id}]</span>*/}
+      {/*<span className={styles.label}>[{id}]</span>*/}
     </div>
   );
 };

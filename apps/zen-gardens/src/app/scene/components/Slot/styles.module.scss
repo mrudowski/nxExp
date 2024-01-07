@@ -14,14 +14,14 @@
   //    pointer-events: none;
   //  }
   //}
+}
 
-  span {
-    position: absolute;
-    inset: 15px 0 0 0;
-    text-align: center;
-    color: black;
-    font-size: 12px;
-  }
+.label {
+  position: absolute;
+  inset: 15px 0 0 0;
+  text-align: center;
+  color: black;
+  font-size: 12px;
 }
 
 .sprite {

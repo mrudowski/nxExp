@@ -21,10 +21,11 @@ const Scene = () => {
   // const sceneLevelAtoms = useAtomValue(sceneLevelAtomsAtom);
   const sceneLevels = useAtomValue(sceneLevelsAtom);
 
+  const tilesInRowIncludingAxis = tilesInRow + 1;
   const sceneStyle = {
-    width: tilesInRow * tileSet.tileWidth * sceneScale,
+    width: tilesInRowIncludingAxis * tileSet.tileWidth * sceneScale,
     // TODO width?
-    height: tilesInRow * widthHalfFloored + tileSet.tileHeight * sceneScale - widthHalfFloored,
+    height: tilesInRowIncludingAxis * widthHalfFloored + tileSet.tileHeight * sceneScale - widthHalfFloored,
   };
 
   return (

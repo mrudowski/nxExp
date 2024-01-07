@@ -64,6 +64,8 @@ a tiny isometric block gardens builder (test)
 - when `selection` mode we single select tile and see it's options
 - multilevel in the future
 - undo/redo (in memory, last snapshot of state)
+- by clicking on axis label we can fill/erase whole row
+- by clicking on axis cross we can fill/erase all
 
 ### Phase III
 - working on mobile (touchEvent)

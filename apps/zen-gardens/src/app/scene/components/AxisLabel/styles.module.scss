@@ -1,21 +1,50 @@
 @import '@/styles/variables';
 
-.axisLabel {
+.slot {
+  user-select: none;
   position: absolute;
   top: var(--y);
   left: var(--x);
-  user-select: none;
+  width: var(--width);
+  height: var(--height);
   pointer-events: none;
-  z-index: 1;
-  font-weight: 700;
-  color: #000;
-  //text-shadow: 0 0 3px #000;
-  background-color: rgba(#fff, 0.5);
-  width: var(--size);
-  height: var(--size);
-  line-height: var(--size);
-  font-size: clamp(10px, calc(var(--size) - var(--size) / 8), 128px);
-  text-align: center;
-  display: block;
-  border-radius: 50%;
+}
+
+.xy {
+  path {
+    stroke-dasharray: 88;
+  }
+}
+
+.label {
+  position: absolute;
+  width: 70%;
+  height: 65%;
+  //background: skyblue;
+  //border: 1px solid red;
+  //opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: rotateX(60deg) rotateZ(315deg)
+    translate3d(calc(var(--width) / 8), calc(var(--width) / 8), calc(var(--height) / -2));
+  transform-origin: center center;
+
+  font-size: clamp(12px, calc(var(--width) / 4), 128px);
+
+  @include lightMode {
+    color: #000;
+  }
+
+  @include darkMode {
+    color: #fff;
+  }
+}
+
+.x {
+  .label {
+    transform: rotateX(60deg) rotateZ(45deg)
+      translate3d(calc(var(--width) / 8), calc(var(--width) / -8), calc(var(--height) / -2));
+  }
 }

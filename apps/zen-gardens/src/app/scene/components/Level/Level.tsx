@@ -23,7 +23,14 @@ interface LevelProps {
 const SlotMemorized = memo(Slot);
 const AxisLabelMemorized = memo(AxisLabel);
 
-const getSlots = (tilesInRow: number) => {
+interface Slot {
+  x: number;
+  y: number;
+  id: string;
+  axis: 'x' | 'y' | 'xy' | null;
+}
+
+const getSlots = (tilesInRow: number): Slot[] => {
   const data = [];
   for (let y = 0; y < tilesInRow; y++) {
     for (let x = 0; x < tilesInRow; x++) {
@@ -31,9 +38,39 @@ const getSlots = (tilesInRow: number) => {
         x,
         y,
         id: `${x},${y}`,
+        axis: null,
       });
     }
   }
+  // add one more x asis
+  for (let x = 0; x < tilesInRow; x++) {
+    const y = tilesInRow;
+    data.push({
+      x,
+      y,
+      id: `${x},${y}`,
+      axis: 'x' as const,
+    });
+  }
+  // and one more for y axis
+  for (let y = 0; y < tilesInRow; y++) {
+    const x = tilesInRow;
+    data.push({
+      x,
+      y,
+      id: `${x},${y}`,
+      axis: 'y' as const,
+    });
+  }
+  // and the last one on the very bottom for special operation
+  const y = tilesInRow;
+  const x = tilesInRow;
+  data.push({
+    x,
+    y,
+    id: `${x},${y}`,
+    axis: 'xy' as const,
+  });
   return data;
 };
 
@@ -72,38 +109,51 @@ const Level = ({
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
 
-        const axisXNumber =
-          slot.y === tilesInRow - 1 ? (
-            <AxisLabelMemorized
-              axis="x"
-              value={slot.x}
-              x={x + widthHalfFloored / 4}
-              y={y + heightQuarterFloored * 3}
-              tileSize={heightQuarterFloored * 4}
-            />
-          ) : null;
-        const axisYNumber =
-          slot.x === tilesInRow - 1 ? (
-            <AxisLabelMemorized
-              axis="y"
-              value={slot.y}
-              x={x + widthHalfFloored * 2 - widthHalfFloored / 2}
-              y={y + heightQuarterFloored * 3}
-              tileSize={heightQuarterFloored * 4}
-            />
-          ) : null;
+        // const axisXNumber =
+        //   slot.y === tilesInRow - 1 ? (
+        //     <AxisLabelMemorized
+        //       axis="x"
+        //       value={slot.x}
+        //       x={x + widthHalfFloored / 4}
+        //       y={y + heightQuarterFloored * 3}
+        //       tileSize={heightQuarterFloored * 4}
+        //     />
+        //   ) : null;
+        // const axisYNumber =
+        //   slot.x === tilesInRow - 1 ? (
+        //     <AxisLabelMemorized
+        //       axis="y"
+        //       value={slot.y}
+        //       x={x + widthHalfFloored * 2 - widthHalfFloored / 2}
+        //       y={y + heightQuarterFloored * 3}
+        //       tileSize={heightQuarterFloored * 4}
+        //     />
+        //   ) : null;
 
         return (
           <Fragment key={slot.id}>
-            {axisXNumber} {axisYNumber}
-            <SlotMemorized
-              id={slot.id}
-              x={x}
-              y={y}
-              tileScale={tileScale}
-              tile={tile}
-              onInteraction={handleInteraction}
-            />
+            {slot.axis ? (
+              <AxisLabelMemorized
+                id={slot.id}
+                x={x}
+                y={y}
+                tileScale={tileScale}
+                axis={slot.axis}
+                value={slot.axis === 'x' ? slot.x : slot.y}
+                tilesInRow={tilesInRow}
+                //value={slot.axis === 'x' ? slot.x : slot.y}
+                // onInteraction={handleInteraction}
+              />
+            ) : (
+              <SlotMemorized
+                id={slot.id}
+                x={x}
+                y={y}
+                tileScale={tileScale}
+                tile={tile}
+                onInteraction={handleInteraction}
+              />
+            )}
           </Fragment>
         );
       })}
