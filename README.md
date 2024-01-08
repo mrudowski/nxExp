@@ -20,6 +20,10 @@ A place where I'm experimenting with all new and old things in new way
   - switch react router to https://tanstack.com/router/v1/docs/overview
   - 
 
+### zen-gardens
+a tiny isometric block gardens builder
+- https://github.com/mrudowski/nxExp/tree/main/apps/zen-gardens
+
 ### sw-base
 - https://github.com/mrudowski/nxExp/tree/main/apps/sw-base
 
@@ -33,11 +37,11 @@ A place where I'm experimenting with all new and old things in new way
 To start the development server run 
 
 ```
+nx serve zen-gardens
 nx serve sw-base
 nx serve sw-base-next
 nx serve iso-tiles
 nx serve css-fun
-nx serve zen-gardens
 ```
 
 Open your browser and navigate to http://localhost:4200/
