@@ -2,9 +2,10 @@
 // -----------------------------
 
 import {atom} from 'jotai';
-import {atomWithReset} from 'jotai/utils';
 
+// import {atomWithReset} from 'jotai/utils';
 import {Mode} from '@/stateAtoms/modeAtoms.ts';
+import {sceneAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 /**
  * Action base undo/redo
@@ -50,32 +51,99 @@ interface UndoRedoAction {
   slots: UndoRedoActionSlot[];
 }
 export interface UndoRedo {
-  actions: UndoRedoAction[];
-  index: number;
+  redoActions: UndoRedoAction[];
+  undoActions: UndoRedoAction[];
 }
 
 const undoRedoAtomInitialValue: UndoRedo = {
-  actions: [],
-  index: 0,
+  redoActions: [],
+  undoActions: [],
 };
 
-export const undoRedoAtom = atomWithReset<UndoRedo>(undoRedoAtomInitialValue);
+export const undoRedoAtom = atom<UndoRedo>(undoRedoAtomInitialValue);
 
 export const addActionToUndoRedoAtom = atom(null, (get, set, newAction: UndoRedoAction) => {
-  set(undoRedoAtom, prevState => ({
-    actions: [...prevState.actions, newAction],
-    index: prevState.index + 1,
-  }));
+  set(undoRedoAtom, prevState => {
+    return {
+      undoActions: [...prevState.undoActions, newAction],
+      // reset redo list on user action
+      redoActions: [],
+    };
+  });
 
   console.log('%c [mr] undoRedoAtom', 'background-color:Gold; color: black', get(undoRedoAtom));
 });
 
-export const isUndoActiveAtom = atom(get => {
-  const {index} = get(undoRedoAtom);
-  return index > 0 && index;
+// TODO add loop
+// TODO skip update tile when the same tile!!!
+// TODO mode: erase - support it!
+
+export const undoActionAtom = atom(null, (get, set) => {
+  const {undoActions} = get(undoRedoAtom);
+  const action = undoActions.at(-1);
+
+  if (!action) {
+    return;
+  }
+
+  set(sceneAtom, prevState => ({
+    ...prevState,
+    levels: prevState.levels.map(lvl => {
+      if (lvl.id === action.level) {
+        return {
+          ...lvl,
+          slots: {
+            ...lvl.slots,
+            [action.slots[0].slotId]: {tileId: action.slots[0].tileId},
+          },
+        };
+      }
+      return lvl;
+    }),
+  }));
+
+  set(undoRedoAtom, prevState => ({
+    undoActions: prevState.undoActions.slice(0, -1),
+    redoActions: [...prevState.redoActions, action],
+  }));
 });
 
-export const isRedoActiveAtom = atom(get => {
-  const {index, actions} = get(undoRedoAtom);
-  return index < actions.length - 1;
+export const redoActionAtom = atom(null, (get, set) => {
+  const {redoActions} = get(undoRedoAtom);
+  const action = redoActions.at(-1);
+
+  if (!action) {
+    return;
+  }
+
+  set(sceneAtom, prevState => ({
+    ...prevState,
+    levels: prevState.levels.map(lvl => {
+      if (lvl.id === action.level) {
+        return {
+          ...lvl,
+          slots: {
+            ...lvl.slots,
+            [action.slots[0].slotId]: {tileId: action.selectedPaletteTiles[0]},
+          },
+        };
+      }
+      return lvl;
+    }),
+  }));
+
+  set(undoRedoAtom, prevState => ({
+    undoActions: [...prevState.undoActions, action],
+    redoActions: prevState.redoActions.slice(0, -1),
+  }));
+});
+
+export const isUndoEnabledAtom = atom(get => {
+  const {undoActions} = get(undoRedoAtom);
+  return undoActions.length > 0;
+});
+
+export const isRedoEnabledAtom = atom(get => {
+  const {redoActions} = get(undoRedoAtom);
+  return redoActions.length > 0;
 });

@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // import styles from './app.module.scss';
 
+import UndoRedo from '@/app/actions/components/UndoRedo/UndoRedo.tsx';
 import ColorSchemeSwitch from '@/components/ColorSchemeSwitch/ColorSchemeSwitch.tsx';
 
 import ModeSwitch from './actions/components/ModeSwitch/ModeSwitch';
@@ -18,7 +19,7 @@ export function App() {
       <div className={styles.main}>
         <div className={styles.actionsTop}>
           <ModeSwitch />
-          <ModeSwitch />
+          <UndoRedo />
           <ColorSchemeSwitch />
         </div>
         <Scene />

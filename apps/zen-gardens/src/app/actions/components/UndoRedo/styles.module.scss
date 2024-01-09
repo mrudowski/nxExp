@@ -1,0 +1,14 @@
+@import '@/styles/variables';
+
+.undoRedo {
+  :global {
+    .mantine-ActionIcon-root {
+      //--ai-size-sm: 24px;
+      min-width: 32px;
+
+      &[data-disabled] {
+        background: transparent;
+      }
+    }
+  }
+}

@@ -1,10 +1,12 @@
-import {ActionIcon, useMantineColorScheme, useMantineTheme} from '@mantine/core';
+import {ActionIcon} from '@mantine/core';
 import {IconBrush, IconEraser, IconPointer} from '@tabler/icons-react';
 import {useAtom} from 'jotai';
 import {ReactNode} from 'react';
 
 import Tooltip from '@/components/Tooltip/Tooltip';
 import {Mode, modeAtom} from '@/stateAtoms/modeAtoms.ts';
+
+import useColor from '../../hooks/useColor';
 
 interface ModeSwitchBtnProps {
   label: string;
@@ -34,17 +36,6 @@ const IconSet: Record<Mode, ReactNode> = {
  * Alternative approach:
  * use parent as a container component (pattern)
  */
-
-const useColor = ({active}: {active: boolean}) => {
-  const theme = useMantineTheme();
-  const {colorScheme} = useMantineColorScheme();
-
-  if (active) {
-    return '';
-  }
-
-  return colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.dark[3];
-};
 
 const ModeSwitchBtn = ({label, id}: ModeSwitchBtnProps) => {
   const [mode, setMode] = useAtom(modeAtom);
