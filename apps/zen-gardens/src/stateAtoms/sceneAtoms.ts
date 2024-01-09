@@ -20,12 +20,12 @@ interface Level {
   // position: if order in array would be a problem
   slots: Record<string, Slot>;
 }
-export interface SceneAtom {
+export interface Scene {
   size: number;
   levels: Level[];
 }
 
-const sceneAtomInitialValue: SceneAtom = {
+const sceneAtomInitialValue: Scene = {
   size: 5,
   levels: [
     {
@@ -35,7 +35,7 @@ const sceneAtomInitialValue: SceneAtom = {
   ],
 };
 
-export const sceneAtom = atomWithStorage<SceneAtom>(SCENE_LS_KEY, sceneAtomInitialValue);
+export const sceneAtom = atomWithStorage<Scene>(SCENE_LS_KEY, sceneAtomInitialValue);
 export const sceneLevelsAtom = atom(get => {
   return get(sceneAtom).levels;
 });

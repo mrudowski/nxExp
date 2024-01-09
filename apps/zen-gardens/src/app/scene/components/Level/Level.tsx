@@ -3,7 +3,7 @@ import {Fragment, memo, useCallback, useMemo} from 'react';
 
 import Slot from '@/app/scene/components/Slot/Slot.tsx';
 import {AtlasTileSet} from '@/data/types.ts';
-import {SceneAtom, sceneLevelTileAtom} from '@/stateAtoms/sceneAtoms.ts';
+import {Scene, sceneLevelTileAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 import AxisLabel from '../AxisLabel/AxisLabel';
 import styles from './styles.module.scss';
@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 interface LevelProps {
   id: number;
   tileSet: AtlasTileSet;
-  filledSlots: SceneAtom['levels'][number]['slots'];
+  filledSlots: Scene['levels'][number]['slots'];
   // sceneLevelAtom: Atom<SceneAtom['levels'][number]>;
   tilesInRow: number;
   boardWidth: number;

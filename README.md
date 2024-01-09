@@ -13,6 +13,7 @@ A place where I'm experimenting with all new and old things in new way
 
 - try web components
 - try StyleX from Meta: https://stylexjs.com/docs/learn/
+- try Apollo Client as local state manager :) 
 - develop swBase in
   - ✅ react (by nx/vite/swc)
   - ✅ next.js

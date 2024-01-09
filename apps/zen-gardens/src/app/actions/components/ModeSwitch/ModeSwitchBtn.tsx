@@ -4,14 +4,14 @@ import {useAtom} from 'jotai';
 import {ReactNode} from 'react';
 
 import Tooltip from '@/components/Tooltip/Tooltip';
-import {ModeAtom, modeAtom} from '@/stateAtoms/modeAtoms.ts';
+import {Mode, modeAtom} from '@/stateAtoms/modeAtoms.ts';
 
 interface ModeSwitchBtnProps {
   label: string;
-  id: ModeAtom;
+  id: Mode;
 }
 
-const IconSet: Record<ModeAtom, ReactNode> = {
+const IconSet: Record<Mode, ReactNode> = {
   paint: <IconBrush size={22} />,
   erase: <IconEraser size={22} />,
   select: <IconPointer size={22} />,
