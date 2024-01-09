@@ -39,13 +39,13 @@ import {Mode} from '@/stateAtoms/modeAtoms.ts';
 // };
 
 interface UndoRedoActionSlot {
-  tileId: string;
+  tileId: string | null;
   slotId: string;
 }
 
 interface UndoRedoAction {
   mode: Mode;
-  selectedTilesIds: string[];
+  selectedPaletteTiles: string[];
   level: number;
   slots: UndoRedoActionSlot[];
 }
@@ -66,6 +66,8 @@ export const addActionToUndoRedoAtom = atom(null, (get, set, newAction: UndoRedo
     actions: [...prevState.actions, newAction],
     index: prevState.index + 1,
   }));
+
+  console.log('%c [mr] undoRedoAtom', 'background-color:Gold; color: black', get(undoRedoAtom));
 });
 
 export const isUndoActiveAtom = atom(get => {

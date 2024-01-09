@@ -1,6 +1,10 @@
 @import '@/styles/variables';
 
 .switch {
+  min-width: 96px;
+  display: flex;
+  justify-content: flex-end;
+
   :global {
     .mantine-Switch-thumb {
       --_switch-thumb-bg: var(--mantine-color-yellow-6);

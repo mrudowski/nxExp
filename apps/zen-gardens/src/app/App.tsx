@@ -18,6 +18,7 @@ export function App() {
       <div className={styles.main}>
         <div className={styles.actionsTop}>
           <ModeSwitch />
+          <ModeSwitch />
           <ColorSchemeSwitch />
         </div>
         <Scene />

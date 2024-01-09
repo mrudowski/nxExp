@@ -34,14 +34,12 @@ const PaletteTile = ({tile}: PaletteTileProps) => {
     tileScale: tileSet.paletteScale,
   });
 
-  const active = selectedTiles.some(
-    selectedTile => selectedTile.tileSetId === tileSet.id && selectedTile.tileId === tile.id
-  );
+  const active = selectedTiles.includes(tile.id);
 
   const className = clsx(styles.paletteTile, active && styles.active);
 
   const handleClick = () => {
-    setSelectedTile([{tileSetId: tileSet.id, tileId: tile.id}]);
+    setSelectedTile([tile.id]);
   };
 
   return (

@@ -28,17 +28,18 @@ const ColorSchemeSwitch = () => {
   const label = computedColorScheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode';
 
   return (
-    <Tooltip label={label} refProp="rootRef">
-      <Switch
-        size="md"
-        color="blue.9"
-        onLabel={moonIcon}
-        offLabel={sunIcon}
-        checked={computedColorScheme !== 'light'}
-        onChange={toggleColorScheme}
-        className={styles.switch}
-      />
-    </Tooltip>
+    <div className={styles.switch}>
+      <Tooltip label={label} refProp="rootRef">
+        <Switch
+          size="md"
+          color="blue.9"
+          onLabel={moonIcon}
+          offLabel={sunIcon}
+          checked={computedColorScheme !== 'light'}
+          onChange={toggleColorScheme}
+        />
+      </Tooltip>
+    </div>
   );
 };
 

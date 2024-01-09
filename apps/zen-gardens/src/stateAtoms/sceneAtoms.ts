@@ -6,13 +6,13 @@ import {atomWithStorage} from 'jotai/utils';
 
 import {modeAtom} from '@/stateAtoms/modeAtoms.ts';
 import {selectedPaletteTilesAtom} from '@/stateAtoms/paletteAtoms.ts';
+import {addActionToUndoRedoAtom} from '@/stateAtoms/undoRedoAtoms.ts';
 
 import {LS_KEY_PREFIX} from '../../constants.ts';
 
 const SCENE_LS_KEY = `${LS_KEY_PREFIX}-scene`;
 
 interface Slot {
-  tileSetId: string;
   tileId: string | null;
 }
 interface Level {
@@ -60,21 +60,22 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
 
   if (mode === 'paint') {
     updatedSlot = {
-      tileSetId: selectedPaletteTiles[0].tileSetId,
-      tileId: selectedPaletteTiles[0].tileId,
+      tileId: selectedPaletteTiles[0],
     };
   }
   if (mode === 'erase') {
     updatedSlot = {
-      tileSetId: selectedPaletteTiles[0].tileSetId,
       tileId: null,
     };
   }
+
+  let prevSlotTileId: string | null = null;
 
   set(sceneAtom, prevState => ({
     ...prevState,
     levels: prevState.levels.map(lvl => {
       if (lvl.id === update.levelId) {
+        prevSlotTileId = lvl.slots[update.slotId]?.tileId || null;
         return {
           ...lvl,
           slots: {
@@ -86,6 +87,14 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
       return lvl;
     }),
   }));
+
+  // TODO when action end - special attribute - in progress
+  set(addActionToUndoRedoAtom, {
+    mode,
+    selectedPaletteTiles,
+    level: update.levelId,
+    slots: [{tileId: prevSlotTileId, slotId: update.slotId}],
+  });
 });
 
 // not very helpful because of React key rule
