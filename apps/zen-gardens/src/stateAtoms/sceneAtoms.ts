@@ -12,10 +12,10 @@ import {LS_KEY_PREFIX} from '../../constants.ts';
 
 const SCENE_LS_KEY = `${LS_KEY_PREFIX}-scene`;
 
-interface Slot {
+export interface Slot {
   tileId: string | null;
 }
-interface Level {
+export interface Level {
   id: number;
   // position: if order in array would be a problem
   slots: Record<string, Slot>;
@@ -56,31 +56,34 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   }
 
   const selectedPaletteTiles = get(selectedPaletteTilesAtom);
-  let updatedSlot: Slot;
+  let toSlot: Slot = {
+    tileId: null,
+  };
+  let fromSlot: Slot = {
+    tileId: null,
+  };
 
   if (mode === 'paint') {
-    updatedSlot = {
+    toSlot = {
       tileId: selectedPaletteTiles[0],
     };
   }
   if (mode === 'erase') {
-    updatedSlot = {
+    toSlot = {
       tileId: null,
     };
   }
-
-  let prevSlotTileId: string | null = null;
 
   set(sceneAtom, prevState => ({
     ...prevState,
     levels: prevState.levels.map(lvl => {
       if (lvl.id === update.levelId) {
-        prevSlotTileId = lvl.slots[update.slotId]?.tileId || null;
+        fromSlot = lvl.slots[update.slotId] || null;
         return {
           ...lvl,
           slots: {
             ...lvl.slots,
-            [update.slotId]: updatedSlot,
+            [update.slotId]: toSlot,
           },
         };
       }
@@ -90,10 +93,14 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
 
   // TODO when action end - special attribute - in progress
   set(addActionToUndoRedoAtom, {
-    mode,
-    selectedPaletteTiles,
+    // type: mode,
     level: update.levelId,
-    slots: [{tileId: prevSlotTileId, slotId: update.slotId}],
+    slots: {
+      [update.slotId]: {
+        from: fromSlot,
+        to: toSlot,
+      },
+    },
   });
 });
 

@@ -4,56 +4,52 @@
 import {atom} from 'jotai';
 
 // import {atomWithReset} from 'jotai/utils';
-import {Mode} from '@/stateAtoms/modeAtoms.ts';
-import {sceneAtom} from '@/stateAtoms/sceneAtoms.ts';
+import {Level, Scene, sceneAtom, Slot} from '@/stateAtoms/sceneAtoms.ts';
 
 /**
- * Action base undo/redo
- *
- * Important note
- * - random painting effect will not be preserved - it will be random on every undo/redo step
+ * Action base undo/redo + diffs
  */
 
-// example
-
-// fill all/random
-// const fillAction: Action = {
-//   mode: 'paint',
-//   selectedTilesIds: ['t1', 't2'],
-//   level: 0,
-//   slots: [
-//     // 16x16 -> 256 slots
-//     {slotId: '1:1', tileId: 'grass'},
-//     {slotId: '1:2', tileId: 'water'},
-//   ],
-// };
-//
-// // paint single/drag/random
-// const paintAction: Action = {
-//   mode: 'paint',
-//   selectedTilesIds: ['t1', 't2'],
-//   level: 0,
-//   slots: [
-//     {slotId: '1:1', tileId: 'grass'},
-//     {slotId: '1:2', tileId: 'water'},
-//   ],
-// };
-
 interface UndoRedoActionSlot {
-  tileId: string | null;
-  slotId: string;
+  from: Slot;
+  to: Slot;
 }
 
 interface UndoRedoAction {
-  mode: Mode;
-  selectedPaletteTiles: string[];
+  // type: 'paint' | 'erase';
   level: number;
-  slots: UndoRedoActionSlot[];
+  slots: Record<string, UndoRedoActionSlot>;
 }
 export interface UndoRedo {
   redoActions: UndoRedoAction[];
   undoActions: UndoRedoAction[];
 }
+
+const getSlots = (undoRedoSlots: UndoRedoAction['slots'], field: 'from' | 'to'): Level['slots'] => {
+  const slots: Level['slots'] = {};
+  Object.entries(undoRedoSlots).forEach(([slotId, slotValue]) => {
+    slots[slotId] = {
+      tileId: slotValue[field].tileId,
+    };
+  });
+  return slots;
+};
+
+const setSlots = (newSlots: Record<string, Slot>, levelId: number) => (prevState: Scene) => ({
+  ...prevState,
+  levels: prevState.levels.map(lvl => {
+    if (lvl.id === levelId) {
+      return {
+        ...lvl,
+        slots: {
+          ...lvl.slots,
+          ...newSlots,
+        },
+      };
+    }
+    return lvl;
+  }),
+});
 
 const undoRedoAtomInitialValue: UndoRedo = {
   redoActions: [],
@@ -86,21 +82,8 @@ export const undoActionAtom = atom(null, (get, set) => {
     return;
   }
 
-  set(sceneAtom, prevState => ({
-    ...prevState,
-    levels: prevState.levels.map(lvl => {
-      if (lvl.id === action.level) {
-        return {
-          ...lvl,
-          slots: {
-            ...lvl.slots,
-            [action.slots[0].slotId]: {tileId: action.slots[0].tileId},
-          },
-        };
-      }
-      return lvl;
-    }),
-  }));
+  const newSlots = getSlots(action.slots, 'from');
+  set(sceneAtom, setSlots(newSlots, action.level));
 
   set(undoRedoAtom, prevState => ({
     undoActions: prevState.undoActions.slice(0, -1),
@@ -116,21 +99,8 @@ export const redoActionAtom = atom(null, (get, set) => {
     return;
   }
 
-  set(sceneAtom, prevState => ({
-    ...prevState,
-    levels: prevState.levels.map(lvl => {
-      if (lvl.id === action.level) {
-        return {
-          ...lvl,
-          slots: {
-            ...lvl.slots,
-            [action.slots[0].slotId]: {tileId: action.selectedPaletteTiles[0]},
-          },
-        };
-      }
-      return lvl;
-    }),
-  }));
+  const newSlots = getSlots(action.slots, 'to');
+  set(sceneAtom, setSlots(newSlots, action.level));
 
   set(undoRedoAtom, prevState => ({
     undoActions: [...prevState.undoActions, action],

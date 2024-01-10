@@ -1,6 +1,6 @@
 import {useMantineColorScheme, useMantineTheme} from '@mantine/core';
 
-const useColor = ({active}: {active: boolean}) => {
+const useColor = ({active = false, light = 4, dark = 5}: {active?: boolean; light?: number; dark?: number}) => {
   const theme = useMantineTheme();
   const {colorScheme} = useMantineColorScheme();
 
@@ -8,7 +8,7 @@ const useColor = ({active}: {active: boolean}) => {
     return '';
   }
 
-  return colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.dark[3];
+  return colorScheme === 'dark' ? theme.colors.gray[dark] : theme.colors.dark[light];
 };
 
 export default useColor;
