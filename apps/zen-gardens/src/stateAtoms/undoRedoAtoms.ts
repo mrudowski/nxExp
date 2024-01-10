@@ -71,8 +71,6 @@ export const addActionToUndoRedoAtom = atom(null, (get, set, newAction: UndoRedo
 });
 
 // TODO add loop
-// TODO skip update tile when the same tile!!!
-// TODO mode: erase - support it!
 
 export const undoActionAtom = atom(null, (get, set) => {
   const {undoActions} = get(undoRedoAtom);

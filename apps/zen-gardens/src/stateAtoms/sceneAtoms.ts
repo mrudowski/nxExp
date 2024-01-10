@@ -55,30 +55,29 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
     return;
   }
 
-  const selectedPaletteTiles = get(selectedPaletteTilesAtom);
-  let toSlot: Slot = {
-    tileId: null,
-  };
-  let fromSlot: Slot = {
-    tileId: null,
-  };
+  const scene = get(sceneAtom);
+  const fromSlot = scene.levels[update.levelId].slots[update.slotId];
 
+  const selectedPaletteTiles = get(selectedPaletteTilesAtom);
+  let tileId: Slot['tileId'] = null;
   if (mode === 'paint') {
-    toSlot = {
-      tileId: selectedPaletteTiles[0],
-    };
+    tileId = selectedPaletteTiles[0];
   }
   if (mode === 'erase') {
-    toSlot = {
-      tileId: null,
-    };
+    tileId = null;
+  }
+  const toSlot: Slot = {
+    tileId,
+  };
+
+  if (fromSlot.tileId === toSlot.tileId) {
+    return;
   }
 
   set(sceneAtom, prevState => ({
     ...prevState,
     levels: prevState.levels.map(lvl => {
       if (lvl.id === update.levelId) {
-        fromSlot = lvl.slots[update.slotId] || null;
         return {
           ...lvl,
           slots: {
