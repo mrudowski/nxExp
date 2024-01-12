@@ -2,6 +2,7 @@ import {useSetAtom} from 'jotai';
 import {Fragment, memo, useCallback, useMemo} from 'react';
 
 import Slot from '@/app/scene/components/Slot/Slot.tsx';
+import {getSlotsRangeFromAxisLabelId} from '@/app/scene/utils.ts';
 import {AtlasTileSet} from '@/data/types.ts';
 import {Scene, sceneLevelTileAtom} from '@/stateAtoms/sceneAtoms.ts';
 
@@ -84,7 +85,7 @@ const Level = ({
   widthHalfFloored,
   heightQuarterFloored,
 }: LevelProps) => {
-  const setTile = useSetAtom(sceneLevelTileAtom);
+  const setTiles = useSetAtom(sceneLevelTileAtom);
 
   const slots = useMemo(() => {
     return getSlots(tilesInRow);
@@ -92,11 +93,19 @@ const Level = ({
 
   const start = boardWidth / 2 - widthHalfFloored;
 
-  const handleInteraction = useCallback(
+  const handleSlotInteraction = useCallback(
     (slotId: string) => {
-      setTile({slotId, levelId: id});
+      setTiles({slotsIds: [slotId], levelId: id});
     },
-    [setTile, id]
+    [setTiles, id]
+  );
+
+  const handleAxisInteraction = useCallback(
+    (axisLabelId: string) => {
+      const slotsIds = getSlotsRangeFromAxisLabelId(axisLabelId);
+      setTiles({slotsIds, levelId: id});
+    },
+    [setTiles, id]
   );
 
   return (
@@ -108,27 +117,6 @@ const Level = ({
           : null;
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;
-
-        // const axisXNumber =
-        //   slot.y === tilesInRow - 1 ? (
-        //     <AxisLabelMemorized
-        //       axis="x"
-        //       value={slot.x}
-        //       x={x + widthHalfFloored / 4}
-        //       y={y + heightQuarterFloored * 3}
-        //       tileSize={heightQuarterFloored * 4}
-        //     />
-        //   ) : null;
-        // const axisYNumber =
-        //   slot.x === tilesInRow - 1 ? (
-        //     <AxisLabelMemorized
-        //       axis="y"
-        //       value={slot.y}
-        //       x={x + widthHalfFloored * 2 - widthHalfFloored / 2}
-        //       y={y + heightQuarterFloored * 3}
-        //       tileSize={heightQuarterFloored * 4}
-        //     />
-        //   ) : null;
 
         return (
           <Fragment key={slot.id}>
@@ -142,7 +130,7 @@ const Level = ({
                 value={slot.axis === 'x' ? slot.x : slot.y}
                 tilesInRow={tilesInRow}
                 //value={slot.axis === 'x' ? slot.x : slot.y}
-                // onInteraction={handleInteraction}
+                onInteraction={handleAxisInteraction}
               />
             ) : (
               <SlotMemorized
@@ -151,7 +139,7 @@ const Level = ({
                 y={y}
                 tileScale={tileScale}
                 tile={tile}
-                onInteraction={handleInteraction}
+                onInteraction={handleSlotInteraction}
               />
             )}
           </Fragment>

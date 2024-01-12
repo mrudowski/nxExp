@@ -15,7 +15,7 @@ interface UndoRedoActionSlot {
   to: Slot;
 }
 
-interface UndoRedoAction {
+export interface UndoRedoAction {
   // type: 'paint' | 'erase';
   level: number;
   slots: Record<string, UndoRedoActionSlot>;
@@ -66,8 +66,6 @@ export const addActionToUndoRedoAtom = atom(null, (get, set, newAction: UndoRedo
       redoActions: [],
     };
   });
-
-  console.log('%c [mr] undoRedoAtom', 'background-color:Gold; color: black', get(undoRedoAtom));
 });
 
 // TODO add loop

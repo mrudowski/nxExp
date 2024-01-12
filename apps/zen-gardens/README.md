@@ -14,7 +14,7 @@ a tiny isometric block gardens builder (test)
 - ✅ Superb `Slot` component with tile `Sprite` and svg hotspot
 - ✅ placed on `Level`
 - ✅ which is a part of bigger (multi level) `Scene`
-- ✅ simple Info
+- ✅ simple Palette
 - ✅ Beautiful theme switcher
 
 ### Phase I
@@ -26,7 +26,7 @@ a tiny isometric block gardens builder (test)
 - ✅ active in `paint` mode / disabled in `erese` / 'select' mode
 
 #### Scene
-- ✅ 5x5
+- ✅ 5x5 and more 
 - ✅ one level
 - ✅ when `paint` mode we paint
   - ✅ by click 
@@ -59,11 +59,11 @@ a tiny isometric block gardens builder (test)
 - show/hide not used
 
 #### Scene
-- when we select more then one tile on Info we randomize them when paint
+- when we select more then one tile from Palette we randomize them when paint
 - ✅ selectable size
 - when `selection` mode we single select tile and see it's options
 - multilevel in the future
-- undo/redo (in memory, last snapshot of state)
+- ✅ undo/redo (in memory, diffs based)
 - by clicking on axis label we can fill/erase whole row
 - by clicking on axis cross we can fill/erase all
 

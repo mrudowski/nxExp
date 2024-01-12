@@ -6,7 +6,7 @@ import {atomWithStorage} from 'jotai/utils';
 
 import {modeAtom} from '@/stateAtoms/modeAtoms.ts';
 import {selectedPaletteTilesAtom} from '@/stateAtoms/paletteAtoms.ts';
-import {addActionToUndoRedoAtom} from '@/stateAtoms/undoRedoAtoms.ts';
+import {addActionToUndoRedoAtom, UndoRedoAction} from '@/stateAtoms/undoRedoAtoms.ts';
 
 import {LS_KEY_PREFIX} from '../../constants.ts';
 
@@ -46,7 +46,7 @@ export const sceneLevelsAtom = atom(get => {
 
 interface Update {
   levelId: number;
-  slotId: string;
+  slotsIds: string[];
 }
 
 export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
@@ -56,23 +56,29 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   }
 
   const scene = get(sceneAtom);
-  const fromSlot = scene.levels[update.levelId].slots[update.slotId];
+  const fromSlots: Slot[] = update.slotsIds.map(slotId => scene.levels[update.levelId].slots[slotId]);
 
   const selectedPaletteTiles = get(selectedPaletteTilesAtom);
-  let tileId: Slot['tileId'] = null;
-  if (mode === 'paint') {
-    tileId = selectedPaletteTiles[0];
-  }
-  if (mode === 'erase') {
-    tileId = null;
-  }
-  const toSlot: Slot = {
-    tileId,
-  };
+  const toSlots = fromSlots.map(slot => {
+    if (mode === 'paint') {
+      return {
+        tileId: selectedPaletteTiles[0],
+      };
+    }
+    // erase
+    return {
+      tileId: null,
+    };
+  });
 
-  if (fromSlot.tileId === toSlot.tileId) {
+  if (fromSlots.every((slot, index) => slot.tileId === toSlots[index].tileId)) {
     return;
   }
+
+  const slots: Level['slots'] = {};
+  update.slotsIds.forEach((slotId, index) => {
+    slots[slotId] = toSlots[index];
+  });
 
   set(sceneAtom, prevState => ({
     ...prevState,
@@ -82,7 +88,7 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
           ...lvl,
           slots: {
             ...lvl.slots,
-            [update.slotId]: toSlot,
+            ...slots,
           },
         };
       }
@@ -90,16 +96,19 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
     }),
   }));
 
+  const undoRedoSlots: UndoRedoAction['slots'] = {};
+  update.slotsIds.forEach((slotId, index) => {
+    undoRedoSlots[slotId] = {
+      from: fromSlots[index],
+      to: toSlots[index],
+    };
+  });
+
   // TODO when action end - special attribute - in progress
   set(addActionToUndoRedoAtom, {
     // type: mode,
     level: update.levelId,
-    slots: {
-      [update.slotId]: {
-        from: fromSlot,
-        to: toSlot,
-      },
-    },
+    slots: undoRedoSlots,
   });
 });
 
@@ -116,6 +125,6 @@ export const sceneSizeAtom = atomWithStorage(SCENE_SIZE_LS_KEY, 5);
 
 const SCENE_SCALE_LS_KEY = `${LS_KEY_PREFIX}-scene-scale`;
 
-export const sceneScaleAtom = atomWithStorage(SCENE_SCALE_LS_KEY, 2);
+export const sceneScaleAtom = atomWithStorage(SCENE_SCALE_LS_KEY, 6);
 
 // ------

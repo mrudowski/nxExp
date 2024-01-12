@@ -35,10 +35,10 @@ interface AxisLabelProps {
   axis: 'x' | 'y' | 'xy';
   value: number;
   tilesInRow: number;
-  // onInteraction: (id: string) => void;
+  onInteraction: (id: string) => void;
 }
 
-const AxisLabel = ({x, y, axis, value, tileScale, tilesInRow}: AxisLabelProps) => {
+const AxisLabel = ({id, x, y, axis, value, tileScale, tilesInRow, onInteraction}: AxisLabelProps) => {
   // TODO should we move it to parent?
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
@@ -60,7 +60,7 @@ const AxisLabel = ({x, y, axis, value, tileScale, tilesInRow}: AxisLabelProps) =
   const pathDef = getPathDef(axis);
 
   const handleClick = () => {
-    // onInteraction(id);
+    onInteraction(id);
   };
 
   return (
