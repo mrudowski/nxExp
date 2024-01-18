@@ -64,19 +64,20 @@ a tiny isometric block gardens builder (test)
 - when `selection` mode we single select tile and see it's options
 - multilevel in the future
 - ✅ undo/redo (in memory, diffs based)
-- by clicking on axis label we can fill/erase whole row
-- by clicking on axis cross we can fill/erase all
+  - ✅ add loop/limits
+  - ✅ make undo/redo painting when dragging as single action
+- ✅ by clicking on axis label we can fill/erase whole row
+- ✅ by clicking on axis cross we can fill/erase all
 
 ### Phase III
 - working on mobile (touchEvent)
 - add key shortcuts (undo/redo/b-brush,e,p and so on)
-- replace Mantine with https://tailwindui.com/templates/catalyst
+- ? replace Mantine with https://tailwindui.com/templates/catalyst
 
 ## Base blueprint
 
 ![Blueprint](blueprint.png)
-[ex.js](..%2F..%2F..%2F..%2FDownloads%2Ffunctional-light-v3%2Fimpurity%2Fex.js)
-[README.md](..%2F..%2F..%2F..%2FDownloads%2Ffunctional-light-v3%2Fimpurity%2FREADME.md)
+
 ## Develop
 
 ```

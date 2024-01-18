@@ -47,7 +47,10 @@ export const sceneLevelsAtom = atom(get => {
 interface Update {
   levelId: number;
   slotsIds: string[];
+  finished: boolean;
 }
+
+let undoRedoTempActions: UndoRedoAction | null = null;
 
 export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   const mode = get(modeAtom);
@@ -72,6 +75,10 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   });
 
   if (fromSlots.every((slot, index) => slot.tileId === toSlots[index].tileId)) {
+    if (update.finished && undoRedoTempActions) {
+      set(addActionToUndoRedoAtom, undoRedoTempActions);
+      undoRedoTempActions = null;
+    }
     return;
   }
 
@@ -104,12 +111,20 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
     };
   });
 
-  // TODO when action end - special attribute - in progress
-  set(addActionToUndoRedoAtom, {
-    // type: mode,
-    level: update.levelId,
-    slots: undoRedoSlots,
-  });
+  // only add to redoUndo when finished (for mousedown painting)
+  if (update.finished) {
+    undoRedoTempActions = null;
+    set(addActionToUndoRedoAtom, {
+      // type: mode,
+      level: update.levelId,
+      slots: undoRedoSlots,
+    });
+  } else {
+    undoRedoTempActions = {
+      level: update.levelId,
+      slots: {...undoRedoTempActions?.slots, ...undoRedoSlots},
+    };
+  }
 });
 
 // not very helpful because of React key rule

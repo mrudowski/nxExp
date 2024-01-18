@@ -94,8 +94,8 @@ const Level = ({
   const start = boardWidth / 2 - widthHalfFloored;
 
   const handleSlotInteraction = useCallback(
-    (slotId: string) => {
-      setTiles({slotsIds: [slotId], levelId: id});
+    (slotId: string, finished: boolean) => {
+      setTiles({slotsIds: [slotId], levelId: id, finished});
     },
     [setTiles, id]
   );
@@ -103,7 +103,7 @@ const Level = ({
   const handleAxisInteraction = useCallback(
     (axisLabelId: string) => {
       const slotsIds = getSlotsRangeFromAxisLabelId(axisLabelId);
-      setTiles({slotsIds, levelId: id});
+      setTiles({slotsIds, levelId: id, finished: true});
     },
     [setTiles, id]
   );

@@ -17,7 +17,7 @@ interface SlotProps {
   y: number;
   tileScale: number;
   tile: AtlasTile | null;
-  onInteraction: (id: string) => void;
+  onInteraction: (id: string, finished: boolean) => void;
 }
 
 const Slot = ({id, x, y, tile, tileScale, onInteraction}: SlotProps) => {
@@ -43,20 +43,29 @@ const Slot = ({id, x, y, tile, tileScale, onInteraction}: SlotProps) => {
   // };
 
   const handleMouseDown = () => {
-    onInteraction(id);
+    onInteraction(id, false);
   };
 
   const handleMouseEnter: MouseEventHandler<SVGGElement> = e => {
     if (e.buttons) {
-      onInteraction(id);
+      onInteraction(id, false);
     }
+  };
+
+  const handleMouseUp = () => {
+    onInteraction(id, true);
   };
 
   return (
     <div className={styles.slot} style={tileStyleWithXY}>
       {tile ? <Sprite className={styles.sprite} /> : null}
       <svg viewBox={viewBox} className={styles.hotspot}>
-        <g transform={transform} onMouseDown={handleMouseDown} onMouseEnter={handleMouseEnter}>
+        <g
+          transform={transform}
+          onMouseDown={handleMouseDown}
+          onMouseEnter={handleMouseEnter}
+          onMouseUp={handleMouseUp}
+        >
           {/*<path className="faceB" d="M40,80 0,60 40,40 80,60 z" />*/}
           {/*<path className="faceBL" d="M0,20 40,0 40,40 0,60 z" />*/}
           {/*<path className="faceBR" d="M40,0 80,20 80,60 40,40 z" />*/}

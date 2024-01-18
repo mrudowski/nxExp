@@ -22,7 +22,6 @@ const ACTIVE_TILES_SET_LS_KEY = `${LS_KEY_PREFIX}-active-tile-set-id`;
 export const activeTileSetIdAtom = atomWithStorage(ACTIVE_TILES_SET_LS_KEY, '0');
 
 export const tileSetAtom = atom(get => {
-  console.log('%c [mr] tileSetAtom', 'background-color:Gold; color: black');
   return getAtlas(atlas)[Number(get(activeTileSetIdAtom))];
 });
 export const writeActiveTileSetIdAtom = atom(null, (get, set, update: string) => {
@@ -37,7 +36,6 @@ export const writeActiveTileSetIdAtom = atom(null, (get, set, update: string) =>
 export const tileWidthSceneScaledAtom = atom(get => {
   const tileSet = get(tileSetAtom);
   const sceneScale = get(sceneScaleAtom);
-  console.log('%c [mr] tileWidthSceneScaledAtom', 'background-color:Gold; color: black');
   return tileSet.tileWidth * sceneScale;
 });
 export const tileHeightSceneScaledAtom = atom(get => {
@@ -47,7 +45,6 @@ export const tileHeightSceneScaledAtom = atom(get => {
 });
 export const tileWidthPaletteScaledAtom = atom(get => {
   const tileSet = get(tileSetAtom);
-  console.log('%c [mr] tileWidthPaletteScaledAtom', 'background-color:Gold; color: black');
   return tileSet.tileWidth * tileSet.paletteScale;
 });
 export const tileHeightPaletteScaledAtom = atom(get => {

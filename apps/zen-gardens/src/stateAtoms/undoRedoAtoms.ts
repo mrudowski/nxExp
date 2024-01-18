@@ -1,6 +1,3 @@
-// selectedPaletteTilesAtom
-// -----------------------------
-
 import {atom} from 'jotai';
 
 // import {atomWithReset} from 'jotai/utils';
@@ -9,6 +6,14 @@ import {Level, Scene, sceneAtom, Slot} from '@/stateAtoms/sceneAtoms.ts';
 /**
  * Action base undo/redo + diffs
  */
+
+// constants
+// -----------------------------------------
+
+const MAX_STEPS_TO_REMEMBER = 100;
+
+// types
+// -----------------------------------------
 
 interface UndoRedoActionSlot {
   from: Slot;
@@ -24,6 +29,9 @@ export interface UndoRedo {
   redoActions: UndoRedoAction[];
   undoActions: UndoRedoAction[];
 }
+
+// utils
+// -----------------------------------------
 
 const getSlots = (undoRedoSlots: UndoRedoAction['slots'], field: 'from' | 'to'): Level['slots'] => {
   const slots: Level['slots'] = {};
@@ -51,6 +59,16 @@ const setSlots = (newSlots: Record<string, Slot>, levelId: number) => (prevState
   }),
 });
 
+const getMaxSteps = (actions: UndoRedo['undoActions']) => {
+  if (actions.length >= MAX_STEPS_TO_REMEMBER) {
+    return actions.slice(1);
+  }
+  return actions;
+};
+
+// main Atom
+// -----------------------------------------
+
 const undoRedoAtomInitialValue: UndoRedo = {
   redoActions: [],
   undoActions: [],
@@ -58,17 +76,18 @@ const undoRedoAtomInitialValue: UndoRedo = {
 
 export const undoRedoAtom = atom<UndoRedo>(undoRedoAtomInitialValue);
 
+// derived atoms
+// -----------------------------------------
+
 export const addActionToUndoRedoAtom = atom(null, (get, set, newAction: UndoRedoAction) => {
   set(undoRedoAtom, prevState => {
     return {
-      undoActions: [...prevState.undoActions, newAction],
+      undoActions: [...getMaxSteps(prevState.undoActions), newAction],
       // reset redo list on user action
       redoActions: [],
     };
   });
 });
-
-// TODO add loop
 
 export const undoActionAtom = atom(null, (get, set) => {
   const {undoActions} = get(undoRedoAtom);
