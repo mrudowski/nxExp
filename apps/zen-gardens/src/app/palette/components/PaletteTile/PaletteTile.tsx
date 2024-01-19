@@ -39,7 +39,14 @@ const PaletteTile = ({tile}: PaletteTileProps) => {
   const className = clsx(styles.paletteTile, active && styles.active);
 
   const handleClick = () => {
-    setSelectedTile([tile.id]);
+    // TODO add cmd
+    setSelectedTile(prevState => {
+      const index = prevState.indexOf(tile.id);
+      if (index > -1) {
+        return [...prevState.slice(0, index), ...prevState.slice(index + 1)];
+      }
+      return [...prevState, tile.id];
+    });
   };
 
   return (

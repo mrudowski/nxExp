@@ -34,7 +34,6 @@ a tiny isometric block gardens builder (test)
 - ! show/hide ghost/empty slot
 - ! show/hide axis
 - ~~zoom in/out our scene~~
-- add settings with option: layout: full / tiny (pro/cosy)
 
 #### Info (slot/tile info)
 - single selection
@@ -53,24 +52,36 @@ a tiny isometric block gardens builder (test)
 - when switch we switch all tiles - in palette and on canvas
 - full of blocks
 - searchable
-- multi selection (working with filters)
+- ✅ multi selection
+  - working with filters
 - different height of tiles?
 - used counter
 - show/hide not used
 
 #### Scene
-- when we select more then one tile from Palette we randomize them when paint
+- ✅ when we select more then one tile from Palette we randomize them when paint
 - ✅ selectable size
 - when `selection` mode we single select tile and see it's options
-- multilevel in the future
+- multilevel thanks to Layers
 - ✅ undo/redo (in memory, diffs based)
   - ✅ add loop/limits
   - ✅ make undo/redo painting when dragging as single action
 - ✅ by clicking on axis label we can fill/erase whole row
 - ✅ by clicking on axis cross we can fill/erase all
+- add settings with option: layout: full / tiny (pro/cosy)
+
+#### Layers
+- add new
+- add below/above selected (context menu or dropdown)
+- rename
+- select active
+- remove
+- change order (by drag and drop or arrows)
+- toggle visibility
 
 ### Phase III
 - working on mobile (touchEvent)
+- tile/color picker
 - add key shortcuts (undo/redo/b-brush,e,p and so on)
 - ? replace Mantine with https://tailwindui.com/templates/catalyst
 

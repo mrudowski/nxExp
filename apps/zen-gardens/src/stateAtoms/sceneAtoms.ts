@@ -52,6 +52,10 @@ interface Update {
 
 let undoRedoTempActions: UndoRedoAction | null = null;
 
+const getRandomPaletteTile = (paletteTiles: string[]) => {
+  return paletteTiles[Math.floor(Math.random() * paletteTiles.length)];
+};
+
 export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   const mode = get(modeAtom);
   if (mode === 'select') {
@@ -65,7 +69,7 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   const toSlots = fromSlots.map(slot => {
     if (mode === 'paint') {
       return {
-        tileId: selectedPaletteTiles[0],
+        tileId: getRandomPaletteTile(selectedPaletteTiles),
       };
     }
     // erase
