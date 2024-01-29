@@ -52,7 +52,7 @@ const PaletteTile = ({tile}: PaletteTileProps) => {
   return (
     <Tooltip label={tile.name}>
       <UnstyledButton className={className} style={tileStyle} onClick={handleClick}>
-        <Sprite />
+        <Sprite id={tile.id} />
       </UnstyledButton>
     </Tooltip>
   );

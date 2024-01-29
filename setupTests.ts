@@ -38,10 +38,8 @@ afterAll(() => server.close());
 // old way
 // import '@testing-library/jest-dom/extend-expect';
 
-// @ts-ignore
 // import matchers from '@testing-library/jest-dom/matchers';
 // extends Vitest's expect method with methods from react-testing-library
-// @ts-ignore
 // expect.extend(matchers);
 
 // runs a cleanup after each test case (e.g. clearing jsdom)
@@ -70,3 +68,18 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: vi.fn(),
   })),
 });
+
+// for ReferenceError: ResizeObserver is not defined
+class ResizeObserver {
+  observe() {
+    // empty for purpose
+  }
+  unobserve() {
+    // empty for purpose
+  }
+  disconnect() {
+    // empty for purpose
+  }
+}
+/* eslint-disable @typescript-eslint/no-explicit-any */
+(window.ResizeObserver as any) = ResizeObserver;

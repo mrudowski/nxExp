@@ -95,6 +95,8 @@ a tiny isometric block gardens builder (test)
 nx serve zen-gardens
 nx lint zen-gardens
 nx test zen-gardens
+nx test --coverage zen-gardens
+nx test --coverage --force zen-gardens
 nx build zen-gardens
 nx preview zen-gardens
 ```

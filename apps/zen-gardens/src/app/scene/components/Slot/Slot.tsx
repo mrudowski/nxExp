@@ -21,7 +21,7 @@ interface SlotProps {
 }
 
 const Slot = ({id, x, y, tile, tileScale, onInteraction}: SlotProps) => {
-  // TODO should we move it to parent?
+  // TODO should we move it to parent ?
   const tileSet = useAtomValue(tileSetAtom);
   const tileWidthScaled = useAtomValue(tileWidthSceneScaledAtom);
   const tileHeightScaled = useAtomValue(tileHeightSceneScaledAtom);
@@ -57,14 +57,15 @@ const Slot = ({id, x, y, tile, tileScale, onInteraction}: SlotProps) => {
   };
 
   return (
-    <div className={styles.slot} style={tileStyleWithXY}>
-      {tile ? <Sprite className={styles.sprite} /> : null}
+    <div className={styles.slot} style={tileStyleWithXY} aria-label={`slot-${id}`}>
+      {tile ? <Sprite id={tile.id} className={styles.sprite} /> : null}
       <svg viewBox={viewBox} className={styles.hotspot}>
         <g
           transform={transform}
           onMouseDown={handleMouseDown}
           onMouseEnter={handleMouseEnter}
           onMouseUp={handleMouseUp}
+          role="button"
         >
           {/*<path className="faceB" d="M40,80 0,60 40,40 80,60 z" />*/}
           {/*<path className="faceBL" d="M0,20 40,0 40,40 0,60 z" />*/}
