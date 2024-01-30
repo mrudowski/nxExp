@@ -25,7 +25,7 @@ export interface Scene {
   levels: Level[];
 }
 
-const sceneAtomInitialValue: Scene = {
+export const sceneAtomInitialValue: Scene = {
   size: 5,
   levels: [
     {
@@ -64,13 +64,8 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
 
   const scene = get(sceneAtom);
   const fromSlots: Slot[] = update.slotsIds.map(slotId => {
-    console.log('%c [mr] setTiles', 'background-color:Gold; color: black', {
-      'scene.levels': scene.levels,
-      'scene.levels[update.levelId]': scene.levels[update.levelId],
-    });
     return scene.levels[update.levelId].slots[slotId] ?? {tileId: null};
   });
-  console.log('fromSlots', fromSlots, update.slotsIds);
 
   const selectedPaletteTiles = get(selectedPaletteTilesAtom);
   const toSlots = fromSlots.map(slot => {

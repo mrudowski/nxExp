@@ -1,30 +1,26 @@
-import {MantineProvider} from '@mantine/core';
 import {render, screen, within} from '@testing-library/react';
 import {userEvent} from '@testing-library/user-event';
 
+import {AppWrapper} from '@/test/test-utils.tsx';
+
 import App from './App.tsx';
+
+const renderApp = () => {
+  render(<App />, {wrapper: AppWrapper});
+};
 
 describe('App', () => {
   it('should render successfully', async () => {
-    render(
-      <MantineProvider>
-        <App />
-      </MantineProvider>
-    );
+    renderApp();
 
     expect(screen.getByText('Grass')).toBeInTheDocument();
     expect(screen.getByLabelText('sprite-Grass')).toBeInTheDocument();
     expect(screen.getByLabelText('slot-0,0')).toBeInTheDocument();
   });
-});
 
-describe('App', () => {
   it('should paint into empty slot-0,0 Grass and then Sand tile', async () => {
-    render(
-      <MantineProvider>
-        <App />
-      </MantineProvider>
-    );
+    renderApp();
+
     const user = userEvent.setup();
     const slot = screen.getByLabelText('slot-0,0');
     const paletteTileGrass = screen.getByLabelText('sprite-Grass');
@@ -41,5 +37,33 @@ describe('App', () => {
     await user.click(paletteTileSand);
     await user.click(within(slot).getByRole('button'));
     expect(within(slot).getByLabelText('sprite-Sand')).toBeInTheDocument();
+  });
+
+  it('should be able to undo and redo once', async () => {
+    renderApp();
+
+    const user = userEvent.setup();
+    const slot = screen.getByLabelText('slot-0,0');
+    const undo = screen.getByLabelText('Undo');
+    const redo = screen.getByLabelText('Redo');
+
+    expect(within(slot).queryByLabelText('sprite-', {exact: false})).not.toBeInTheDocument();
+    expect(undo).toBeDisabled();
+    expect(redo).toBeDisabled();
+
+    await user.click(within(slot).getByRole('button'));
+    expect(within(slot).getByLabelText('sprite-Grass')).toBeInTheDocument();
+    expect(undo).toBeEnabled();
+    expect(redo).toBeDisabled();
+
+    await user.click(undo);
+    expect(within(slot).queryByLabelText('sprite-', {exact: false})).not.toBeInTheDocument();
+    expect(undo).toBeDisabled();
+    expect(redo).toBeEnabled();
+
+    await user.click(redo);
+    expect(within(slot).getByLabelText('sprite-Grass')).toBeInTheDocument();
+    expect(undo).toBeEnabled();
+    expect(redo).toBeDisabled();
   });
 });

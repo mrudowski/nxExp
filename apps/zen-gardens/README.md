@@ -94,9 +94,13 @@ a tiny isometric block gardens builder (test)
 ```
 nx serve zen-gardens
 nx lint zen-gardens
+
 nx test zen-gardens
 nx test --coverage zen-gardens
 nx test --coverage --force zen-gardens
+nx test --watch --ui zen-gardens | nx run zen-gardens:test --watch --ui
+nx run zen-gardens:test --testFile=src/app/scene/utils.spec.ts --coverage
+
 nx build zen-gardens
 nx preview zen-gardens
 ```
