@@ -8,6 +8,7 @@ import {sceneAtom, sceneAtomInitialValue} from '@/stateAtoms/sceneAtoms.ts';
 
 interface HydrateAtomsProps {
   children: ReactNode;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   initialValues: [any, any][];
 }
 
