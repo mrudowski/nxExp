@@ -104,3 +104,15 @@ nx run zen-gardens:test --testFile=src/app/scene/utils.spec.ts --coverage
 nx build zen-gardens
 nx preview zen-gardens
 ```
+
+## Playwright e2e tests
+
+```
+cd apps/zen-gardens
+
+npx playwright test
+npx playwright test --ui
+npx playwright show-report
+
+ npx playwright codegen http://localhost:4200/ 
+```

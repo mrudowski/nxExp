@@ -64,9 +64,9 @@ const AxisLabel = ({id, x, y, axis, value, tileScale, tilesInRow, onInteraction}
   };
 
   return (
-    <div className={clsx(slotStyles.slot, styles[axis])} style={tileStyleWithXY}>
+    <div className={clsx(slotStyles.slot, styles[axis])} style={tileStyleWithXY} aria-label={`axisLabel-${id}`}>
       <svg viewBox={viewBox} className={slotStyles.hotspot}>
-        <g transform={transform} onClick={handleClick}>
+        <g transform={transform} onClick={handleClick} role="button">
           <path className="faceB" d={pathDef} />
         </g>
       </svg>
