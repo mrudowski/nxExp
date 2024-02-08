@@ -1,6 +1,7 @@
 import {UnstyledButton} from '@mantine/core';
 import clsx from 'clsx';
 import {useAtom, useAtomValue} from 'jotai';
+import {MouseEventHandler} from 'react';
 
 import Sprite from '@/components/Sprite/Sprite.tsx';
 import Tooltip from '@/components/Tooltip/Tooltip.tsx';
@@ -38,14 +39,16 @@ const PaletteTile = ({tile}: PaletteTileProps) => {
 
   const className = clsx(styles.paletteTile, active && styles.active);
 
-  const handleClick = () => {
-    // TODO add cmd
+  const handleClick: MouseEventHandler<HTMLButtonElement> = event => {
     setSelectedTile(prevState => {
-      const index = prevState.indexOf(tile.id);
-      if (index > -1) {
-        return [...prevState.slice(0, index), ...prevState.slice(index + 1)];
+      if (event.metaKey || event.ctrlKey) {
+        const index = prevState.indexOf(tile.id);
+        if (index > -1 && prevState.length > 1) {
+          return [...prevState.slice(0, index), ...prevState.slice(index + 1)];
+        }
+        return [...prevState, tile.id];
       }
-      return [...prevState, tile.id];
+      return [tile.id];
     });
   };
 

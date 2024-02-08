@@ -53,6 +53,7 @@ a tiny isometric block gardens builder (test)
 - full of blocks
 - searchable
 - ✅ multi selection
+  - ✅ with `Command` || `Ctrl` key
   - working with filters
 - different height of tiles?
 - used counter

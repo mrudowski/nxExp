@@ -23,7 +23,6 @@ describe('App', () => {
 
     const user = userEvent.setup();
     const slot = screen.getByLabelText('slot-0,0');
-    const paletteTileGrass = screen.getByLabelText('sprite-Grass');
     const paletteTileSand = screen.getByLabelText('sprite-Sand');
     expect(within(slot).queryByLabelText('sprite-', {exact: false})).not.toBeInTheDocument();
 
@@ -33,7 +32,6 @@ describe('App', () => {
     // expect(t1).toBeInTheDocument();
     expect(within(slot).getByLabelText('sprite-Grass')).toBeInTheDocument();
 
-    await user.click(paletteTileGrass);
     await user.click(paletteTileSand);
     await user.click(within(slot).getByRole('button'));
     expect(within(slot).getByLabelText('sprite-Sand')).toBeInTheDocument();
