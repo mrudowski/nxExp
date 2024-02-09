@@ -18,8 +18,11 @@
   align-items: center;
   min-width: 100%;
   min-height: 100%;
+  // we cannot move relative here and then have scene absolute
+  // because tiny 3x3 * scale 2 scene won't be at the middle
 }
 
 .scene {
   position: relative;
+  //box-shadow: inset 0 0 3px yellow;
 }

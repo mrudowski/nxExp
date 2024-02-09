@@ -1,5 +1,5 @@
 import {useSetAtom} from 'jotai';
-import {Fragment, memo, useCallback, useMemo} from 'react';
+import {CSSProperties, Fragment, memo, useCallback, useMemo} from 'react';
 
 import Slot from '@/app/scene/components/Slot/Slot.tsx';
 import {getSlotsRangeFromAxisLabelId} from '@/app/scene/utils.ts';
@@ -11,6 +11,8 @@ import styles from './styles.module.scss';
 
 interface LevelProps {
   id: number;
+  top: number;
+  // height: number;
   tileSet: AtlasTileSet;
   filledSlots: Scene['levels'][number]['slots'];
   // sceneLevelAtom: Atom<SceneAtom['levels'][number]>;
@@ -77,6 +79,8 @@ const getSlots = (tilesInRow: number): Slot[] => {
 
 const Level = ({
   id,
+  top,
+  // height,
   tileSet,
   tileScale,
   filledSlots,
@@ -92,6 +96,11 @@ const Level = ({
   }, [tilesInRow]);
 
   const start = boardWidth / 2 - widthHalfFloored;
+
+  const levelStyle: CSSProperties = {
+    //height,
+    top,
+  };
 
   const handleSlotInteraction = useCallback(
     (slotId: string, finished: boolean) => {
@@ -109,7 +118,7 @@ const Level = ({
   );
 
   return (
-    <section className={styles.level}>
+    <section className={styles.level} data-id={id} style={levelStyle}>
       {slots.map(slot => {
         const filledSlot = filledSlots[slot.id];
         const tile = filledSlot
