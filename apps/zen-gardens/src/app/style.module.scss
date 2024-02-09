@@ -8,7 +8,7 @@
   grid-template-rows: 1fr minmax(320px, auto) 1fr;
   grid-template-areas:
     '. . . . .'
-    '. palette main info .'
+    '. palette main right .'
     '. . . . .';
 }
 
@@ -18,6 +18,14 @@
   padding: 1.5rem 0;
   gap: 1rem;
   grid-area: main;
+}
+
+.right {
+  grid-area: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 1rem;
 }
 
 .actionsTop {

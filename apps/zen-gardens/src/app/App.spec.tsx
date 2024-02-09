@@ -1,12 +1,13 @@
-import {render, screen, within} from '@testing-library/react';
+import {screen, within} from '@testing-library/react';
 import {userEvent} from '@testing-library/user-event';
 
-import {AppWrapper} from '@/test/test-utils.tsx';
+import {renderWithAppWrapper} from '@/test/test-utils.tsx';
 
 import App from './App.tsx';
 
 const renderApp = () => {
-  render(<App />, {wrapper: AppWrapper});
+  renderWithAppWrapper(<App />);
+  // render(<App />, {wrapper: AppWrapper});
 };
 
 describe('App', () => {

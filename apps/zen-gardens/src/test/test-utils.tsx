@@ -1,7 +1,8 @@
 import {MantineProvider} from '@mantine/core';
+import {render} from '@testing-library/react';
 import {Provider} from 'jotai';
 import {useHydrateAtoms} from 'jotai/utils';
-import {ReactNode} from 'react';
+import {ReactElement, ReactNode} from 'react';
 
 import {selectedPaletteTilesAtom, selectedPaletteTilesInitialValue} from '@/stateAtoms/paletteAtoms.ts';
 import {sceneAtom, sceneAtomInitialValue} from '@/stateAtoms/sceneAtoms.ts';
@@ -50,4 +51,9 @@ export const AppWrapper = ({children}: AppWrapperProps) => {
       </JotaiProvider>
     </MantineProvider>
   );
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const renderWithAppWrapper = (ui: ReactElement) => {
+  render(ui, {wrapper: AppWrapper});
 };

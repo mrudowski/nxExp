@@ -63,7 +63,7 @@ a tiny isometric block gardens builder (test)
 - ✅ when we select more then one tile from Palette we randomize them when paint
 - ✅ selectable size
 - when `selection` mode we single select tile and see it's options
-- multilevel thanks to Layers
+- multilevel thanks to LevelsComposer
 - ✅ undo/redo (in memory, diffs based)
   - ✅ add loop/limits
   - ✅ make undo/redo painting when dragging as single action
@@ -71,10 +71,11 @@ a tiny isometric block gardens builder (test)
 - ✅ by clicking on axis cross we can fill/erase all
 - add settings with option: layout: full / tiny (pro/cosy)
 
-#### Layers
+#### LevelsComposer (aka Layers)
+- list of levels
+- rename
 - add new
 - add below/above selected (context menu or dropdown)
-- rename
 - select active
 - remove
 - change order (by drag and drop or arrows)

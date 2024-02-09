@@ -1,0 +1,23 @@
+@import '@/styles/variables';
+
+.levelsGrid {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  grid-area: palette;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+.scrollWrapper {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.scroll {
+  position: absolute;
+  inset: 0;
+}

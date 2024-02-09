@@ -2,6 +2,7 @@
 // import styles from './app.module.scss';
 
 import UndoRedo from '@/app/actions/components/UndoRedo/UndoRedo.tsx';
+import LevelsGrid from '@/app/levelsGrid/components/LevelsGrid/LevelsGrid.tsx';
 import ColorSchemeSwitch from '@/components/ColorSchemeSwitch/ColorSchemeSwitch.tsx';
 
 import ModeSwitch from './actions/components/ModeSwitch/ModeSwitch';
@@ -31,7 +32,10 @@ export function App() {
           <span>TODO view options</span>
         </div>
       </div>
-      <Info />
+      <aside className={styles.right}>
+        <Info />
+        <LevelsGrid />
+      </aside>
     </div>
   );
 }

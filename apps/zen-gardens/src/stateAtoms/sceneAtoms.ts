@@ -36,8 +36,26 @@ export const sceneAtomInitialValue: Scene = {
 };
 
 export const sceneAtom = atomWithStorage<Scene>(SCENE_LS_KEY, sceneAtomInitialValue);
+
+// TODO move to new file
 export const sceneLevelsAtom = atom(get => {
   return get(sceneAtom).levels;
+});
+
+export const addLevelAfterAtom = atom(null, (get, set, update: {id: number}) => {
+  set(sceneAtom, prevState => {
+    const nextId = Math.max(...prevState.levels.map(level => level.id)) + 1;
+    return {
+      ...prevState,
+      levels: [
+        ...prevState.levels,
+        {
+          id: nextId,
+          slots: {},
+        },
+      ],
+    };
+  });
 });
 
 // export const sceneLevelTileAtom = atom(get => {
