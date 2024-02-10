@@ -120,7 +120,7 @@ const Level = ({
   );
 
   return (
-    <section className={styles.level} data-id={id} style={levelStyle}>
+    <section className={styles.level} data-id={id} data-active={active} style={levelStyle}>
       id: {id} {active && 'active'}
       {slots.map(slot => {
         const filledSlot = filledSlots[slot.id];

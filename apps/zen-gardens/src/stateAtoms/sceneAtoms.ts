@@ -59,7 +59,12 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
 
   const scene = get(sceneAtom);
   const fromSlots: Slot[] = update.slotsIds.map(slotId => {
-    return scene.levels[update.levelId].slots[slotId] ?? {tileId: null};
+    const fromLevel = scene.levels.find(level => level.id === update.levelId);
+    if (!fromLevel) {
+      throw new Error(`Missing level ${update.levelId}`);
+    }
+    return fromLevel.slots[slotId] ?? {tileId: null};
+    //return scene.levels[update.levelId].slots[slotId] ?? {tileId: null};
   });
 
   const selectedPaletteTiles = get(selectedPaletteTilesAtom);
