@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 
 interface LevelProps {
   id: number;
+  active: boolean;
   top: number;
   // height: number;
   tileSet: AtlasTileSet;
@@ -79,6 +80,7 @@ const getSlots = (tilesInRow: number): Slot[] => {
 
 const Level = ({
   id,
+  active,
   top,
   // height,
   tileSet,
@@ -119,6 +121,7 @@ const Level = ({
 
   return (
     <section className={styles.level} data-id={id} style={levelStyle}>
+      id: {id} {active && 'active'}
       {slots.map(slot => {
         const filledSlot = filledSlots[slot.id];
         const tile = filledSlot

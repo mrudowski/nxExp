@@ -22,11 +22,13 @@ export interface Level {
 }
 export interface Scene {
   size: number;
+  activeLevel: number;
   levels: Level[];
 }
 
 export const sceneAtomInitialValue: Scene = {
   size: 5,
+  activeLevel: 0,
   levels: [
     {
       id: 0,
@@ -36,31 +38,6 @@ export const sceneAtomInitialValue: Scene = {
 };
 
 export const sceneAtom = atomWithStorage<Scene>(SCENE_LS_KEY, sceneAtomInitialValue);
-
-// TODO move to new file
-export const sceneLevelsAtom = atom(get => {
-  return get(sceneAtom).levels;
-});
-
-export const addLevelAfterAtom = atom(null, (get, set, update: {id: number}) => {
-  set(sceneAtom, prevState => {
-    const nextId = Math.max(...prevState.levels.map(level => level.id)) + 1;
-    return {
-      ...prevState,
-      levels: [
-        ...prevState.levels,
-        {
-          id: nextId,
-          slots: {},
-        },
-      ],
-    };
-  });
-});
-
-// export const sceneLevelTileAtom = atom(get => {
-//   return get(sceneLevelsAtom)[0];
-// });
 
 interface Update {
   levelId: number;

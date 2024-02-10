@@ -1,8 +1,10 @@
 import {useAtomValue} from 'jotai';
+import {useAtom} from 'jotai/index';
 
 import Level from '@/app/scene/components/Level/Level.tsx';
 import {tileSetAtom} from '@/stateAtoms/paletteAtoms.ts';
-import {sceneLevelsAtom, sceneScaleAtom, sceneSizeAtom} from '@/stateAtoms/sceneAtoms.ts';
+import {sceneScaleAtom, sceneSizeAtom} from '@/stateAtoms/sceneAtoms.ts';
+import {sceneActiveLevelAtom, sceneLevelsAtom} from '@/stateAtoms/sceneLevelsAtom.ts';
 
 import styles from './styles.module.scss';
 
@@ -22,6 +24,7 @@ const Scene = () => {
   const tilesInRow = useAtomValue(sceneSizeAtom);
   // not very helpful because of React key rule
   // const sceneLevelAtoms = useAtomValue(sceneLevelAtomsAtom);
+  const [activeLevelId] = useAtom(sceneActiveLevelAtom);
   const sceneLevels = useAtomValue(sceneLevelsAtom);
 
   const numberOfAdditionalLevels = sceneLevels.length - 1;
@@ -43,6 +46,7 @@ const Scene = () => {
           {sceneLevels.map((sceneLevel, index) => (
             <Level
               id={sceneLevel.id}
+              active={activeLevelId === sceneLevel.id}
               key={sceneLevel.id}
               top={(numberOfAdditionalLevels - index) * levelHeight}
               // height={sceneStyle.height}
