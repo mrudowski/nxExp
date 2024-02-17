@@ -69,17 +69,21 @@ a tiny isometric block gardens builder (test)
   - ✅ make undo/redo painting when dragging as single action
 - ✅ by clicking on axis label we can fill/erase whole row
 - ✅ by clicking on axis cross we can fill/erase all
-- add settings with option: layout: full / tiny (pro/cosy)
+- add settings with option: layout: full / tiny (pro/cosy mode)
 
 #### LevelsComposer (aka Layers)
-- list of levels
+- in TDD workflow
+- with ARIA support
+- ✅ list of levels
+  - beautiful styled
 - rename
-- add new
-- add below/above selected (context menu or dropdown)
-- select active
-- remove
+- add ~~below~~/above selected ~~(context menu or dropdown)~~
+- ✅ select active
+- ✅ remove
+  - with confirmation
 - change order (by drag and drop or arrows)
 - toggle visibility
+- show only me
 
 ### Phase III
 - working on mobile (touchEvent)

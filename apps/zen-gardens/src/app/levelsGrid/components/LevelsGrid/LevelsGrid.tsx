@@ -1,6 +1,7 @@
 import {Paper, ScrollArea} from '@mantine/core';
 import {useAtom, useAtomValue, useSetAtom} from 'jotai';
 
+import LevelRow from '@/app/levelsGrid/components/LevelRow/LevelRow.tsx';
 import {addLevelAtom, removeLevelAtom, sceneActiveLevelAtom, sceneLevelsAtom} from '@/stateAtoms/sceneLevelsAtom.ts';
 
 import styles from './styles.module.scss';
@@ -11,11 +12,14 @@ const LevelsGrid = () => {
   const addLevel = useSetAtom(addLevelAtom);
   const removeLevel = useSetAtom(removeLevelAtom);
 
-  const clickHandler2 = (id: number) => {
+  const handleActivate = (id: number) => {
     setActiveLevelId({id});
   };
 
-  const remove = (id: number) => {
+  const handleAdd = (id: number) => {
+    addLevel({id, pos: 'after'});
+  };
+  const handleRemove = (id: number) => {
     removeLevel({id});
   };
 
@@ -27,34 +31,14 @@ const LevelsGrid = () => {
           <div role="grid" aria-label="LevelsGrid">
             {[...levels].reverse().map(level => {
               return (
-                <div
+                <LevelRow
                   key={level.id}
-                  role="row"
-                  aria-label={`level-${level.id}`}
-                  onClick={() => {
-                    clickHandler2(level.id);
-                  }}
-                >
-                  level {level.id} {activeLevelId}
-                  {activeLevelId === level.id ? <>(x)</> : <>( )</>}
-                  <button
-                    onClick={e => {
-                      addLevel({id: level.id, pos: 'after'});
-                      e.stopPropagation();
-                    }}
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={e => {
-                      remove(level.id);
-                      e.stopPropagation();
-                    }}
-                  >
-                    x
-                  </button>
-                  {/*return <PaletteTile key={tile.id} tile={tile} />;*/}
-                </div>
+                  id={level.id}
+                  active={activeLevelId === level.id}
+                  onActivate={handleActivate}
+                  onAdd={handleAdd}
+                  onRemove={handleRemove}
+                />
               );
             })}
           </div>
