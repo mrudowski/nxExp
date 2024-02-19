@@ -1,3 +1,6 @@
+import {useSortable} from '@dnd-kit/sortable';
+import {CSS} from '@dnd-kit/utilities';
+
 import styles from './styles.module.scss';
 
 interface LevelRowProps {
@@ -9,6 +12,13 @@ interface LevelRowProps {
 }
 
 const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
+  const {attributes, listeners, setNodeRef, transform, transition} = useSortable({id});
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   return (
     <div
       key={id}
@@ -19,7 +29,12 @@ const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
         onActivate(id);
       }}
       className={styles.levelRow}
+      ref={setNodeRef}
+      style={style}
     >
+      <button {...listeners} {...attributes}>
+        ::
+      </button>
       level {id}
       {active ? <>(x)</> : <>( )</>}
       <button

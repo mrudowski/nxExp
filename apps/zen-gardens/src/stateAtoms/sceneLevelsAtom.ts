@@ -1,3 +1,4 @@
+import {arrayMove} from '@dnd-kit/sortable';
 import {atom} from 'jotai';
 
 import {Scene, sceneAtom} from '@/stateAtoms/sceneAtoms.ts';
@@ -71,4 +72,20 @@ export const removeLevelAtom = atom(null, (get, set, update: {id: number}) => {
       };
     });
   }
+});
+
+// move / reorder
+// -----------------------
+
+export const moveLevelAtom = atom(null, (get, set, update: {fromId: number; toId: number}) => {
+  set(sceneAtom, (prevState): Scene => {
+    const fromIndex = prevState.levels.findIndex(level => level.id === update.fromId);
+    const toIndex = prevState.levels.findIndex(level => level.id === update.toId);
+    const levels = arrayMove(prevState.levels, fromIndex, toIndex);
+
+    return {
+      ...prevState,
+      levels,
+    };
+  });
 });
