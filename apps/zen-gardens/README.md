@@ -81,7 +81,7 @@ a tiny isometric block gardens builder (test)
 - ✅ select active
 - ✅ remove
   - with confirmation
-- change order (by drag and drop or arrows)
+- ✅ change order (by drag and drop thanks to `dnd-kit` ~~or arrows~~)
 - toggle visibility
 - show only me
 
