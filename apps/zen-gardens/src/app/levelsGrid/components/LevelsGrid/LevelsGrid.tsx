@@ -37,14 +37,14 @@ const LevelsGrid = () => {
     })
   );
 
-  const handleActivate = (id: number) => {
+  const handleActivate = (id: string) => {
     setActiveLevelId({id});
   };
 
-  const handleAdd = (id: number) => {
+  const handleAdd = (id: string) => {
     addLevel({id, pos: 'after'});
   };
-  const handleRemove = (id: number) => {
+  const handleRemove = (id: string) => {
     removeLevel({id});
   };
 
@@ -52,7 +52,7 @@ const LevelsGrid = () => {
     const {active, over} = event;
 
     if (over && active.id !== over.id) {
-      moveLevel({fromId: Number(active.id), toId: Number(over.id)});
+      moveLevel({fromId: active.id as string, toId: over.id as string});
     }
   };
 

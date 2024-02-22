@@ -16,22 +16,22 @@ export interface Slot {
   tileId: string | null;
 }
 export interface Level {
-  id: number;
+  id: string;
   // position: if order in array would be a problem
   slots: Record<string, Slot>;
 }
 export interface Scene {
   size: number;
-  activeLevel: number;
+  activeLevel: string;
   levels: Level[];
 }
 
 export const sceneAtomInitialValue: Scene = {
   size: 5,
-  activeLevel: 0,
+  activeLevel: '0',
   levels: [
     {
-      id: 0,
+      id: '0',
       slots: {},
     },
   ],
@@ -40,7 +40,7 @@ export const sceneAtomInitialValue: Scene = {
 export const sceneAtom = atomWithStorage<Scene>(SCENE_LS_KEY, sceneAtomInitialValue);
 
 interface Update {
-  levelId: number;
+  levelId: string;
   slotsIds: string[];
   finished: boolean;
 }

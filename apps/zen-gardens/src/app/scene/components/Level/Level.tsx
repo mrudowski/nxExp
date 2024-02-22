@@ -10,7 +10,7 @@ import AxisLabel from '../AxisLabel/AxisLabel';
 import styles from './styles.module.scss';
 
 interface LevelProps {
-  id: number;
+  id: string;
   active: boolean;
   top: number;
   // height: number;

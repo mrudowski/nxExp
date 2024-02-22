@@ -22,7 +22,7 @@ interface UndoRedoActionSlot {
 
 export interface UndoRedoAction {
   // type: 'paint' | 'erase';
-  level: number;
+  level: string;
   slots: Record<string, UndoRedoActionSlot>;
 }
 export interface UndoRedo {
@@ -43,7 +43,7 @@ const getSlots = (undoRedoSlots: UndoRedoAction['slots'], field: 'from' | 'to'):
   return slots;
 };
 
-const setSlots = (newSlots: Record<string, Slot>, levelId: number) => (prevState: Scene) => ({
+const setSlots = (newSlots: Record<string, Slot>, levelId: string) => (prevState: Scene) => ({
   ...prevState,
   levels: prevState.levels.map(lvl => {
     if (lvl.id === levelId) {

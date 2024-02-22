@@ -15,7 +15,7 @@ export const sceneActiveLevelAtom = atom(
   get => {
     return get(sceneAtom).activeLevel;
   },
-  (get, set, update: {id: number}) => {
+  (get, set, update: {id: string}) => {
     set(sceneAtom, (prevState): Scene => {
       return {
         ...prevState,
@@ -27,11 +27,11 @@ export const sceneActiveLevelAtom = atom(
 
 // add
 // -----------------------
-export const addLevelAtom = atom(null, (get, set, update: {id: number; pos: 'after' | 'before'}) => {
+export const addLevelAtom = atom(null, (get, set, update: {id: string; pos: 'after' | 'before'}) => {
   set(sceneAtom, prevState => {
     const _index = prevState.levels.findIndex(level => level.id === update.id);
     const index = update.pos === 'after' ? _index + 1 : _index;
-    const nextId = Math.max(...prevState.levels.map(level => level.id)) + 1;
+    const nextId = (Math.max(...prevState.levels.map(level => Number(level.id))) + 1).toString();
     return {
       ...prevState,
       levels: [
@@ -52,12 +52,12 @@ export const addLevelAtom = atom(null, (get, set, update: {id: number; pos: 'aft
 /**
  * strategy: get first bellow level if we can
  */
-const getNextActiveLevelAfterRemoveIt = (id: number, levels: Scene['levels']): number => {
+const getNextActiveLevelAfterRemoveIt = (id: string, levels: Scene['levels']): string => {
   const indexToBeRemoved = levels.findIndex(level => level.id === id);
   return indexToBeRemoved === 0 ? levels[1].id : levels[indexToBeRemoved - 1].id;
 };
 
-export const removeLevelAtom = atom(null, (get, set, update: {id: number}) => {
+export const removeLevelAtom = atom(null, (get, set, update: {id: string}) => {
   if (get(sceneAtom).levels.length > 1) {
     set(sceneAtom, (prevState): Scene => {
       const activeLevel =
@@ -77,7 +77,7 @@ export const removeLevelAtom = atom(null, (get, set, update: {id: number}) => {
 // move / reorder
 // -----------------------
 
-export const moveLevelAtom = atom(null, (get, set, update: {fromId: number; toId: number}) => {
+export const moveLevelAtom = atom(null, (get, set, update: {fromId: string; toId: string}) => {
   set(sceneAtom, (prevState): Scene => {
     const fromIndex = prevState.levels.findIndex(level => level.id === update.fromId);
     const toIndex = prevState.levels.findIndex(level => level.id === update.toId);

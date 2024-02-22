@@ -10,11 +10,11 @@ import ActionBtn from './ActionBtn.tsx';
 import styles from './styles.module.scss';
 
 interface LevelRowProps {
-  id: number;
+  id: string;
   active: boolean;
-  onActivate: (id: number) => void;
-  onAdd: (id: number) => void;
-  onRemove: (id: number) => void;
+  onActivate: (id: string) => void;
+  onAdd: (id: string) => void;
+  onRemove: (id: string) => void;
 }
 
 const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
