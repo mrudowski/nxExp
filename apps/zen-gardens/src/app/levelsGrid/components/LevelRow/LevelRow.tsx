@@ -1,6 +1,12 @@
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
+import {ActionIcon} from '@mantine/core';
+import {IconGripVertical} from '@tabler/icons-react';
+import {MouseEventHandler} from 'react';
 
+import useColor from '@/app/actions/hooks/useColor.ts';
+
+import ActionBtn from './ActionBtn.tsx';
 import styles from './styles.module.scss';
 
 interface LevelRowProps {
@@ -19,6 +25,20 @@ const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
     transition,
   };
 
+  const handlerToggleVisibility = () => {
+    console.log('TODO');
+  };
+  const handleAdd: MouseEventHandler<HTMLButtonElement> = e => {
+    onAdd(id);
+    e.stopPropagation();
+  };
+  const handlerRemove: MouseEventHandler<HTMLButtonElement> = e => {
+    onRemove(id);
+    e.stopPropagation();
+  };
+
+  const color = useColor({active: false});
+
   return (
     <div
       key={id}
@@ -32,27 +52,22 @@ const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
       ref={setNodeRef}
       style={style}
     >
-      <button {...listeners} {...attributes}>
-        ::
-      </button>
-      level {id}
-      {active ? <>(x)</> : <>( )</>}
-      <button
-        onClick={e => {
-          onAdd(id);
-          e.stopPropagation();
-        }}
+      <ActionIcon
+        variant="transparent"
+        radius="lg"
+        size="sm"
+        {...listeners}
+        {...attributes}
+        className={styles.dragHandler}
       >
-        +
-      </button>
-      <button
-        onClick={e => {
-          onRemove(id);
-          e.stopPropagation();
-        }}
-      >
-        x
-      </button>
+        <IconGripVertical size={18} color={color} stroke={1} />
+      </ActionIcon>
+      <label>level {id}</label>
+      <ActionIcon.Group className={styles.actions}>
+        <ActionBtn label="" id="toggleVisibility" onClick={handlerToggleVisibility} />
+        <ActionBtn label="" id="add" onClick={handleAdd} />
+        <ActionBtn label="" id="remove" onClick={handlerRemove} />
+      </ActionIcon.Group>
     </div>
   );
 };
