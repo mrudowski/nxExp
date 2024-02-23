@@ -1,32 +1,35 @@
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import {ActionIcon} from '@mantine/core';
-import {IconGripVertical} from '@tabler/icons-react';
 import {MouseEventHandler} from 'react';
 
-import useColor from '@/app/actions/hooks/useColor.ts';
+import DragHandler from '@/app/levelsGrid/components/LevelRow/DragHandler.tsx';
+import ToggleVisibilityBtn from '@/app/levelsGrid/components/LevelRow/ToggleVisibilityBtn.tsx';
 
 import ActionBtn from './ActionBtn.tsx';
 import styles from './styles.module.scss';
 
 interface LevelRowProps {
   id: string;
+  visible: boolean;
   active: boolean;
   onActivate: (id: string) => void;
   onAdd: (id: string) => void;
   onRemove: (id: string) => void;
+  onToggleVisibility: (id: string) => void;
 }
 
-const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
-  const {attributes, listeners, setNodeRef, transform, transition} = useSortable({id});
+const LevelRow = ({id, visible, active, onActivate, onAdd, onRemove, onToggleVisibility}: LevelRowProps) => {
+  const {setNodeRef, transform, transition} = useSortable({id});
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
 
-  const handlerToggleVisibility = () => {
-    console.log('TODO');
+  const handleToggleVisibility: MouseEventHandler<HTMLButtonElement> = e => {
+    onToggleVisibility(id);
+    e.stopPropagation();
   };
   const handleAdd: MouseEventHandler<HTMLButtonElement> = e => {
     onAdd(id);
@@ -36,8 +39,6 @@ const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
     onRemove(id);
     e.stopPropagation();
   };
-
-  const color = useColor({active: false});
 
   return (
     <div
@@ -52,21 +53,12 @@ const LevelRow = ({id, active, onActivate, onAdd, onRemove}: LevelRowProps) => {
       ref={setNodeRef}
       style={style}
     >
-      <ActionIcon
-        variant="transparent"
-        radius="lg"
-        size="sm"
-        {...listeners}
-        {...attributes}
-        className={styles.dragHandler}
-      >
-        <IconGripVertical size={18} color={color} stroke={1} />
-      </ActionIcon>
+      <DragHandler id={id} />
+      <ToggleVisibilityBtn visible={visible} onClick={handleToggleVisibility} />
       <label>level {id}</label>
       <ActionIcon.Group className={styles.actions}>
-        <ActionBtn label="" id="toggleVisibility" onClick={handlerToggleVisibility} />
-        <ActionBtn label="" id="add" onClick={handleAdd} />
-        <ActionBtn label="" id="remove" onClick={handlerRemove} />
+        <ActionBtn label="Add new layer above it" id="add" onClick={handleAdd} />
+        <ActionBtn label="Remove this layer" id="remove" onClick={handlerRemove} />
       </ActionIcon.Group>
     </div>
   );

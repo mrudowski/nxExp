@@ -13,11 +13,11 @@ interface ModeSwitchBtnProps {
   id: Mode;
 }
 
-const IconSet: Record<Mode, ReactNode> = {
+const ICON_SET: Record<Mode, ReactNode> = {
   paint: <IconBrush size={22} />,
   erase: <IconEraser size={22} />,
   select: <IconPointer size={22} />,
-};
+} as const;
 
 /**
  * This approach:
@@ -53,7 +53,7 @@ const ModeSwitchBtn = ({label, id}: ModeSwitchBtnProps) => {
           setMode(id);
         }}
       >
-        {IconSet[id]}
+        {ICON_SET[id]}
       </ActionIcon>
     </Tooltip>
   );

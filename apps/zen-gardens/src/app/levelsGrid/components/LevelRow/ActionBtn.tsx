@@ -1,5 +1,5 @@
 import {ActionIcon} from '@mantine/core';
-import {IconArrowBackUp, IconArrowForwardUp} from '@tabler/icons-react';
+import {IconArrowBackUp, IconArrowForwardUp, IconEye, IconEyeOff} from '@tabler/icons-react';
 import {MouseEventHandler, ReactNode} from 'react';
 
 import useColor from '@/app/actions/hooks/useColor.ts';
@@ -7,16 +7,17 @@ import Tooltip from '@/components/Tooltip/Tooltip';
 
 interface ActionBtnProps {
   label: string;
-  id: 'toggleVisibility' | 'add' | 'remove';
+  id: 'show' | 'hide' | 'add' | 'remove';
   disabled?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const IconSet: Record<ActionBtnProps['id'], ReactNode> = {
-  toggleVisibility: <IconArrowBackUp size={22} />,
+const ICON_SET: Record<ActionBtnProps['id'], ReactNode> = {
+  show: <IconEye size={18} />,
+  hide: <IconEyeOff size={18} />,
   add: <IconArrowBackUp size={22} />,
   remove: <IconArrowForwardUp size={22} />,
-};
+} as const;
 
 const ActionBtn = ({label, id, disabled, onClick}: ActionBtnProps) => {
   const color = useColor({active: false});
@@ -32,7 +33,7 @@ const ActionBtn = ({label, id, disabled, onClick}: ActionBtnProps) => {
         disabled={disabled}
         onClick={onClick}
       >
-        {IconSet[id]}
+        {ICON_SET[id]}
       </ActionIcon>
     </Tooltip>
   );

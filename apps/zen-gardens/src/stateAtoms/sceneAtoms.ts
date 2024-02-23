@@ -17,6 +17,7 @@ export interface Slot {
 }
 export interface Level {
   id: string;
+  visible: boolean;
   // position: if order in array would be a problem
   slots: Record<string, Slot>;
 }
@@ -32,12 +33,21 @@ export const sceneAtomInitialValue: Scene = {
   levels: [
     {
       id: '0',
+      visible: true,
       slots: {},
     },
   ],
 };
 
-export const sceneAtom = atomWithStorage<Scene>(SCENE_LS_KEY, sceneAtomInitialValue);
+/**
+ * Hydrating from Local Storage on First Render
+ * https://github.com/pmndrs/jotai/discussions/1737
+ *
+ * `getOnInit` (optional, by default false): A boolean value indicating whether to get item from storage on initialization.
+ * Note that in an SPA with getOnInit either not set or false you will always get the initial value instead of the stored
+ * value on initialization. If the stored value is preferred set getOnInit to true.
+ */
+export const sceneAtom = atomWithStorage<Scene>(SCENE_LS_KEY, sceneAtomInitialValue, undefined, {getOnInit: true});
 
 interface Update {
   levelId: string;

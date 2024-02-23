@@ -14,10 +14,10 @@ interface UndoRedoBtnProps {
   onClick: () => void;
 }
 
-const IconSet: Record<UndoRedoBtnProps['id'], ReactNode> = {
+const ICON_SET: Record<UndoRedoBtnProps['id'], ReactNode> = {
   undo: <IconArrowBackUp size={22} />,
   redo: <IconArrowForwardUp size={22} />,
-};
+} as const;
 
 const UndoRedoBtn = ({label, id, disabled, onClick}: UndoRedoBtnProps) => {
   const color = useColor({active: false});
@@ -35,7 +35,7 @@ const UndoRedoBtn = ({label, id, disabled, onClick}: UndoRedoBtnProps) => {
           onClick();
         }}
       >
-        {IconSet[id]}
+        {ICON_SET[id]}
       </ActionIcon>
     </Tooltip>
   );

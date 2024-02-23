@@ -6,6 +6,20 @@
   padding: 0.25rem 0 0.25rem 8px;
   cursor: pointer;
 
+  @include lightMode {
+    --hoverBg: hsl(0 0 0 / 0.05);
+    --dragActiveBg: hsl(0 0 0 / 0.1);
+  }
+
+  @include darkMode {
+    --hoverBg: hsl(0, 100%, 100%, 0.1);
+    --dragActiveBg: hsl(0, 100%, 100%, 0.2);
+  }
+
+  &:hover {
+    background-color: var(--hoverBg);
+  }
+
   &[aria-selected='true'] {
     box-shadow: inset 4px 0 0 0 $zen-color-primary;
   }
@@ -16,7 +30,7 @@
   }
 
   &:has(.dragHandler:active) {
-    background-color: dimgrey;
+    background-color: var(--dragActiveBg);
     position: relative;
     z-index: 1;
   }
@@ -27,6 +41,7 @@
 
 .dragHandler {
   cursor: grab;
+  margin-right: -4px;
 
   &:active {
     cursor: grabbing;

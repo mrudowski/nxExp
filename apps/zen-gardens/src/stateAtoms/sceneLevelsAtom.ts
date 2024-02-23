@@ -25,6 +25,26 @@ export const sceneActiveLevelAtom = atom(
   }
 );
 
+// toggle visibility
+// -----------------------
+
+export const toggleLevelVisibilityAtom = atom(null, (get, set, update: {id: string}) => {
+  set(sceneAtom, (prevState): Scene => {
+    return {
+      ...prevState,
+      levels: prevState.levels.map(level => {
+        if (level.id === update.id) {
+          return {
+            ...level,
+            visible: !level.visible,
+          };
+        }
+        return level;
+      }),
+    };
+  });
+});
+
 // add
 // -----------------------
 export const addLevelAtom = atom(null, (get, set, update: {id: string; pos: 'after' | 'before'}) => {
@@ -38,6 +58,7 @@ export const addLevelAtom = atom(null, (get, set, update: {id: string; pos: 'aft
         ...prevState.levels.slice(0, index),
         {
           id: nextId,
+          visible: true,
           slots: {},
         },
         ...prevState.levels.slice(index),

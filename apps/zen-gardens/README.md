@@ -83,7 +83,7 @@ a tiny isometric block gardens builder (test)
   - with confirmation
 - ✅ change order (by drag and drop thanks to `dnd-kit` ~~or arrows~~)
 - toggle visibility
-- show only me
+- show only me (show/hide all other layers)
 
 ### Phase III
 - working on mobile (touchEvent)

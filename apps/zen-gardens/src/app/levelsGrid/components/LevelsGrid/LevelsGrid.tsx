@@ -19,6 +19,7 @@ import {
   removeLevelAtom,
   sceneActiveLevelAtom,
   sceneLevelsAtom,
+  toggleLevelVisibilityAtom,
 } from '@/stateAtoms/sceneLevelsAtom.ts';
 
 import styles from './styles.module.scss';
@@ -29,6 +30,7 @@ const LevelsGrid = () => {
   const addLevel = useSetAtom(addLevelAtom);
   const removeLevel = useSetAtom(removeLevelAtom);
   const moveLevel = useSetAtom(moveLevelAtom);
+  const toggleLevelVisibility = useSetAtom(toggleLevelVisibilityAtom);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -40,12 +42,14 @@ const LevelsGrid = () => {
   const handleActivate = (id: string) => {
     setActiveLevelId({id});
   };
-
   const handleAdd = (id: string) => {
     addLevel({id, pos: 'after'});
   };
   const handleRemove = (id: string) => {
     removeLevel({id});
+  };
+  const handleToggleVisibility = (id: string) => {
+    toggleLevelVisibility({id});
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -77,9 +81,11 @@ const LevelsGrid = () => {
                       key={level.id}
                       id={level.id}
                       active={activeLevelId === level.id}
+                      visible={level.visible}
                       onActivate={handleActivate}
                       onAdd={handleAdd}
                       onRemove={handleRemove}
+                      onToggleVisibility={handleToggleVisibility}
                     />
                   );
                 })}
