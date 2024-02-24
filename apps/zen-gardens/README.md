@@ -75,12 +75,12 @@ a tiny isometric block gardens builder (test)
 - in TDD workflow
 - with ARIA support
 - ✅ list of levels
-  - beautiful styled
+  - ✅ beautiful styled
 - rename
-- add ~~below~~/above selected ~~(context menu or dropdown)~~
+- ✅ add ~~below~~/above selected ~~(context menu or dropdown)~~
 - ✅ select active
 - ✅ remove
-  - with confirmation
+  - ✅ with confirmation
 - ✅ change order (by drag and drop thanks to `dnd-kit` ~~or arrows~~)
 - toggle visibility
 - show only me (show/hide all other layers)

@@ -1,7 +1,7 @@
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
-import {ActionIcon} from '@mantine/core';
-import {MouseEventHandler} from 'react';
+import {ActionIcon, Menu} from '@mantine/core';
+import React, {MouseEventHandler} from 'react';
 
 import DragHandler from '@/app/levelsGrid/components/LevelRow/DragHandler.tsx';
 import ToggleVisibilityBtn from '@/app/levelsGrid/components/LevelRow/ToggleVisibilityBtn.tsx';
@@ -29,15 +29,15 @@ const LevelRow = ({id, visible, active, onActivate, onAdd, onRemove, onToggleVis
 
   const handleToggleVisibility: MouseEventHandler<HTMLButtonElement> = e => {
     onToggleVisibility(id);
-    e.stopPropagation();
+    stopPropagation(e);
   };
   const handleAdd: MouseEventHandler<HTMLButtonElement> = e => {
     onAdd(id);
-    e.stopPropagation();
+    stopPropagation(e);
   };
   const handlerRemove: MouseEventHandler<HTMLButtonElement> = e => {
     onRemove(id);
-    e.stopPropagation();
+    stopPropagation(e);
   };
 
   return (
@@ -57,11 +57,26 @@ const LevelRow = ({id, visible, active, onActivate, onAdd, onRemove, onToggleVis
       <ToggleVisibilityBtn visible={visible} onClick={handleToggleVisibility} />
       <label>level {id}</label>
       <ActionIcon.Group className={styles.actions}>
-        <ActionBtn label="Add new layer above it" id="add" onClick={handleAdd} />
-        <ActionBtn label="Remove this layer" id="remove" onClick={handlerRemove} />
+        <ActionBtn label="Add new layer above it" icon="add" onClick={handleAdd} />
+        <Menu withArrow offset={0} arrowSize={8} width={240}>
+          <Menu.Target>
+            {/* Cannot use `id` prop because `Menu` use it too */}
+            <ActionBtn label="Remove this layer" icon="remove" onClick={stopPropagation} />
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Label>Are you sure you want to remove this layer?</Menu.Label>
+            <Menu.Item color="red" onClick={handlerRemove}>
+              Yes, remove this layer
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
       </ActionIcon.Group>
     </div>
   );
 };
 
 export default LevelRow;
+
+function stopPropagation(e: React.MouseEvent<HTMLButtonElement>) {
+  e.stopPropagation();
+}
