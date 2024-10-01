@@ -1,8 +1,10 @@
 /// <reference types='vitest' />
-import path from 'path';
+import * as path from 'path'
 import {defineConfig} from 'vite';
 
-import {defineConfigMethod} from '../../vite.config.base.ts';
+// https://github.com/nrwl/nx/issues/21598#issuecomment-2210652927
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import {defineConfigMethod} from '../../vite.config.base';
 
 const appPath = path.resolve(__dirname);
 export default defineConfig(defineConfigMethod(appPath));

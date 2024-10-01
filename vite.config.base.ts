@@ -87,13 +87,14 @@ export const defineConfigMethod =
       // sassOptions: {
       //   includePaths: [path.join(__dirname, 'libs')],
       // },
-      // vite - not needed?
-      // css: {
-      //   preprocessorOptions: {
-      //     scss: {
-      //       includePaths: [path.join(__dirname, 'libs')],
-      //     },
-      //   },
-      // },
+      css: {
+        preprocessorOptions: {
+          scss: {
+            api: 'modern-compiler', // or 'modern'
+            // not needed?
+            // includePaths: [path.join(__dirname, 'libs')],
+          },
+        },
+      },
     };
   };

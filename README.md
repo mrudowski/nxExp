@@ -33,6 +33,14 @@ a tiny isometric block gardens builder
 
 - - -
 
+## Install and update nx
+
+```
+npx nx migrate latest
+```
+- Make sure package.json changes make sense and then run `yarn`,
+- Run `yarn nx migrate --run-migrations`
+
 ## Start the app in dev mode
 
 To start the development server run 

@@ -12,8 +12,8 @@ export default defineConfig({
   //  plugins: [ nxViteTsPaths() ],
   // },
 
-  // @ts-ignore
   test: {
+    reporters: ['default'],
     globals: true,
     cache: {dir: '../../node_modules/.vitest'},
     environment: 'jsdom',
