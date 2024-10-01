@@ -78,7 +78,7 @@ export const sceneLevelTileAtom = atom(null, (get, set, update: Update) => {
   });
 
   const selectedPaletteTiles = get(selectedPaletteTilesAtom);
-  const toSlots = fromSlots.map(slot => {
+  const toSlots = fromSlots.map(() => {
     if (mode === 'paint') {
       return {
         tileId: getRandomPaletteTile(selectedPaletteTiles),

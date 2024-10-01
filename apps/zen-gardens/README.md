@@ -113,6 +113,12 @@ nx preview zen-gardens
 
 ## Playwright e2e tests
 
+install / update
+```
+npx playwright install --with-deps
+```
+
+run
 ```
 cd apps/zen-gardens
 
