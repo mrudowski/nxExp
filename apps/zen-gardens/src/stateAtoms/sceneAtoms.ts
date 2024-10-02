@@ -8,7 +8,7 @@ import {modeAtom} from '@/stateAtoms/modeAtoms.ts';
 import {selectedPaletteTilesAtom} from '@/stateAtoms/paletteAtoms.ts';
 import {addActionToUndoRedoAtom, UndoRedoAction} from '@/stateAtoms/undoRedoAtoms.ts';
 
-import {LS_KEY_PREFIX} from '../../constants.ts';
+import {LS_KEY_PREFIX} from '../constants.ts';
 
 const SCENE_LS_KEY = `${LS_KEY_PREFIX}-scene`;
 

@@ -1,6 +1,6 @@
 import {createTheme, localStorageColorSchemeManager, rem} from '@mantine/core';
 
-import {LS_KEY_PREFIX} from '../../constants.ts';
+import {LS_KEY_PREFIX} from '../constants.ts';
 
 export const theme = createTheme({
   fontFamily: 'Lato, sans-serif',

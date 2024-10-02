@@ -5,7 +5,7 @@ import {atlas} from '@/data/atlas.ts';
 import {getAtlas} from '@/data/getAtlas.ts';
 import {sceneScaleAtom} from '@/stateAtoms/sceneAtoms.ts';
 
-import {LS_KEY_PREFIX} from '../../constants.ts';
+import {LS_KEY_PREFIX} from '../constants.ts';
 
 const SELECTED_PALETTE_TILES_LS_KEY = `${LS_KEY_PREFIX}-selected-palette-tiles`;
 
