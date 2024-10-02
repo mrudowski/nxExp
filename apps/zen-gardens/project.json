@@ -39,6 +39,7 @@
       }
     },
     "preview": {
+      "dependsOn": ["build"],
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
@@ -51,8 +52,7 @@
         "production": {
           "buildTarget": "zen-gardens:build:production"
         }
-      },
-      "dependsOn": ["build"]
+      }
     },
     "test": {
       "executor": "@nx/vite:test",
@@ -64,6 +64,14 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "zen-gardens:build",
+        "spa": true
+      }
     }
   }
 }

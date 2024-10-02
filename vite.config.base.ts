@@ -1,10 +1,11 @@
 /// <reference types='vitest' />
-// import {checker} from 'vite-plugin-checker';
-import {checker} from '@hyoban/vite-plugin-checker';
+import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
 import {nxViteTsPaths} from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react-swc';
 //import * as path from 'path';
 import {loadEnv, UserConfigFn} from 'vite';
+import {checker} from 'vite-plugin-checker';
+// import {checker} from '@hyoban/vite-plugin-checker';
 
 // add eslint when dev!
 
@@ -18,11 +19,16 @@ export const defineConfigMethod =
     const appName = appPath.split('/').at(-1);
 
     return {
-      cacheDir: `../../node_modules/.vite/${appName}`,
+      cacheDir: `../../node_modules/.vite/apps/${appName}`,
 
       server: {
         port: 4200,
         host: 'localhost',
+        // have to for setupTests to work
+        // https://github.com/nrwl/nx/issues/21259#issuecomment-2121841354
+        fs: {
+          allow: ["../../setupTests.ts"],
+        }
       },
 
       preview: {
@@ -33,6 +39,7 @@ export const defineConfigMethod =
       plugins: [
         react(),
         nxViteTsPaths(),
+        nxCopyAssetsPlugin(['*.md']),
         !env.VITEST
           ? checker({
               // typescript: true,
@@ -61,15 +68,30 @@ export const defineConfigMethod =
       //  plugins: [ nxViteTsPaths() ],
       // },
 
-      test: {
-        globals: true,
-        cache: {
-          dir: '../../node_modules/.vitest',
+      build: {
+        outDir: `../../dist/apps/${appName}`,
+        emptyOutDir: true,
+        reportCompressedSize: true,
+        commonjsOptions: {
+          transformMixedEsModules: true,
         },
-        // css: true, // for vitest-preview
-        setupFiles: `../../setupTests.ts`,
+      },
+
+      test: {
+        watch: false,
+        globals: true,
         environment: 'jsdom',
         include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+
+        reporters: ['default'],
+        coverage: {
+          reportsDirectory: `../../coverage/apps/${appName}`,
+          provider: 'v8',
+        },
+
+        // cacheDir: `../../node_modules/.vitest/${appName}`,
+        // css: true, // for vitest-preview
+        setupFiles: `../../setupTests.ts`,
       },
 
       // my for absolute imports
