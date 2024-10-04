@@ -1,25 +1,39 @@
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import {ActionIcon, Menu} from '@mantine/core';
+import {IconAlertTriangle} from '@tabler/icons-react';
 import React, {MouseEventHandler} from 'react';
 
 import DragHandler from '@/app/levelsGrid/components/LevelRow/DragHandler.tsx';
 import ToggleVisibilityBtn from '@/app/levelsGrid/components/LevelRow/ToggleVisibilityBtn.tsx';
+import EditableText from '@/components/EditableText/EditableText.tsx';
 
 import ActionBtn from './ActionBtn.tsx';
 import styles from './styles.module.scss';
 
 interface LevelRowProps {
   id: string;
+  name: string;
   visible: boolean;
   active: boolean;
   onActivate: (id: string) => void;
   onAdd: (id: string) => void;
   onRemove: (id: string) => void;
   onToggleVisibility: (id: string) => void;
+  onChangeName: (id: string, name: string) => void;
 }
 
-const LevelRow = ({id, visible, active, onActivate, onAdd, onRemove, onToggleVisibility}: LevelRowProps) => {
+const LevelRow = ({
+  id,
+  name,
+  visible,
+  active,
+  onActivate,
+  onAdd,
+  onRemove,
+  onToggleVisibility,
+  onChangeName,
+}: LevelRowProps) => {
   const {setNodeRef, transform, transition} = useSortable({id});
 
   const style = {
@@ -44,7 +58,7 @@ const LevelRow = ({id, visible, active, onActivate, onAdd, onRemove, onToggleVis
     <div
       key={id}
       role="row"
-      aria-label={`level-${id}`}
+      aria-label={`Layer ${id}`}
       aria-selected={active}
       onClick={() => {
         onActivate(id);
@@ -55,7 +69,12 @@ const LevelRow = ({id, visible, active, onActivate, onAdd, onRemove, onToggleVis
     >
       <DragHandler id={id} />
       <ToggleVisibilityBtn visible={visible} onClick={handleToggleVisibility} />
-      <label>level {id}</label>
+      <EditableText
+        value={name}
+        onChange={newValue => {
+          onChangeName(id, newValue);
+        }}
+      />
       <ActionIcon.Group className={styles.actions}>
         <ActionBtn label="Add new layer above it" icon="add" onClick={handleAdd} />
         <Menu withArrow offset={0} arrowSize={8} width={240}>
@@ -64,7 +83,10 @@ const LevelRow = ({id, visible, active, onActivate, onAdd, onRemove, onToggleVis
             <ActionBtn label="Remove this layer" icon="remove" onClick={stopPropagation} />
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Label>Are you sure you want to remove this layer?</Menu.Label>
+            <Menu.Label className={styles.menuLabel}>
+              <IconAlertTriangle size={24} stroke={1} />
+              Are you sure you want to remove this layer? This action cannot be undone.
+            </Menu.Label>
             <Menu.Item color="red" onClick={handlerRemove}>
               Yes, remove this layer
             </Menu.Item>

@@ -2,9 +2,9 @@ import {useAtomValue} from 'jotai';
 import {useAtom} from 'jotai/index';
 
 import Level from '@/app/scene/components/Level/Level.tsx';
+import {sceneActiveLevelAtom, sceneLevelsAtom} from '@/stateAtoms/levels/sceneLevelsAtom.ts';
 import {tileSetAtom} from '@/stateAtoms/paletteAtoms.ts';
 import {sceneScaleAtom, sceneSizeAtom} from '@/stateAtoms/sceneAtoms.ts';
-import {sceneActiveLevelAtom, sceneLevelsAtom} from '@/stateAtoms/sceneLevelsAtom.ts';
 
 import styles from './styles.module.scss';
 

@@ -108,7 +108,7 @@ const Level = ({
     (slotId: string, finished: boolean) => {
       setTiles({slotsIds: [slotId], levelId: id, finished});
     },
-    [setTiles, id]
+    [setTiles, id],
   );
 
   const handleAxisInteraction = useCallback(
@@ -116,16 +116,15 @@ const Level = ({
       const slotsIds = getSlotsRangeFromAxisLabelId(axisLabelId);
       setTiles({slotsIds, levelId: id, finished: true});
     },
-    [setTiles, id]
+    [setTiles, id],
   );
 
   return (
     <section className={styles.level} data-id={id} data-active={active} style={levelStyle}>
-      id: {id} {active && 'active'}
       {slots.map(slot => {
         const filledSlot = filledSlots[slot.id];
         const tile = filledSlot
-          ? tileSet.tilesGroups.flatMap(tileGroup => tileGroup.tiles).find(t => t.name === filledSlot.tileId) ?? null
+          ? (tileSet.tilesGroups.flatMap(tileGroup => tileGroup.tiles).find(t => t.name === filledSlot.tileId) ?? null)
           : null;
         const x = start + slot.x * widthHalfFloored - slot.y * widthHalfFloored;
         const y = slot.y * heightQuarterFloored + slot.x * heightQuarterFloored;

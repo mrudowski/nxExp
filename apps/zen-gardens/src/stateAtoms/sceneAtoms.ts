@@ -4,6 +4,7 @@
 import {atom} from 'jotai';
 import {atomWithStorage} from 'jotai/utils';
 
+import {getLayerDefaultName} from '@/stateAtoms/levels/levelsUtils.ts';
 import {modeAtom} from '@/stateAtoms/modeAtoms.ts';
 import {selectedPaletteTilesAtom} from '@/stateAtoms/paletteAtoms.ts';
 import {addActionToUndoRedoAtom, UndoRedoAction} from '@/stateAtoms/undoRedoAtoms.ts';
@@ -17,6 +18,7 @@ export interface Slot {
 }
 export interface Level {
   id: string;
+  name: string;
   visible: boolean;
   // position: if order in array would be a problem
   slots: Record<string, Slot>;
@@ -27,12 +29,14 @@ export interface Scene {
   levels: Level[];
 }
 
+const INITIAL_ACTIVE_LEVEL_ID = '1';
 export const sceneAtomInitialValue: Scene = {
   size: 5,
-  activeLevel: '0',
+  activeLevel: INITIAL_ACTIVE_LEVEL_ID,
   levels: [
     {
-      id: '0',
+      id: INITIAL_ACTIVE_LEVEL_ID,
+      name: getLayerDefaultName(INITIAL_ACTIVE_LEVEL_ID),
       visible: true,
       slots: {},
     },

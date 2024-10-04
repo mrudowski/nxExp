@@ -1,21 +1,17 @@
 @import 'variables';
 //@import 'libs/sw-base-tools/src/styles/reset';
 
-// modern way
-body {
-  min-height: 100vh;
-}
-// old way
-//html {
-//  height: 100%;
-//}
+// modern way - is not enough here
 //body {
-//  min-height: 100%;
+//  min-height: 100vh;
 //}
 
+// old way
+html, body {
+  height: 100%;
+}
+
 body {
-  //display: grid;
-  //place-content: center;
   margin: 0;
 }
 
@@ -45,7 +41,14 @@ h6 {
   font-weight: normal;
 }
 
-// some overwriting
+// zen variables
+// --------------------------------------
+
+:root {
+  --zen-color-warning: var(--mantine-color-yellow-6);
+}
+
+// some color-scheme overwriting
 // --------------------------------------
 
 :root[data-mantine-color-scheme='light'] {
@@ -54,10 +57,13 @@ h6 {
   .mantine-Paper-root {
     background-color: rgba(#fff, 0.4);
   }
+
 }
 
 :root[data-mantine-color-scheme='dark'] {
   --mantine-color-body: #{$zen-color-body-dark};
+  --mantine-color-dark-6: #{lighten($zen-color-body-dark, 3%)};
+  --mantine-color-dark-4: #{lighten($zen-color-body-dark, 10%)};
 
   .mantine-Paper-root {
     background-color: rgba(#000, 0.2);

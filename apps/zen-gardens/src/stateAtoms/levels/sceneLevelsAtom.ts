@@ -1,6 +1,7 @@
 import {arrayMove} from '@dnd-kit/sortable';
 import {atom} from 'jotai';
 
+import {getLayerDefaultName} from '@/stateAtoms/levels/levelsUtils.ts';
 import {Scene, sceneAtom} from '@/stateAtoms/sceneAtoms.ts';
 
 // get levels
@@ -22,7 +23,7 @@ export const sceneActiveLevelAtom = atom(
         activeLevel: update.id,
       };
     });
-  }
+  },
 );
 
 // toggle visibility
@@ -45,6 +46,26 @@ export const toggleLevelVisibilityAtom = atom(null, (get, set, update: {id: stri
   });
 });
 
+// change level name
+// -----------------------
+
+export const changeLevelNameAtom = atom(null, (get, set, update: {id: string; name: string}) => {
+  set(sceneAtom, (prevState): Scene => {
+    return {
+      ...prevState,
+      levels: prevState.levels.map(level => {
+        if (level.id === update.id) {
+          return {
+            ...level,
+            name: update.name,
+          };
+        }
+        return level;
+      }),
+    };
+  });
+});
+
 // add
 // -----------------------
 export const addLevelAtom = atom(null, (get, set, update: {id: string; pos: 'after' | 'before'}) => {
@@ -58,6 +79,7 @@ export const addLevelAtom = atom(null, (get, set, update: {id: string; pos: 'aft
         ...prevState.levels.slice(0, index),
         {
           id: nextId,
+          name: getLayerDefaultName(nextId),
           visible: true,
           slots: {},
         },

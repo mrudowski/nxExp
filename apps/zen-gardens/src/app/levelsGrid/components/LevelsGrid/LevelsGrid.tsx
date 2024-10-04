@@ -15,12 +15,13 @@ import {useAtom, useAtomValue, useSetAtom} from 'jotai';
 import LevelRow from '@/app/levelsGrid/components/LevelRow/LevelRow.tsx';
 import {
   addLevelAtom,
+  changeLevelNameAtom,
   moveLevelAtom,
   removeLevelAtom,
   sceneActiveLevelAtom,
   sceneLevelsAtom,
   toggleLevelVisibilityAtom,
-} from '@/stateAtoms/sceneLevelsAtom.ts';
+} from '@/stateAtoms/levels/sceneLevelsAtom.ts';
 
 import styles from './styles.module.scss';
 
@@ -31,12 +32,13 @@ const LevelsGrid = () => {
   const removeLevel = useSetAtom(removeLevelAtom);
   const moveLevel = useSetAtom(moveLevelAtom);
   const toggleLevelVisibility = useSetAtom(toggleLevelVisibilityAtom);
+  const changeLevelName = useSetAtom(changeLevelNameAtom);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleActivate = (id: string) => {
@@ -50,6 +52,9 @@ const LevelsGrid = () => {
   };
   const handleToggleVisibility = (id: string) => {
     toggleLevelVisibility({id});
+  };
+  const handleChangeName = (id: string, name: string) => {
+    changeLevelName({id, name});
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -66,7 +71,7 @@ const LevelsGrid = () => {
     <Paper className={styles.levelsGrid}>
       <h2>Layers</h2>
       <div className={styles.scrollWrapper}>
-        <ScrollArea className={styles.scroll}>
+        <ScrollArea scrollbars="y" className={styles.scroll}>
           <div role="grid" aria-label="LevelsGrid">
             <DndContext
               sensors={sensors}
@@ -80,12 +85,14 @@ const LevelsGrid = () => {
                     <LevelRow
                       key={level.id}
                       id={level.id}
+                      name={level.name}
                       active={activeLevelId === level.id}
                       visible={level.visible}
                       onActivate={handleActivate}
                       onAdd={handleAdd}
                       onRemove={handleRemove}
                       onToggleVisibility={handleToggleVisibility}
+                      onChangeName={handleChangeName}
                     />
                   );
                 })}

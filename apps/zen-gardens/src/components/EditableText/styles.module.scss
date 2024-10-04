@@ -1,0 +1,27 @@
+@import '@/styles/variables';
+
+.editableText {
+  flex: 1 1 auto;
+  min-width: 0;
+  cursor: text;
+
+
+  :global {
+    .mantine-Input-wrapper {
+      --input-height-xs: 1.5rem;
+      --input-padding: 0.25rem;
+      margin: -1px -4px -2px -5px;
+    }
+    .mantine-Input-input {
+      padding-bottom: 1px;
+    }
+  }
+}
+
+.editMode {
+
+}
+
+.text {
+  text-overflow: ellipsis;
+}
