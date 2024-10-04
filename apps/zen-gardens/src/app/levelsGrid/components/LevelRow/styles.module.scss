@@ -12,8 +12,8 @@
   }
 
   @include darkMode {
-    --hoverBg: hsl(0, 100%, 100%, 0.1);
-    --dragActiveBg: hsl(0, 100%, 100%, 0.2);
+    --hoverBg: var(--mantine-color-dark-6);
+    --dragActiveBg: var(--mantine-color-dark-5);
   }
 
   &:hover {

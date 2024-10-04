@@ -16,10 +16,14 @@
   flex: 1 1 auto;
   position: relative;
   margin: 0 -1rem 0 -1rem;
-}
 
-.scroll {
-  position: absolute;
-  inset: 0;
-  display: block !important; // display: table breaks truncate text
+  :global {
+    .mantine-ScrollArea-root {
+      position: absolute;
+      inset: 0;
+    }
+    .mantine-ScrollArea-viewport > div {
+      display: block !important; // display: table breaks truncate text
+    }
+  }
 }
