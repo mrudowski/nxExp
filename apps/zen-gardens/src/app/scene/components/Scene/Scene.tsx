@@ -43,22 +43,27 @@ const Scene = () => {
     <div className={styles.scroll}>
       <div className={styles.sceneWrapper} style={sceneStyle}>
         <main className={styles.scene} style={sceneStyle}>
-          {sceneLevels.map((sceneLevel, index) => (
-            <Level
-              id={sceneLevel.id}
-              active={activeLevelId === sceneLevel.id}
-              key={sceneLevel.id}
-              top={(numberOfAdditionalLevels - index) * levelHeight}
-              // height={sceneStyle.height}
-              tilesInRow={tilesInRow}
-              filledSlots={sceneLevel.slots}
-              tileSet={tileSet}
-              boardWidth={sceneStyle.width}
-              tileScale={sceneScale}
-              widthHalfFloored={widthHalfFloored}
-              heightQuarterFloored={heightQuarterFloored}
-            />
-          ))}
+          {sceneLevels.map((sceneLevel, index) => {
+            if (sceneLevel.visible) {
+              return (
+                <Level
+                  id={sceneLevel.id}
+                  active={activeLevelId === sceneLevel.id}
+                  key={sceneLevel.id}
+                  top={(numberOfAdditionalLevels - index) * levelHeight}
+                  // height={sceneStyle.height}
+                  tilesInRow={tilesInRow}
+                  filledSlots={sceneLevel.slots}
+                  tileSet={tileSet}
+                  boardWidth={sceneStyle.width}
+                  tileScale={sceneScale}
+                  widthHalfFloored={widthHalfFloored}
+                  heightQuarterFloored={heightQuarterFloored}
+                />
+              );
+            }
+            return null;
+          })}
         </main>
       </div>
     </div>

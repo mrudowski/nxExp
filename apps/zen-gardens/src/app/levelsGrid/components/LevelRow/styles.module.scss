@@ -57,6 +57,7 @@
 .dragHandler {
   cursor: grab;
   margin-right: -4px;
+  opacity: 0.6;
 
   &:active {
     cursor: grabbing;

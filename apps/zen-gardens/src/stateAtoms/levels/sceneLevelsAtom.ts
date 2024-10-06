@@ -46,6 +46,29 @@ export const toggleLevelVisibilityAtom = atom(null, (get, set, update: {id: stri
   });
 });
 
+// show only one level
+// -----------------------
+
+export const showOnlyOneLevelAtom = atom(null, (get, set, update: {id: string}) => {
+  set(sceneAtom, (prevState): Scene => {
+    return {
+      ...prevState,
+      levels: prevState.levels.map(level => {
+        if (level.id === update.id) {
+          return {
+            ...level,
+            visible: true,
+          };
+        }
+        return {
+          ...level,
+          visible: false,
+        };
+      }),
+    };
+  });
+});
+
 // change level name
 // -----------------------
 

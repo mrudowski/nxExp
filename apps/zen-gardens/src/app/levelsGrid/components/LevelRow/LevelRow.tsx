@@ -1,12 +1,13 @@
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
-import {ActionIcon, Menu} from '@mantine/core';
+import {ActionIcon} from '@mantine/core';
 import {IconAlertTriangle} from '@tabler/icons-react';
 import React, {MouseEventHandler} from 'react';
 
 import DragHandler from '@/app/levelsGrid/components/LevelRow/DragHandler.tsx';
 import ToggleVisibilityBtn from '@/app/levelsGrid/components/LevelRow/ToggleVisibilityBtn.tsx';
 import EditableText from '@/components/EditableText/EditableText.tsx';
+import Menu from '@/components/Menu/Menu.tsx';
 
 import ActionBtn from './ActionBtn.tsx';
 import styles from './styles.module.scss';
@@ -20,6 +21,7 @@ interface LevelRowProps {
   onAdd: (id: string) => void;
   onRemove: (id: string) => void;
   onToggleVisibility: (id: string) => void;
+  onShowOnlyOne: (id: string) => void;
   onChangeName: (id: string, name: string) => void;
 }
 
@@ -32,6 +34,7 @@ const LevelRow = ({
   onAdd,
   onRemove,
   onToggleVisibility,
+  onShowOnlyOne,
   onChangeName,
 }: LevelRowProps) => {
   const {setNodeRef, transform, transition} = useSortable({id});
@@ -43,6 +46,10 @@ const LevelRow = ({
 
   const handleToggleVisibility: MouseEventHandler<HTMLButtonElement> = e => {
     onToggleVisibility(id);
+    stopPropagation(e);
+  };
+  const handleShowOnlyOne: MouseEventHandler<HTMLButtonElement> = e => {
+    onShowOnlyOne(id);
     stopPropagation(e);
   };
   const handleAdd: MouseEventHandler<HTMLButtonElement> = e => {
@@ -77,7 +84,7 @@ const LevelRow = ({
       />
       <ActionIcon.Group className={styles.actions}>
         <ActionBtn label="Add new layer above it" icon="add" onClick={handleAdd} />
-        <Menu withArrow offset={0} arrowSize={8} width={240}>
+        <Menu>
           <Menu.Target>
             {/* Cannot use `id` prop because `Menu` use it too */}
             <ActionBtn label="Remove this layer" icon="remove" onClick={stopPropagation} />
@@ -90,6 +97,15 @@ const LevelRow = ({
             <Menu.Item color="red" onClick={handlerRemove}>
               Yes, remove this layer
             </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+        <Menu width={null}>
+          <Menu.Target>
+            {/* Cannot use `id` prop because `Menu` use it too */}
+            <ActionBtn label="More…" icon="toggleMenu" onClick={stopPropagation} />
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item onClick={handleShowOnlyOne}>Show only this layer</Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </ActionIcon.Group>

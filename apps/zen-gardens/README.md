@@ -83,8 +83,9 @@ a tiny isometric block gardens builder (test)
 - ✅ remove
   - ✅ with confirmation
 - ✅ change order (by drag and drop thanks to `dnd-kit` ~~or arrows~~)
-- 👉 toggle visibility
-- 👉 show only me (show/hide all other layers) - isolation mode
+- ✅ toggle visibility
+- ✅ show only me (show/hide all other layers) - isolation mode
+- 👉 buttons above list (show/hide all, remove all)
 - count tiles on layer
 - undo/redo delete layer
 

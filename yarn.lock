@@ -10471,6 +10471,11 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
+mantine-contextmenu@^7.12.2:
+  version "7.12.2"
+  resolved "https://registry.yarnpkg.com/mantine-contextmenu/-/mantine-contextmenu-7.12.2.tgz#60eb6b1aade5136737e894c1c2f3fa8dad22b1c0"
+  integrity sha512-HD/xrGTGkq51WIVOh97gG1C0Z+PgV6gBPzALrPmv14R4t8iBUEJEY1A9CUvnV/yNjxBas+AA+2flXMAc0wyBxw==
+
 mathjs@^12.0.0:
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/mathjs/-/mathjs-12.0.0.tgz#395b76c486df9a14d0841f7e4f2bbf9fbfba2a89"

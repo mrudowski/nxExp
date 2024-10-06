@@ -1,7 +1,9 @@
 import '@mantine/core/styles.css';
+import 'mantine-contextmenu/styles.css';
 import './styles/index.scss';
 
 import {ColorSchemeScript, MantineProvider} from '@mantine/core';
+import {ContextMenuProvider} from 'mantine-contextmenu';
 import {StrictMode} from 'react';
 import * as ReactDOM from 'react-dom/client';
 
@@ -16,7 +18,9 @@ root.render(
   <StrictMode>
     <ColorSchemeScript defaultColorScheme="auto" localStorageKey={COLOR_SCHEME_LS_KEY} />
     <MantineProvider theme={theme} defaultColorScheme="auto" colorSchemeManager={colorSchemeManager}>
-      <App />
+      <ContextMenuProvider>
+        <App />
+      </ContextMenuProvider>
     </MantineProvider>
-  </StrictMode>
+  </StrictMode>,
 );

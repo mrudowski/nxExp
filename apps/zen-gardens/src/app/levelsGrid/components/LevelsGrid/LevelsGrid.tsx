@@ -20,6 +20,7 @@ import {
   removeLevelAtom,
   sceneActiveLevelAtom,
   sceneLevelsAtom,
+  showOnlyOneLevelAtom,
   toggleLevelVisibilityAtom,
 } from '@/stateAtoms/levels/sceneLevelsAtom.ts';
 
@@ -32,6 +33,7 @@ const LevelsGrid = () => {
   const removeLevel = useSetAtom(removeLevelAtom);
   const moveLevel = useSetAtom(moveLevelAtom);
   const toggleLevelVisibility = useSetAtom(toggleLevelVisibilityAtom);
+  const showOnlyOneLevel = useSetAtom(showOnlyOneLevelAtom);
   const changeLevelName = useSetAtom(changeLevelNameAtom);
 
   const sensors = useSensors(
@@ -52,6 +54,9 @@ const LevelsGrid = () => {
   };
   const handleToggleVisibility = (id: string) => {
     toggleLevelVisibility({id});
+  };
+  const handleShowOnlyOne = (id: string) => {
+    showOnlyOneLevel({id});
   };
   const handleChangeName = (id: string, name: string) => {
     changeLevelName({id, name});
@@ -92,6 +97,7 @@ const LevelsGrid = () => {
                       onAdd={handleAdd}
                       onRemove={handleRemove}
                       onToggleVisibility={handleToggleVisibility}
+                      onShowOnlyOne={handleShowOnlyOne}
                       onChangeName={handleChangeName}
                     />
                   );

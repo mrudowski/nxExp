@@ -1,5 +1,5 @@
 import {ActionIcon} from '@mantine/core';
-import {IconEye, IconEyeOff, IconPlus, IconX} from '@tabler/icons-react';
+import {IconDotsVertical, IconEye, IconEyeOff, IconPlus, IconX} from '@tabler/icons-react';
 import {forwardRef, MouseEventHandler, ReactNode} from 'react';
 
 import useColor from '@/app/actions/hooks/useColor.ts';
@@ -7,7 +7,7 @@ import Tooltip from '@/components/Tooltip/Tooltip';
 
 interface ActionBtnProps {
   label: string;
-  icon: 'show' | 'hide' | 'add' | 'remove';
+  icon: 'show' | 'hide' | 'add' | 'remove' | 'toggleMenu';
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
@@ -17,6 +17,7 @@ const ICON_SET: Record<ActionBtnProps['icon'], ReactNode> = {
   hide: <IconEyeOff size={18} />,
   add: <IconPlus size={18} />,
   remove: <IconX size={18} />,
+  toggleMenu: <IconDotsVertical size={16} />,
 } as const;
 
 const ActionBtn = forwardRef<HTMLButtonElement, ActionBtnProps>(
@@ -39,7 +40,7 @@ const ActionBtn = forwardRef<HTMLButtonElement, ActionBtnProps>(
         </ActionIcon>
       </Tooltip>
     );
-  }
+  },
 );
 
 export default ActionBtn;
