@@ -46,6 +46,7 @@ h6 {
 
 :root {
   --zen-color-warning: var(--mantine-color-yellow-6);
+  --zen-color-primary: #{$zen-color-primary}
 }
 
 // some color-scheme overwriting

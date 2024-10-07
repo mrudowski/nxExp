@@ -1,7 +1,8 @@
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import {ActionIcon} from '@mantine/core';
-import {IconAlertTriangle} from '@tabler/icons-react';
+import {IconAlertTriangle, IconEye, IconTrash} from '@tabler/icons-react';
+import clsx from 'clsx';
 import React, {MouseEventHandler} from 'react';
 
 import DragHandler from '@/app/levelsGrid/components/LevelRow/DragHandler.tsx';
@@ -70,7 +71,7 @@ const LevelRow = ({
       onClick={() => {
         onActivate(id);
       }}
-      className={styles.levelRow}
+      className={clsx(styles.levelRow, !visible && styles.hidden)}
       ref={setNodeRef}
       style={style}
     >
@@ -94,7 +95,7 @@ const LevelRow = ({
               <IconAlertTriangle size={24} stroke={1} />
               Are you sure you want to remove this layer? This action cannot be undone.
             </Menu.Label>
-            <Menu.Item color="red" onClick={handlerRemove}>
+            <Menu.Item leftSection={<IconTrash size={16} />} color="red" onClick={handlerRemove}>
               Yes, remove this layer
             </Menu.Item>
           </Menu.Dropdown>
@@ -105,7 +106,9 @@ const LevelRow = ({
             <ActionBtn label="More…" icon="toggleMenu" onClick={stopPropagation} />
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item onClick={handleShowOnlyOne}>Show only this layer</Menu.Item>
+            <Menu.Item leftSection={<IconEye size={18} />} onClick={handleShowOnlyOne}>
+              Show only this layer
+            </Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </ActionIcon.Group>

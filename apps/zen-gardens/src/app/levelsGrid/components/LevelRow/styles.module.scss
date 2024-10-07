@@ -5,6 +5,7 @@
   gap: 0.5rem;
   padding: 0.25rem 0.75rem 0.25rem 0.5rem;
   cursor: pointer;
+  --zen-level-row-selected: var(--zen-color-primary);
 
   @include lightMode {
     --hoverBg: hsl(0 0 0 / 0.05);
@@ -21,13 +22,31 @@
   }
 
   &[aria-selected='true'] {
-    box-shadow: inset 4px 0 0 0 $zen-color-primary;
+    box-shadow: inset 4px 0 0 0 var(--zen-level-row-selected);
   }
 
   &:has(.dragHandler:active) {
     background-color: var(--dragActiveBg);
     position: relative;
     z-index: 1;
+  }
+}
+
+.hidden {
+  &[aria-selected='true'] {
+    @include lightMode {
+      --zen-level-row-selected: var(--mantine-color-gray-5);
+    }
+
+    @include darkMode {
+      --zen-level-row-selected: var(--mantine-color-gray-7);
+    }
+  }
+
+  :global {
+    .mantine-ActionIcon-root:has(.tabler-icon-eye-off) {
+      opacity: 0.5;
+    }
   }
 }
 
