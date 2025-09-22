@@ -42,11 +42,11 @@
       stroke-width: 1;
 
       @include lightMode {
-        stroke-opacity: 0.4;
+        stroke-opacity: 0;
       }
 
       @include darkMode {
-        stroke-opacity: 0.2;
+        stroke-opacity: 0;
       }
     }
   }

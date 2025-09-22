@@ -67,7 +67,7 @@ const Slot = ({id, x, y, tile, tileScale, onInteraction}: SlotProps) => {
           onMouseUp={handleMouseUp}
           role="button"
         >
-          {/*<path className="faceB" d="M40,80 0,60 40,40 80,60 z" />*/}
+          {/*<path className="faceB" d={`M40,80 0,${60 + FIX} 40,${40 + 2 * FIX} 80,${60 + FIX} z`} />*/}
           {/*<path className="faceBL" d="M0,20 40,0 40,40 0,60 z" />*/}
           {/*<path className="faceBR" d="M40,0 80,20 80,60 40,40 z" />*/}
           <path className="faceFL" d={`M0,${20 - FIX} 40,${40 - 2 * FIX} 40,80 0,${60 + FIX} z`} />
